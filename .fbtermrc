@@ -1,0 +1,6 @@
+# 字体大小
+font-size=20
+# 光标形状: 0 = 下划线, 1 = 块
+cursor-shape=1
+# 光标闪动时间: 毫秒计，0 = 不闪动
+cursor-interval=0

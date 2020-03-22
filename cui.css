@@ -1,0 +1,117 @@
+:root {
+    --bg-color: #F5F5F5;
+    --write-bg-color: #fff;
+    --code-bg-color: #f8f8f8;
+    --font: \963F\91CC\5DF4\5DF4\666E\60E0\4F53;
+    --mono: Microsoft Yahei Mono;
+}
+
+html, body {
+    background-color: var(--bg-color);
+    font-family: var(--font);
+}
+
+#write {
+    background-color: var(--write-bg-color);
+    max-width: 1000px;
+    font-size: 1.2rem;
+    margin-top: 1.2em;
+    margin-bottom: 150px;
+    padding-bottom: 30px;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration-line: underline;
+}
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .2);
+}
+
+mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+/* ===================================================================标题=================================================================== */
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6,
+#write-h1, #write-h2, #write-h3, #write-h4, #write-h5, #write-h6 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    line-height: 1.35;
+    color: #000;
+    font-weight: lighter;
+}
+
+#write h1, #write-h1 {
+    margin-top: 0.9em;
+    font-size: 2.4em;
+    padding-bottom: 0.2em;
+    border-bottom: 3px double #eee;
+}
+
+#write h2, #write-h2 { font-size: 1.8em; }
+#write h3, #write-h3 { font-size: 1.6em; }
+#write h4, #write-h4 { font-size: 1.4em; }
+#write h5, #write h6, #write-h5, #write-h6 { font-size: 1.2em; }
+/*===================================================================目录==================================================================*/
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+a.md-toc-inner { border-bottom: 0 !important; }
+.md-toc-h1:first-of-type:last-of-type { display: none; }
+.md-toc { font-size: inherit; }
+.md-toc-h1 .md-toc-inner { font-weight: normal; }
+/*===================================================================表格===================================================================*/
+#write table th, #write table td {
+    border: 1px solid #ddd;
+    padding: 0.5em 1em;
+    color: #666;
+}
+
+#write table .md-table-edit th {
+    border: none;
+    padding: 0;
+    color: inherit;
+}
+
+#write table th, #write-table th { background: #fbfbfb; }
+#write table thead th, #write-table thead th { background: #f1f1f1; }
+#write table caption { border-bottom: none; }
+/*===================================================================代码===================================================================*/
+code {
+    font-family: var(--mono);
+    background-color: rgba(221, 221, 221, 0.7);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.cm-s-inner {
+    background-color: var(--code-bg-color);
+    font-family: var(--mono);
+    font-size: 1.2rem;
+}
+.cm-s-inner .CodeMirror-gutters {
+    background: var(--code-bg-color);
+    font-family: var(--mono);
+    font-size: 1.2rem;
+}
+.md-fences {
+    padding: 10px 0;
+    background: var(--code-bg-color);
+}
+.md-fences .code-tooltip {
+    background-color: #fff;
+}
+kbd{ font-family:"阿里巴巴普惠体";}
