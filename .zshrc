@@ -74,6 +74,7 @@ alias la='ls -A'
 alias lla='ls -lAh'
 alias ls='ls --color=tty'
 
+alias makej='make -j'
 alias more='less'
 alias mson='sudo systemctl start mssql-server.service'
 alias msoff='sudo systemctl stop mssql-server.service'
@@ -122,3 +123,6 @@ vman () {
     # we muse unset the PAGER, so regular man pager is used afterwards
     unset PAGER
 }
+
+export http_proxy="http://127.0.0.1:12333"
+export https_proxy="http://127.0.0.1:12333"
