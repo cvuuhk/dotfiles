@@ -5,15 +5,16 @@ ZSH_THEME="agnoster"
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS=true
 
-plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions)
+# plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 # 使用通配符
 setopt no_nomatch
 
-alias __='cd / && mount LABEL="Linux_backup" && sudo sh -c "date > rs_time" && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt && umount /mnt && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup  && sudo pacman -Syu'
+alias __='cd / && mount LABEL="Linux_backup" && sudo sh -c "date > rs_time" && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt && umount /mnt && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup  && sudo pacman -Su'
 alias a='aria2c'
-alias cp='cp -r'
+alias cp='cp -ri'
 alias dbon='sudo systemctl start mariadb.service'
 alias dbf='sudo systemctl stop mariadb.service'
 
@@ -118,7 +119,7 @@ vman () {
                      -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
  
     # invoke man page
-    man $1
+    man $*
  
     # we muse unset the PAGER, so regular man pager is used afterwards
     unset PAGER
