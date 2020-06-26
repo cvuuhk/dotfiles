@@ -80,7 +80,7 @@ alias more='less'
 alias mson='sudo systemctl start mssql-server.service'
 alias msoff='sudo systemctl stop mssql-server.service'
 
-alias npm='cnpm'
+# alias npm='cnpm'
 alias nvidia-on='sudo tee /proc/acpi/bbswitch <<< "ON"'
 alias nvidia-off='sudo tee /proc/acpi/bbswitch <<< "OFF"'
 alias nvidiasettins='optirun -b none nvidia-settings -c :8'
@@ -127,3 +127,4 @@ vman () {
 
 export http_proxy="http://127.0.0.1:12333"
 export https_proxy="http://127.0.0.1:12333"
+source /usr/share/nvm/init-nvm.sh

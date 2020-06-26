@@ -37,6 +37,7 @@ nnoremap j gj
 nnoremap gj j
 
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
+autocmd BufNewFile *.sh 0r ~/.dotfiles/template/bashScript
 
 call plug#begin()
 Plug 'rakr/vim-one'                                                      " 主题
