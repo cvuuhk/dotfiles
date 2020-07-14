@@ -11,10 +11,10 @@
 	autocrlf = false
 	safecrlf = true
 	quotepath = false
-[http]
-	proxy = socks5://127.0.0.1:1080
-[https]
-	proxy = socks5://127.0.0.1:1080
+; [http]
+; 	proxy = socks5://127.0.0.1:1080
+; [https]
+; 	proxy = socks5://127.0.0.1:1080
 [diff]
 	tool = meld
 [difftool]

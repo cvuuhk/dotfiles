@@ -12,7 +12,7 @@ export EDITOR=nvim
 # 使用通配符
 setopt no_nomatch
 
-alias __='cd / && mount LABEL="Linux_backup" && sudo sh -c "date > rs_time" && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt && umount /mnt && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup  && sudo pacman -Su'
+# alias __='cd / && mount LABEL="Linux_backup" && sudo sh -c "date > rs_time" && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt && umount /mnt && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup  && sudo pacman -Su'
 alias a='aria2c'
 alias cp='cp -ri'
 alias dbon='sudo systemctl start mariadb.service'
@@ -111,16 +111,51 @@ alias vz='nvim ~/.zshrc'
 bindkey ',' autosuggest-accept
 
 function mc { command mkdir $1 && cd $1 }
+function __ {
+tempfile=$(mktemp -t update.XXXXXX)
+sudo pacman -Syuw --noconfirm |tee $tempfile
+hasLinuxCore=0;
+if grep 'linux-' $tempfile; then
+    hasLinuxCore=1;
+    echo "先进行备份吗？[Yes/no]"
+    read option
+    if [[ "$option" =~ ^(|y|Y|yes|YES)$ ]]; then
+        cd / \
+            && mount LABEL="Linux_backup" \
+            && sudo sh -c "date > rs_time" \
+            && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt \
+            && umount /mnt \
+            && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup \
+            && cd
+    elif [[ "$option" =~ ^(n|N|NO|no)$ ]]; then
+        echo "那就不备份了"
+    else
+        echo "你输个 $option 是啥意思？"
+    fi
+fi
+rm $tempfile
+sudo pacman -Su
+if (( $hasLinuxCore==1 )); then
+    echo "立刻重启？[Yes/no]"
+    read option
+    if [[ "$option" =~ ^(|y|Y|yes|YES)$ ]]; then
+        reboot
+    elif [[ "$option" =~ ^(n|N|NO|no)$ ]]; then
+        echo ""
+    else
+        echo "你输个 $option 是啥意思？"
+    fi
+fi
+}
 
 vman () {
     export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
                      vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
                      -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
                      -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
- 
+
     # invoke man page
     man $*
- 
     # we muse unset the PAGER, so regular man pager is used afterwards
     unset PAGER
 }
