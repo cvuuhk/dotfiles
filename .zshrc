@@ -11,7 +11,6 @@ DISABLE_MAGIC_FUNCTIONS=true
 # 使用通配符
 setopt no_nomatch
 
-alias a='aria2c'
 alias cp='cp -ri'
 alias dbon='sudo systemctl start mariadb.service'
 alias dbf='sudo systemctl stop mariadb.service'
@@ -78,12 +77,6 @@ alias more='less'
 alias mson='sudo systemctl start mssql-server.service'
 alias msoff='sudo systemctl stop mssql-server.service'
 
-# alias npm='cnpm'
-alias nvidia-on='sudo tee /proc/acpi/bbswitch <<< "ON"'
-alias nvidia-off='sudo tee /proc/acpi/bbswitch <<< "OFF"'
-alias nvidiasettins='optirun -b none nvidia-settings -c :8'
-
-alias pc='proxychains4'
 alias pins='sudo pacman -S'
 alias pse='pacman -Ss'
 alias puni='sudo pacman -Rsn'
