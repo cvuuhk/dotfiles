@@ -1,18 +1,16 @@
-export ZSH="/home/cui/.oh-my-zsh"
-ZSH_DISABLE_COMPFIX="true"
-ZSH_THEME="agnoster"
+source /usr/share/zsh/share/antigen.zsh
+antigen init /home/cui/.dotfiles/.antigenrc
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS=true
-
-plugins=(zsh-syntax-highlighting zsh-autosuggestions)
-# plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions)
-source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
+export ANTIGEN_COMPDUMPFILE=/home/cui/.zcompdumps
+export http_proxy="http://127.0.0.1:12333"
+export https_proxy="http://127.0.0.1:12333"
+
+# 禁止自动转义粘贴的内容
+DISABLE_MAGIC_FUNCTIONS=true
 # 使用通配符
 setopt no_nomatch
 
-# alias __='cd / && mount LABEL="Linux_backup" && sudo sh -c "date > rs_time" && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt && umount /mnt && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup  && sudo pacman -Su'
 alias a='aria2c'
 alias cp='cp -ri'
 alias dbon='sudo systemctl start mariadb.service'
@@ -55,7 +53,7 @@ alias gpsup='git push --set-upstream origin $(git_current_branch)'
 
 alias gr='git remote -v'
 alias gra='git remote add'
- alias grep='grep -iE --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+alias grep='grep -iE --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias grm='git rm'
 alias grmc='git rm --cached'
 alias grs='git reset'
@@ -112,47 +110,20 @@ bindkey ',' autosuggest-accept
 
 function mc { command mkdir $1 && cd $1 }
 function __ {
-tempfile=$(mktemp -t update.XXXXXX)
-sudo pacman -Syuw --noconfirm |tee $tempfile
-hasLinuxCore=0;
-if grep 'linux-' $tempfile; then
-    hasLinuxCore=1;
-    echo "先进行备份吗？[Yes/no]"
-    read option
-    if [[ "$option" =~ ^(|y|Y|yes|YES)$ ]]; then
-        cd / \
-            && mount LABEL="Linux_backup" \
-            && sudo sh -c "date > rs_time" \
-            && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt \
-            && umount /mnt \
-            && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup \
-            && cd
-    elif [[ "$option" =~ ^(n|N|NO|no)$ ]]; then
-        echo "那就不备份了"
-    else
-        echo "你输个 $option 是啥意思？"
-    fi
-fi
-rm $tempfile
-sudo pacman -Su
-if (( $hasLinuxCore==1 )); then
-    echo "立刻重启？[Yes/no]"
-    read option
-    if [[ "$option" =~ ^(|y|Y|yes|YES)$ ]]; then
-        reboot
-    elif [[ "$option" =~ ^(n|N|NO|no)$ ]]; then
-        echo ""
-    else
-        echo "你输个 $option 是啥意思？"
-    fi
-fi
-}
+    cd / \
+        && mount LABEL="Linux_backup" \
+        && sudo sh -c "date > rs_time" \
+        && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt \
+        && umount /mnt \
+        && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup \
+        && cd
+    }
 
 vman () {
     export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-                     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-                     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-                     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
     # invoke man page
     man $*
@@ -160,6 +131,3 @@ vman () {
     unset PAGER
 }
 
-export http_proxy="http://127.0.0.1:12333"
-export https_proxy="http://127.0.0.1:12333"
-source /usr/share/nvm/init-nvm.sh

@@ -54,7 +54,6 @@ Plug 'majutsushi/tagbar',{'on':'TagbarToggle'}                           " 代�
 Plug 'tpope/vim-fugitive',{'on':'Gblame'}                                " 集成 git 命令
 Plug 'airblade/vim-gitgutter'                                            " 显示 git 文件变动
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                          " 代码补全
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } " Python IDE
 
 Plug 'junegunn/vim-easy-align',{'on':'<Plug>(EasyAlign)'}                " 一键对齐
 Plug 'cvuuhk/vim-snippets'                                               " 片段仓库
