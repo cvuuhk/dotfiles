@@ -36,6 +36,9 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
+noremap <F5> :!cargo test<CR>
+noremap <F1> :g/#\[ignore]/d_<CR>
+
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
 autocmd BufNewFile *.sh 0r ~/.dotfiles/template/bashScript
 
@@ -150,4 +153,4 @@ function! s:show_documentation()
   endif
 endfunction
 
-nmap <F2> <Plug>(coc-diagnostic-next-error)
+nmap <F2> <Plug>(coc-diagnostic-next)
