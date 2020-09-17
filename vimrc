@@ -36,8 +36,9 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-noremap <F5> :!cargo test<CR>
 noremap <F1> :g/#\[ignore]/d_<CR>
+noremap <F5> :!cargo run<CR>
+noremap <F6> :!cargo test<CR>
 
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
 autocmd BufNewFile *.sh 0r ~/.dotfiles/template/bashScript
@@ -138,13 +139,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+" Use K to show documentation in preview window
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -152,5 +151,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 nmap <F2> <Plug>(coc-diagnostic-next)
+" }}}

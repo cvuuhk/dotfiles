@@ -3,13 +3,14 @@
     "suggest.noselect":false,
     //进入插入模式就触发自动补全
     "suggest.triggerAfterInsertEnter": true,
-    //补全项中代码片段的标识
-    "suggest.snippetIndicator": "⭐︎",
     //让 vim 弹出预览窗口，开启即可查看补全项的文档
-    //"suggest.enablePreview": true,
+    "suggest.enablePreview": true,
     // 自动格式化
     "coc.preferences.formatOnSaveFiletypes": ["rust"],
-    //大小写敏感
+    //禁用大小写敏感
     "coc.source.around.firstMatch": false,
-    "coc.source.buffer.firstMatch": false
+    "coc.source.buffer.firstMatch": false,
+
+    "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer"
 }
