@@ -97,6 +97,7 @@ alias tomoff='sudo /usr/share/tomcat8/bin/shutdown.sh'
 alias ty='typora'
 
 alias vim='nvim'
+alias vv='nvim ~/.dotfiles/vimrc'
 alias vz='nvim ~/.zshrc'
 
 bindkey ',' autosuggest-accept

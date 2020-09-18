@@ -10,7 +10,9 @@
     //禁用大小写敏感
     "coc.source.around.firstMatch": false,
     "coc.source.buffer.firstMatch": false,
-
+    //配置rust补全
     "rust-analyzer.updates.channel": "nightly",
-    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer"
+    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+    //配置 ALE 实时语法检查
+    "diagnostic.displayByAle": true
 }

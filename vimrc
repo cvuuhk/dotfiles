@@ -37,8 +37,11 @@ nnoremap j gj
 nnoremap gj j
 
 noremap <F1> :g/#\[ignore]/d_<CR>
-noremap <F5> :!cargo run<CR>
+noremap <F5> :w<CR>:!cargo run<CR>
 noremap <F6> :!cargo test<CR>
+
+inoremap <C-s> <ESC>:w<CR>a
+nnoremap <C-s> :w<CR>
 
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
 autocmd BufNewFile *.sh 0r ~/.dotfiles/template/bashScript
@@ -47,13 +50,16 @@ call plug#begin()
 Plug 'rakr/vim-one'                                                      " 主题
 Plug 'vim-airline/vim-airline'                                           " 强化状态栏
 Plug 'yggdroot/indentline'                                               " 显示代码缩进线条
+Plug 'mhinz/vim-startify'                                                " 起始界面
 
 Plug 'lilydjwg/fcitx.vim'                                                " 输入法自动切换
-Plug 'preservim/nerdtree'
+Plug 'jiangmiao/auto-pairs'                                              " 括号自动补全
+Plug 'dense-analysis/ale'                                                " 实时语法检查
+Plug 'tpope/vim-fugitive'                                                " git 插件
+Plug 'preservim/nerdtree'                                                " 文件管理
 Plug 'tpope/vim-commentary',{'on':'Commentary'}                          " 一键注释
 Plug 'majutsushi/tagbar',{'on':'TagbarToggle'}                           " 代码大纲
 Plug 'junegunn/vim-easy-align',{'on':'<Plug>(EasyAlign)'}                " 一键对齐
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                          " 代码补全
 Plug 'cvuuhk/vim-snippets'                                               " 片段仓库
 " 其他不错的主题{{{
@@ -152,6 +158,18 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-nmap <F2> <Plug>(coc-diagnostic-next)
+" }}}
+" ale{{{
+    " 配合 coc.nvim
+    let g:ale_disable_lsp = 1
+    " 自定义报错提示符
+    let g:ale_sign_error = '×'
+    let g:ale_sign_warning = '!'
+    " Set this. Airline will handle the rest.
+    let g:airline#extensions#ale#enabled = 1
+    " 开启 quickfix
+    let g:ale_set_quickfix = 1
+    " 自动跳转报错位置
+    nmap <silent> <F2> <Plug>(ale_previous_wrap)
+    nmap <silent> <F3> <Plug>(ale_next_wrap)
 " }}}
