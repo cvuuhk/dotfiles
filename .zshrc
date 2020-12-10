@@ -16,6 +16,8 @@ alias dbon='sudo systemctl start mariadb.service'
 alias dbf='sudo systemctl stop mariadb.service'
 
 alias fcd='cd $(find * -type d | fzf)'
+alias ffmpeg="ffmpeg -hide_banner"
+alias ffprobe='ffprobe -hide_banner'
 alias fvim='nvim $(fzf)'
 
 alias ga='git add'
@@ -100,6 +102,8 @@ alias vim='nvim'
 alias vv='nvim ~/.dotfiles/vimrc'
 alias vz='nvim ~/.zshrc'
 
+alias yd='youtube-dl --external-downloader aria2c --external-downloader-args "-x 16 -k 1M"'
+
 bindkey ',' autosuggest-accept
 
 function mc { command mkdir $1 && cd $1 }
@@ -109,7 +113,6 @@ function __ {
         && sudo sh -c "date > rs_time" \
         && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt \
         && umount /mnt \
-        && rsync -ashHP -zz --delete /boot/* myserver:/root/boot_backup \
         && cd
     }
 

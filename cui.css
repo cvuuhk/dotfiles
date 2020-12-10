@@ -2,8 +2,8 @@
     --bg-color: #F5F5F5;
     --write-bg-color: #fff;
     --code-bg-color: #f8f8f8;
-    --font: \963F\91CC\5DF4\5DF4\666E\60E0\4F53;
-    --mono: Microsoft Yahei Mono;
+    --font: "萍方";
+    --mono: "Cascadia Code";
 }
 
 html, body {
@@ -87,8 +87,9 @@ a.md-toc-inner { border-bottom: 0 !important; }
 }
 
 #write table th, #write-table th { background: #fbfbfb; }
-#write table thead th, #write-table thead th { background: #f1f1f1; }
+#write table thead th, #write-table thead th { background: #f1f1f1; color:black}
 #write table caption { border-bottom: none; }
+#write th {font-weight:normal;}
 /*===================================================================代码===================================================================*/
 code {
     font-family: var(--mono);
@@ -114,4 +115,4 @@ code {
 .md-fences .code-tooltip {
     background-color: #fff;
 }
-kbd{ font-family:"阿里巴巴普惠体";}
+kbd{ font-family:".萍方-简";}

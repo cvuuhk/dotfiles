@@ -36,10 +36,6 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-noremap <F1> :g/#\[ignore]/d_<CR>
-noremap <F5> :w<CR>:!cargo run<CR>
-noremap <F6> :!cargo test<CR>
-
 inoremap <C-s> <ESC>:w<CR>a
 nnoremap <C-s> :w<CR>
 
@@ -50,7 +46,6 @@ call plug#begin()
 Plug 'rakr/vim-one'                                                      " 主题
 Plug 'vim-airline/vim-airline'                                           " 强化状态栏
 Plug 'yggdroot/indentline'                                               " 显示代码缩进线条
-Plug 'mhinz/vim-startify'                                                " 起始界面
 
 Plug 'lilydjwg/fcitx.vim'                                                " 输入法自动切换
 Plug 'jiangmiao/auto-pairs'                                              " 括号自动补全
@@ -58,10 +53,9 @@ Plug 'dense-analysis/ale'                                                " 实�
 Plug 'tpope/vim-fugitive'                                                " git 插件
 Plug 'preservim/nerdtree'                                                " 文件管理
 Plug 'tpope/vim-commentary',{'on':'Commentary'}                          " 一键注释
-Plug 'majutsushi/tagbar',{'on':'TagbarToggle'}                           " 代码大纲
 Plug 'junegunn/vim-easy-align',{'on':'<Plug>(EasyAlign)'}                " 一键对齐
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                          " 代码补全
-Plug 'cvuuhk/vim-snippets'                                               " 片段仓库
+" Plug 'cvuuhk/vim-snippets'                                               " 片段仓库
 " 其他不错的主题{{{
 " Plug 'kabbamine/yowish.vim'                                              " 主题
 " Plug 'junegunn/seoul256.vim'                                             " 主题
@@ -101,9 +95,6 @@ let NERDTreeIgnore = ['\.git$','\.pyc$','__pycache__$']
 " vim-commentary {{{
 nnoremap <leader>c :Commentary<CR>
 vnoremap <leader>c :Commentary<CR>
-" }}}
-" tagbar {{{
-nnoremap <leader>t :TagbarToggle<CR>
 " }}}
 " vim-gitgutter {{{
 set updatetime=50 " 50ms，更新更及时
