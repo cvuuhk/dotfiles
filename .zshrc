@@ -1,5 +1,9 @@
 source /usr/share/zsh/share/antigen.zsh
-antigen init /home/cui/.dotfiles/.antigenrc
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen theme awesomepanda
+antigen apply
 
 export EDITOR=nvim
 export ANTIGEN_COMPDUMPFILE=/home/cui/.zcompdumps
@@ -110,8 +114,20 @@ function mc { command mkdir $1 && cd $1 }
 function __ {
     cd / \
         && mount LABEL="Linux_backup" \
-        && sudo sh -c "date > rs_time" \
-        && sudo rsync -ashHP --delete --exclude-from=/shit.list /* /mnt \
+        && sudo sh -c "date > last_backup_datetime" \
+        && sudo sh -c "rsync -aHAXvP --delete --exclude={\
+\"dev/*\",\"proc/*\",\"sys/*\",\"tmp/*\",\"run/*\",\"mnt/*\",\"media/*\",\"lost+found\",\
+\"var/lib/dhcpcd/*\",\"home/*/.gvfs\",\
+\"home/*/.cache\",\
+\"home/*/.config/chromium\",\
+\"home/*/.local/share/Steam/*\",\
+\"home/*/.local/share/TelegramDesktop/*\",\
+\"home/*/.local/share/Trash/*\",\
+\"home/*/.local/share/virtualbox/*\",\
+\"home/*/.m2\",\
+\"home/*/documents/data/*\",\
+\"var/cache/pacman/pkg/*\"\
+} / /mnt" \
         && umount /mnt \
         && cd
     }
