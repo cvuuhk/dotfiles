@@ -41,7 +41,9 @@ alias gcd='git checkout dev'
 alias gcm='git checkout master'
 alias gco='git checkout'
 
-alias gd='git difftool -d'
+alias gd='git diff'
+alias gdd='git difftool -d'
+alias gdt='git difftool'
 
 alias gl='git pull'
 alias gla="(git pull) && (git branch | grep -v \"\* \" | xargs -I @ sh -c 'git checkout @ ; git pull')"
