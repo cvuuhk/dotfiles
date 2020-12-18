@@ -2,7 +2,7 @@ source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen theme awesomepanda
+antigen theme nicoulaj
 antigen apply
 
 export EDITOR=nvim
@@ -85,9 +85,9 @@ alias more='less'
 alias mson='sudo systemctl start mssql-server.service'
 alias msoff='sudo systemctl stop mssql-server.service'
 
-alias pins='sudo pacman -S'
-alias pse='pacman -Ss'
-alias puni='sudo pacman -Rsn'
+alias pins='paru -S'
+alias pse='paru -Ss'
+alias puni='paru -Rsn'
 alias py='python'
 
 alias rb='reboot'
