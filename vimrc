@@ -42,6 +42,13 @@ nnoremap <C-s> :w<CR>
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
 autocmd BufNewFile *.sh 0r ~/.dotfiles/template/bashScript
 
+if (has("nvim"))
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+set termguicolors
+endif
+
 call plug#begin()
 Plug 'rakr/vim-one'                                                      " 主题
 Plug 'vim-airline/vim-airline'                                           " 强化状态栏
@@ -59,30 +66,27 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}                          " 代�
 " 其他不错的主题{{{
 " Plug 'kabbamine/yowish.vim'                                              " 主题
 " Plug 'junegunn/seoul256.vim'                                             " 主题
-" Plug 'morhetz/gruvbox'                                                   " 主题
+Plug 'morhetz/gruvbox'                                                   " 主题
 " }}}
 call plug#end()
 
-" colorscheme {{{
-colorscheme one
-if (has("nvim"))
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-set termguicolors
-endif
+" gruvbox {{{
+colorscheme gruvbox
+" }}}
+" vim-one {{{
+" colorscheme one
 
-" call one#highlight('Normal','none','none','none')
-call one#highlight('Folded','5c6370','none','none')
-call one#highlight('DiffAdd','','none', '')
-call one#highlight('DiffChange','','none', '')
-call one#highlight('DiffDelete','','none', '')
-call one#highlight('DiffText','','none', '')
-call one#highlight('DiffAdded','','none', '')
-call one#highlight('DiffFile','','none', '')
-call one#highlight('DiffNewFile','','none', '')
-call one#highlight('DiffLine','','none', '')
-call one#highlight('DiffRemoved','','none', '')
+" " call one#highlight('Normal','none','none','none')
+" call one#highlight('Folded','5c6370','none','none')
+" call one#highlight('DiffAdd','','none', '')
+" call one#highlight('DiffChange','','none', '')
+" call one#highlight('DiffDelete','','none', '')
+" call one#highlight('DiffText','','none', '')
+" call one#highlight('DiffAdded','','none', '')
+" call one#highlight('DiffFile','','none', '')
+" call one#highlight('DiffNewFile','','none', '')
+" call one#highlight('DiffLine','','none', '')
+" call one#highlight('DiffRemoved','','none', '')
 " }}}
 " vim-airline{{{
 let g:airline_theme='one'
