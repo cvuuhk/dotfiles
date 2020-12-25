@@ -2,13 +2,13 @@ source /usr/share/zsh/share/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen theme nicoulaj
+antigen theme awesomepanda
 antigen apply
 
 export EDITOR=nvim
 export ANTIGEN_COMPDUMPFILE=/home/cui/.zcompdumps
-export http_proxy="http://127.0.0.1:12333"
-export https_proxy="http://127.0.0.1:12333"
+# export http_proxy="http://127.0.0.1:12333"
+# export https_proxy="http://127.0.0.1:12333"
 
 # 禁止自动转义粘贴的内容
 DISABLE_MAGIC_FUNCTIONS=true
