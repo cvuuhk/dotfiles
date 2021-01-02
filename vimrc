@@ -35,6 +35,7 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
+nmap <F5> :!alacritty<CR><CR>
 
 inoremap <C-s> <ESC>:w<CR>a
 nnoremap <C-s> :w<CR>
