@@ -63,6 +63,7 @@ Plug 'preservim/nerdtree'                                                " 文�
 Plug 'tpope/vim-commentary',{'on':'Commentary'}                          " 一键注释
 Plug 'junegunn/vim-easy-align',{'on':'<Plug>(EasyAlign)'}                " 一键对齐
 Plug 'neoclide/coc.nvim', {'branch': 'release'}                          " 代码补全
+Plug 'cespare/vim-toml'                                                  " toml 高亮
 " Plug 'cvuuhk/vim-snippets'                                               " 片段仓库
 " 其他不错的主题{{{
 " Plug 'kabbamine/yowish.vim'                                              " 主题
