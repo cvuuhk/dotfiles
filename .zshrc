@@ -7,15 +7,15 @@ antigen apply
 
 export EDITOR=nvim
 export ANTIGEN_COMPDUMPFILE=/home/cui/.zcompdumps
-export http_proxy="http://127.0.0.1:12333"
-export https_proxy="http://127.0.0.1:12333"
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy=$http_proxy
 
 # 禁止自动转义粘贴的内容
 DISABLE_MAGIC_FUNCTIONS=true
 # 使用通配符
 setopt no_nomatch
 
-alias cp='cp -ri'
+alias -g cp='cp -ri'
 
 alias dbf='sudo systemctl stop mariadb.service'
 alias dbon='sudo systemctl start mariadb.service'
@@ -71,22 +71,22 @@ alias la='ls -A'
 alias lla='ls -lAh'
 alias ls='ls --color=tty'
 
-alias more='less'
-
-alias pins='paru -S'
-alias pse='paru -Ss'
-alias puni='paru -Rsn'
+alias pins='yay -S'
+alias pse='yay -Ss'
+alias puni='yay -Rsn'
 alias py='python'
 
-alias rb='reboot'
 alias rename='perl-rename'
-alias rf='rm -rf'
+alias -g rf='rm -rf'
 
 alias sds='sudo systemctl disable'
 alias sea='sudo systemctl enable'
 alias sta='systemctl status'
 alias stp='sudo systemctl stop'
 alias stt='sudo systemctl start'
+
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
 
 alias vim='nvim'
 alias vv='nvim ~/.dotfiles/vimrc'
@@ -117,16 +117,4 @@ function __ {
         && umount /mnt \
         && cd
     }
-
-vman () {
-    export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-        vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-        -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-        -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
-
-    # invoke man page
-    man $*
-    # we muse unset the PAGER, so regular man pager is used afterwards
-    unset PAGER
-}
 
