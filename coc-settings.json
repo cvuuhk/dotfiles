@@ -15,5 +15,19 @@
     "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
     "rust-analyzer.diagnostics.disabled": ["unresolved-import"],
     //配置 ALE 实时语法检查
-    "diagnostic.displayByAle": true
+    "diagnostic.displayByAle": true,
+    "jedi.enable": true,
+    "jedi.startupMessage": false,
+    "jedi.markupKindPreferred": "plaintext",
+    "jedi.trace.server": "off",
+    "jedi.jediSettings.autoImportModules": [],
+    "jedi.executable.command": "jedi-language-server",
+    "jedi.executable.args": [],
+    "jedi.completion.disableSnippets": false,
+    "jedi.completion.resolveEagerly": false,
+    "jedi.diagnostics.enable": true,
+    "jedi.diagnostics.didOpen": true,
+    "jedi.diagnostics.didChange": true,
+    "jedi.diagnostics.didSave": true,
+    "jedi.workspace.extraPaths": []
 }

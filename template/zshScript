@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+mkdir video_encode
+for i (*.mp4) {
+    ffmpeg -i $i -c:v libx265 "video_encode/$i"
+}
+
+rm *.mp4
+mv video_encode/* .
+rm -rf video_encode
