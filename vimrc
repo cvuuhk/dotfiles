@@ -41,23 +41,15 @@ inoremap <C-s> <ESC>:w<CR>a
 nnoremap <C-s> :w<CR>
 
 " 括号自动成对 {{{
-imap ( ()<ESC>i
-imap () ()<ESC>a
+inoremap "" ""<ESC>i
+inoremap '' ''<ESC>i
 
-imap [ []<ESC>i
-imap [] []<ESC>a
+inoremap ( ()<ESC>i
+inoremap () ()
+inoremap [ []<ESC>i
+inoremap [] []
 
-imap { {}<ESC>i
-imap {} {}<ESC>a
-
-imap < <><ESC>i
-imap <<SPACE> <<ESC><RIGHT>r<SPACE>a
-imap << <<<ESC><RIGHT>r<SPACE>a<BACKSPACE>
-imap <= <=<ESC>a
-imap <> <><ESC>a
-
-imap "" ""<ESC>i
-imap '' ''<ESC>i
+inoremap {<CR> {<CR>}<ESC>O
 " }}}
 " 文件模板 {{{
 autocmd BufNewFile makefile 0r ~/.dotfiles/template/makefile
@@ -81,8 +73,8 @@ Plug 'tjdevries/coc-zsh'                                                 " zsh �
 " 主题{{{
 " Plug 'kabbamine/yowish.vim'                                              " 主题
 " Plug 'junegunn/seoul256.vim'                                             " 主题
-" Plug 'morhetz/gruvbox'                                                   " 主题
-Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'                                                   " 主题
+" Plug 'joshdick/onedark.vim'
 " }}}
 call plug#end()
 
@@ -94,7 +86,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme onedark
+colorscheme gruvbox
 " }}}
 " vim-airline{{{
 let g:airline_theme='one'
