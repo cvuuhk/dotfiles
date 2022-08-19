@@ -1,0 +1,45 @@
+Description="Solarized Dark"
+
+Categories = {"dark"}
+
+Default        = { Colour="#ffffff" }
+Canvas         = { Colour="#00ff00" }
+Number         = { Colour="#eeeeee" } --> map 255
+Escape         = { Colour="#ff0000" }
+String         = { Colour="#00ff00" }
+StringPreProc  = { Colour="#00ff00" }
+Interpolation  = { Colour="#00ff00" }
+BlockComment   = { Colour="#000000", Italic=true }
+PreProcessor   = { Colour="#dadada" } --> map 253
+LineNum        = { Colour="#000000" }
+Operator       = { Colour="#c6c6c6" } --> map 251
+LineComment = BlockComment
+
+Keywords = {
+  { Colour="#bcbcbc" }, --> kwd1, map 250
+  { Colour="#b2b2b2" }, --> kwd2, map 249
+  { Colour="#000000" }, --> kwd3
+  { Colour="#dadada" }, --> kwd4, map 253
+  { Colour="#000000" }, --> kwd5
+  { Colour="#000000" }, --> kwd6
+  { Colour="#000000" }, --> kwd7
+  { Colour="#000000" }, --> kwd8
+}
+
+-- new LSP based elements:
+
+SemanticTokenTypes  = {
+  { Type = 'keyword', Style = Keywords[1] },
+  { Type = 'type', Style = Keywords[2] },
+  { Type = 'function', Style = Keywords[3] },
+  { Type = 'method', Style = Keywords[4] },
+
+  { Type = 'class', Style =  Keywords[5] },
+  { Type = 'struct', Style = Keywords[6] },
+  { Type = 'parameter', Style = Keywords[7] },
+  { Type = 'variable', Style = Keywords[8] },
+
+  { Type = 'number', Style = Number },
+  { Type = 'regexp', Style = String },
+  { Type = 'operator', Style = Operator },
+}

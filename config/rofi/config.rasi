@@ -1,0 +1,14 @@
+configuration {
+    modi: "drun";
+    font: "PingFang SC 13";
+    show-icons: true;
+    terminal: "alacritty";
+    matching: "fuzzy";
+    cycle: false;
+    filebrowser {
+       directories-first: true;
+       sorting-method:    "name";
+    }
+}
+
+@theme "./mytheme.rasi"

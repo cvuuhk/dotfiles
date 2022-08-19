@@ -1,0 +1,27 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = 崔书豪
+	email = 568126480@qq.com
+[core]
+	eol = lf
+	autocrlf = false
+	safecrlf = true
+	quotepath = false
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
+[merge]
+	tool = meld
+[mergetool]
+	keepBackup = false
+[credential]
+	helper = store
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

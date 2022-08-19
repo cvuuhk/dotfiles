@@ -1,0 +1,122 @@
+# zathurarc
+
+# settings
+# set adjust-open width
+set selection-clipboard clipboard
+set first-page-column 1:1
+set window-width 1920
+set window-height 1080
+set pages-per-row 2
+set guioptions ""
+set incremental-search true
+set show-scrollbars true
+set sandbox "none"
+set font ".PingFang SC 11"
+
+# key bindings
+# map <C-[> abort # Still doesn't work :(
+# map [normal]     <F11> toggle_fullscreen
+# map [fullscreen] <F11> toggle_fullscreen
+map [normal]     f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map [normal]     <C-l> reload
+map [fullscreen] <C-l> reload
+
+map [normal]     e scroll down
+map [fullscreen] e scroll down
+map [normal]     <C-e> scroll down
+map [fullscreen] <C-e> scroll down
+map [normal]     y scroll up
+map [fullscreen] y scroll up
+map [normal]     <C-y> scroll up
+map [fullscreen] <C-y> scroll up
+map [normal]     R rotate rotate-ccw
+map [fullscreen] R rotate rotate-ccw
+
+map [normal]     <PageUp>   navigate previous
+map [fullscreen] <PageUp>   navigate previous
+map [normal]     <PageDown> navigate next
+map [fullscreen] <PageDown> navigate next
+
+map [normal]     <A-1> set "first-page-column 1:1"
+map [fullscreen] <A-1> set "first-page-column 1:1"
+map [normal]     <A-2> set "first-page-column 1:2"
+map [fullscreen] <A-2> set "first-page-column 1:2"
+map [normal]     <A-3> set "first-page-column 1:3"
+map [fullscreen] <A-3> set "first-page-column 1:3"
+
+# Why are these only defined for normal mode by default?
+map [fullscreen] a adjust_window best-fit
+map [fullscreen] s adjust_window width
+# map [fullscreen] f follow
+map [fullscreen] d toggle_page_mode 2
+map [fullscreen] <Tab> toggle_index
+map [fullscreen] j scroll down
+map [fullscreen] k scroll up
+map [fullscreen] <C-d> scroll half-down
+map [fullscreen] <C-u> scroll half-up
+map [fullscreen] <C-o> jumplist backward
+map [fullscreen] <C-i> jumplist forward
+
+map [index] q quit
+
+# colors
+set recolor-darkcolor  "#FFFFFF"
+set recolor-lightcolor "#333333"
+set statusbar-fg "#000000"
+set statusbar-bg "#C2BFA5"
+set inputbar-fg "#FFFFFF"
+set inputbar-bg "#333333"
+set completion-highlight-fg "#F0E68C"
+set completion-highlight-bg "#6B8E23"
+# set highlight-color "#CD853F"
+# set highlight-active-color "#F0E68C"
+set notification-fg "#FFFFFF"
+set notification-bg "#333333"
+
+# set default-bg "#2f383e"
+# set default-fg "#d3c6aa"
+# set font "Caskaydia Cove Nerd Font 10"
+
+# set statusbar-bg "#404c51"
+# set statusbar-fg "#d3c6aa"
+# set statusbar-basename true
+
+# set inputbar-bg "#2f383e"
+# set inputbar-fg "#d3c6aa"
+
+# set index-bg "#2f383e"
+# set index-fg "#d3c6aa"
+# set index-active-bg "#a7c080"
+# set index-active-fg "#2b3339"
+
+# set completion-bg "#2f383e"
+# set completion-fg "#d3c6aa"
+# set completion-group-bg "#2f383e"
+# set completion-group-fg "#7fbbb3"
+# set completion-highlight-bg "#a7c080"
+# set completion-highlight-fg "#2b3339"
+
+# set notification-bg "#2f383e"
+# set notification-fg "#d3c6aa"
+# set notification-error-bg "#e68183"
+# set notification-error-fg "#2b3339"
+# set notification-warning-bg "#e68183"
+# set notification-warning-fg "#2b3339"
+
+# set highlight-color "#a7c080"
+# set highlight-active-color "#7fbbb3"
+# set highlight-transparency 0.35
+# map <A-n> set nohlsearch
+
+# set recolor-lightcolor "#2f383e"
+# set recolor-darkcolor "#d3c6aa"
+# set recolor-keephue "true"
+# set recolor "true"
+
+# set render-loading-bg "#2f383e"
+# set render-loading-fg "#d3c6aa"
+
+# set selection-clipboard clipboard
+# set window-title-home-tilde true
+
