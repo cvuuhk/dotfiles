@@ -32,6 +32,7 @@ fi
 # my own config
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=qt5ct
+export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 # see https://unix.stackexchange.com/a/295652/332452
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
@@ -49,6 +50,7 @@ xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
 xinput --disable $(xinput list --id-only "SynPS/2 Synaptics TouchPad")
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
+screenkey --start-disabled &
 
 bash ~/.config/dwm/bar.sh &
 feh --bg-scale ~/.wallpaper.png
