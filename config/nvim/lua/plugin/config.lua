@@ -14,18 +14,9 @@ end
 
 function config.nvim_treesitter()
   require("nvim-treesitter.configs").setup({
-    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = {"rust", "lua", "toml", "c", "cpp", "bash", "yaml"},
-    ignore_install = {
-      "Godot", "beancount", "bibtex", "c_sharp", "clojure", "comment", "commonlisp", "cuda",
-      "dart", "devicetree", "elixir", "erlang", "fennel", "glimmer", "go", "graphql", "java",
-      "javascript", "jsdoc", "julia", "kotlin", "ledger", "nix", "ocaml", "ocaml_interface",
-      "php", "ql", "query", "r", "rst", "ruby", "scss", "sparql", "supercollider", "svelte",
-      "teal", "tsx", "turtle", "typescript", "verilog", "vue", "zig"
-    }, -- List of parsers to ignore installing
     highlight = {
-      enable = true, -- false will disable the whole extension
-      disable = {} -- list of language that will be disabled
+      enable = true
     }
   })
 end
@@ -33,36 +24,36 @@ end
 function config.gitsigns()
   require("gitsigns").setup({
     signs = {
-      add = {
-        hl = "GitSignsAdd",
-        text = "│",
-        numhl = "GitSignsAddNr",
-        linehl = "GitSignsAddLn"
-      },
-      change = {
-        hl = "GitSignsChange",
-        text = "│",
-        numhl = "GitSignsChangeNr",
-        linehl = "GitSignsChangeLn"
-      },
-      delete = {
-        hl = "GitSignsDelete",
-        text = "_",
-        numhl = "GitSignsDeleteNr",
-        linehl = "GitSignsDeleteLn"
-      },
-      topdelete = {
-        hl = "GitSignsDelete",
-        text = "‾",
-        numhl = "GitSignsDeleteNr",
-        linehl = "GitSignsDeleteLn"
-      },
-      changedelete = {
-        hl = "GitSignsChange",
-        text = "~",
-        numhl = "GitSignsChangeNr",
-        linehl = "GitSignsChangeLn"
-      }
+        add = {
+          hl = "GitSignsAdd",
+          text = "│",
+          numhl = "GitSignsAddNr",
+          linehl = "GitSignsAddLn"
+        },
+        change = {
+          hl = "GitSignsChange",
+          text = "│",
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn"
+        },
+        delete = {
+          hl = "GitSignsDelete",
+          text = "_",
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn"
+        },
+        topdelete = {
+          hl = "GitSignsDelete",
+          text = "‾",
+          numhl = "GitSignsDeleteNr",
+          linehl = "GitSignsDeleteLn"
+        },
+        changedelete = {
+          hl = "GitSignsChange",
+          text = "~",
+          numhl = "GitSignsChangeNr",
+          linehl = "GitSignsChangeLn"
+        }
     },
     numhl = true
   })
@@ -86,74 +77,19 @@ end
 function config.format()
   require("formatter").setup({
     filetype = {
-      rust = {function() return {exe = "rustfmt", stdin = true} end},
-      json = {
-        function()
-          return {
-            exe = "json-glib-format -p",
-            args = {vim.api.nvim_buf_get_name(0)},
-            stdin = true
-          }
-        end
+      rust = function() return {exe = "rustfmt", stdin = true} end,
+      json = function()
+        return {
+          exe = "json-glib-format -p",
+          args = {vim.api.nvim_buf_get_name(0)},
+          stdin = true
+        }
+      end,
+      ["*"] = {
+        require("formatter.filetypes.any").remove_trailing_whitespace
       }
     }
   })
-
-end
-function config.symbols_outline()
-  -- init.lua
-  vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = true,
-    position = 'right',
-    relative_width = true,
-    width = 40,
-    auto_close = false,
-    show_numbers = false,
-    show_relative_numbers = false,
-    show_symbol_details = true,
-    preview_bg_highlight = 'Pmenu',
-    keymaps = { -- These keymaps can be a string or a table for multiple keys
-    close = {"<Esc>", "q"},
-    goto_location = "<Cr>",
-    focus_location = "o",
-    hover_symbol = "<C-space>",
-    toggle_preview = "K",
-    rename_symbol = "r",
-    code_actions = "a"
-  },
-  lsp_blacklist = {},
-  symbol_blacklist = {},
-  symbols = {
-    File = {icon = "", hl = "TSURI"},
-    Module = {icon = "", hl = "TSNamespace"},
-    Namespace = {icon = "", hl = "TSNamespace"},
-    Package = {icon = "", hl = "TSNamespace"},
-    Class = {icon = "𝓒", hl = "TSType"},
-    Method = {icon = "ƒ", hl = "TSMethod"},
-    Property = {icon = "", hl = "TSMethod"},
-    Field = {icon = "", hl = "TSField"},
-    Constructor = {icon = "", hl = "TSConstructor"},
-    Enum = {icon = "ℰ", hl = "TSType"},
-    Interface = {icon = "ﰮ", hl = "TSType"},
-    Function = {icon = "", hl = "TSFunction"},
-    Variable = {icon = "", hl = "TSConstant"},
-    Constant = {icon = "", hl = "TSConstant"},
-    String = {icon = "𝓐", hl = "TSString"},
-    Number = {icon = "#", hl = "TSNumber"},
-    Boolean = {icon = "⊨", hl = "TSBoolean"},
-    Array = {icon = "", hl = "TSConstant"},
-    Object = {icon = "⦿", hl = "TSType"},
-    Key = {icon = "🔐", hl = "TSType"},
-    Null = {icon = "NULL", hl = "TSType"},
-    EnumMember = {icon = "", hl = "TSField"},
-    Struct = {icon = "𝓢", hl = "TSType"},
-    Event = {icon = "🗲", hl = "TSType"},
-    Operator = {icon = "+", hl = "TSOperator"},
-    TypeParameter = {icon = "𝙏", hl = "TSParameter"}
-  }
-}
 end
 
 function config.Comment()
@@ -324,19 +260,13 @@ function config.nvim_cmp()
   }
   local cmp = require('cmp')
   local luasnip = require("luasnip")
-  local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and
-    vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") ==
-    nil
-  end
 
   cmp.setup({
     snippet = {expand = function(args) require('luasnip').lsp_expand(args.body) end},
     formatting = {
       format = function(entry, vim_item)
-        -- Kind icons
-        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        -- This concatonates the icons with the name of the item kind
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
         -- Source
         vim_item.menu = ({
           path = "[Path]",
@@ -356,10 +286,6 @@ function config.nvim_cmp()
       ['<C-n>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
         else
           fallback()
         end
@@ -367,28 +293,34 @@ function config.nvim_cmp()
       ['<C-p>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
+        end
+      end, {"i", "s"}),
+      ['<A-j>'] = cmp.mapping(function()
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        end
+      end, {"i", "s"}),
+      ['<A-k>'] = cmp.mapping(function()
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         end
       end, {"i", "s"})
     },
     sources = cmp.config.sources({
-      {name = 'nvim_lsp'}, --
-      {name = 'path'}, --
-      {name = 'buffer'}, --
-      {name = 'luasnip'}, --
-      {name = 'nvim_lua'}, --
-      {name = 'cmp_tabnine'} --
+      {name = 'nvim_lsp'},
+      {name = 'path'},
+      {name = 'buffer'},
+      {name = 'luasnip'},
+      {name = 'nvim_lua'},
+      {name = 'cmp_tabnine'}
     })
   })
 end
 
 function config.nvim_autopairs()
   local npairs = require('nvim-autopairs')
-  local Rule = require('nvim-autopairs.rule')
-  local cond = require('nvim-autopairs.conds')
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
   local cmp = require("cmp")
 
@@ -397,22 +329,20 @@ function config.nvim_autopairs()
     disable_in_visualblock = true,
   }
 
-  npairs.add_rule(Rule("`", "`", "markdown"):with_pair(cond.none()))
-
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({map_char = {tex = ""}}))
 end
 
 function config.lspconfig()
   vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = false
   })
   local lspconfig = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
   lspconfig.sumneko_lua.setup({
     cmd = {"lua-language-server"},
     settings = {
@@ -431,9 +361,10 @@ function config.lspconfig()
     }
   })
 
-  -- config.clangd.setup {capabilities = capabilities}
   local servers = {'clangd', 'rust_analyzer', 'bashls', 'pyright'}
-  for _, lsp in ipairs(servers) do lspconfig[lsp].setup {capabilities = capabilities} end
+  for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup ({capabilities = capabilities})
+  end
 end
 
 return config

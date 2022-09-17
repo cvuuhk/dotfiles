@@ -34,37 +34,37 @@ end
 
 vim.o.statusline = '[%t]%r%m %{v:lua.DIAG()}%=[%{&fileformat}][%{&fileencoding}] [%l/%L,%v]'
 
-local map = vim.api.nvim_set_keymap
+local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
+local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
 
-map('', '<C-h>', '<C-w>h', {noremap = true})
-map('', '<C-j>', '<C-w>j', {noremap = true})
-map('', '<C-k>', '<C-w>k', {noremap = true})
-map('', '<C-l>', '<C-w>l', {noremap = true})
+noremap('', '<C-h>', '<C-w>h')
+noremap('', '<C-j>', '<C-w>j')
+noremap('', '<C-k>', '<C-w>k')
+noremap('', '<C-l>', '<C-w>l')
 
-map('n', 'k', 'gk', {noremap = true})
-map('n', 'gk', 'k', {noremap = true})
-map('n', 'j', 'gj', {noremap = true})
-map('n', 'gj', 'j', {noremap = true})
+noremap('n', 'k', 'gk')
+noremap('n', 'gk', 'k')
+noremap('n', 'j', 'gj')
+noremap('n', 'gj', 'j')
 
-map('n', '/', '/\\v', {noremap = true})
-map('i', 'jj', '<Esc>', {noremap = true})
-map('c', 'qq', 'qa!', {noremap = true})
-map('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!", {noremap = true})
-map('n', '<BackSpace>', ':nohl<CR>', {noremap = true})
-map('n', '<Enter>', ':cd %:h<CR>', {noremap = true})
-map('n', '<leader>pc', ':PackerCompile<CR>', {noremap = true})
-map('n', '<leader>ps', ':PackerSync<CR>', {noremap = true})
-map('n', '<leader>w', 'gg/\\v\\s+$<CR>', {noremap = true})
+noremap('n', '/', '/\\v')
+noremap('i', 'jj', '<Esc>')
+noremap('c', 'qq', 'qa!')
+noremap('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
+noremap('n', '<leader>pc', ':PackerCompile<CR>')
+noremap('n', '<leader>ps', ':PackerSync<CR>')
+
+silnoremap('n', '<BackSpace>', ':nohl<CR>')
+silnoremap('n', '<Enter>', ':cd %:h<CR>')
 
 -- lsp
-local opt = {noremap = true, silent = true}
-map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opt)
-map('n', '<F2>', ':lua vim.diagnostic.goto_prev()<CR>', opt)
-map('n', '<F3>', ':lua vim.diagnostic.goto_next()<CR>', opt)
-map('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>', opt)
-map('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>', opt)
-map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opt)
-map('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>', opt)
-map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opt)
-map('n', '<C-A-l>', ':Format<CR>', opt)
-map('i', '<C-A-l>', '<Esc>:Format<CR>', opt)
+silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
+silnoremap('n', '<F2>', ':lua vim.diagnostic.goto_prev()<CR>')
+silnoremap('n', '<F3>', ':lua vim.diagnostic.goto_next()<CR>')
+silnoremap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>')
+silnoremap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>')
+silnoremap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
+silnoremap('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>')
+silnoremap('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
+silnoremap('n', '<C-A-l>', ':Format<CR>')
+silnoremap('i', '<C-A-l>', '<Esc>:Format<CR>')
