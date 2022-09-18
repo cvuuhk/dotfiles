@@ -1,0 +1,26 @@
+{
+  "name" : "my snippets",
+  "engines" : {
+    "vscode" : "^1.11.0"
+  },
+  "contributes" : {
+    "snippets" : [
+      {
+        "language" : [ "plaintext", "markdown", "tex", "html", "global", "all" ],
+        "path" : "./global.json"
+      },
+      {
+        "language" : [ "markdown", "rmd" ],
+        "path" : "./markdown.json"
+      },
+      {
+        "language" : "lua",
+        "path" : "./lua.json"
+      },
+      {
+        "language" : [ "shellscript", "shell", "sh", "zsh" ],
+        "path" : "./shell.json"
+      }
+    ]
+  }
+}

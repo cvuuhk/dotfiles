@@ -97,7 +97,7 @@ require('packer').startup(function(use)
   use {
     'windwp/nvim-autopairs',
     opt = true,
-    ft = {'rust', 'c', 'cpp'},
+    ft = {'rust', 'c', 'cpp', 'json'},
     config = config.nvim_autopairs
   }
   use { -- native lsp client config

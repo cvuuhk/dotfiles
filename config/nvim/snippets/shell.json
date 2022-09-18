@@ -1,0 +1,32 @@
+{
+  "if" : {
+    "prefix" : "if",
+    "body" : [
+      "if [[ ${1:condition} ]]; then",
+      "\t${0}",
+      "fi"
+    ],
+    "description" : "An IF statement."
+  },
+  "elseif" : {
+    "prefix" : "elseif",
+    "body" : [
+      "elif [[ ${1:condition} ]]; then",
+      "\t${0}"
+    ],
+    "description" : "Add an elseif to an if statement."
+  },
+  "else" : {
+    "prefix" : "else",
+    "body" : "else ${0:command}",
+    "description" : "else"
+  },
+  "fori" : {
+    "prefix" : "fori",
+    "body" : [
+      "for i in ${1:list}; do",
+      "\t${2:command}",
+      "done"
+    ]
+  }
+}

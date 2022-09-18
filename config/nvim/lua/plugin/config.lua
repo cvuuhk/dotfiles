@@ -14,7 +14,7 @@ end
 
 function config.nvim_treesitter()
   require("nvim-treesitter.configs").setup({
-    ensure_installed = {"rust", "lua", "toml", "c", "cpp", "bash", "yaml"},
+    ensure_installed = {"rust", "lua", "toml", "c", "cpp", "bash", "yaml", "json", "make", "python"},
     highlight = {
       enable = true
     }
@@ -297,14 +297,18 @@ function config.nvim_cmp()
           fallback()
         end
       end, {"i", "s"}),
-      ['<A-j>'] = cmp.mapping(function()
+      ['<Tab>'] = cmp.mapping(function(fallback)
         if luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
+        else
+          fallback()
         end
       end, {"i", "s"}),
-      ['<A-k>'] = cmp.mapping(function()
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
         if luasnip.jumpable(-1) then
           luasnip.jump(-1)
+        else
+          fallback()
         end
       end, {"i", "s"})
     },
@@ -317,6 +321,7 @@ function config.nvim_cmp()
       {name = 'cmp_tabnine'}
     })
   })
+  require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
 end
 
 function config.nvim_autopairs()
