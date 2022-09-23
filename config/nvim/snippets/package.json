@@ -6,7 +6,7 @@
   "contributes" : {
     "snippets" : [
       {
-        "language" : [ "plaintext", "markdown", "tex", "html", "global", "all" ],
+        "language" : [ "all" ],
         "path" : "./global.json"
       },
       {

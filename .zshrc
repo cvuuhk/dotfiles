@@ -119,7 +119,7 @@ alias tn='tmux new -s'
 alias todo='vi ~/.todo'
 
 alias vi='nvim'
-alias vv='nvim ~/.config/nvim/lua/plugin/config.lua'
+alias vv='nvim ~/.config/nvim/lua/plugin/config.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
 alias yd='youtube-dl'

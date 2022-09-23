@@ -335,6 +335,11 @@ function config.nvim_autopairs()
   }
 
   cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({map_char = {tex = ""}}))
+
+  local Rule = require('nvim-autopairs.rule')
+
+  npairs.remove_rule("`")
+  npairs.remove_rule("```")
 end
 
 function config.lspconfig()

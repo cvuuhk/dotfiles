@@ -22,7 +22,7 @@ vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
 -- 自动关闭最后一个 nvim-tree 窗口
 vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
 
-function DIAG()
+function _G.get_diag()
   local function count(s) return vim.diagnostic.get(0, {severity = s}) end
 
   local error = count(vim.diagnostic.severity.ERROR)
@@ -32,7 +32,26 @@ function DIAG()
   return string.format("E:%d W:%d I:%d H:%d", #(error), #(warn), #(info), #(hint))
 end
 
-vim.o.statusline = '[%t]%r%m %{v:lua.DIAG()}%=[%{&fileformat}][%{&fileencoding}] [%l/%L,%v]'
+function _G.get_mode(mode)
+  local map = {
+    ['n'] = 'Normal',
+    ['v'] = 'Visual',
+    ['V'] = 'VisualLine',
+    [''] = 'VisualBlock',
+    ['s'] = 'Select',
+    ['S'] = 'SelectLine',
+    [''] = 'SelectBlock',
+    ['i'] = 'Insert',
+    ['R'] = 'Replace',
+    ['c'] = 'Command',
+    ['r'] = 'Prompt',
+    ['!'] = 'Shell',
+    ['t'] = 'Terminal'
+  }
+  return map[mode]
+end
+
+vim.o.statusline = '[%{v:lua.get_mode(mode())}][%t]%r%m %{v:lua.get_diag()}%=[%{&fileformat}][%{&fileencoding}] [%l/%L,%v]'
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
