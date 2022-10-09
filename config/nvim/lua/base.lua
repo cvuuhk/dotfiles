@@ -11,11 +11,49 @@ vim.o.wrapscan = false -- 禁止循环搜索
 vim.o.ignorecase = true
 vim.o.smartcase = true -- 智能大小写敏感
 vim.o.mouse = "a" -- 启用鼠标
--- vim.o.foldmethod = "indent" -- 设置折叠方式
 vim.o.clipboard = "unnamedplus" -- 设置系统剪贴板
 vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
 vim.g.mapleader = ','
+
+local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
+local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
+
+noremap('', '<C-h>', '<C-w>h')
+noremap('', '<C-j>', '<C-w>j')
+noremap('', '<C-k>', '<C-w>k')
+noremap('', '<C-l>', '<C-w>l')
+
+noremap('n', '<A-j>', 'gt')
+noremap('n', '<A-k>', 'gT')
+
+noremap('n', 'k', 'gk')
+noremap('n', 'gk', 'k')
+noremap('n', 'j', 'gj')
+noremap('n', 'gj', 'j')
+
+noremap('n', '/', '/\\v')
+noremap('i', 'jj', '<Esc>')
+noremap('c', 'qq', 'qa!')
+noremap('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
+noremap('c', 'help', "tab help")
+noremap('n', '<leader>pc', ':PackerCompile<CR>')
+noremap('n', '<leader>ps', ':PackerSync<CR>')
+
+silnoremap('n', '<BackSpace>', ':nohl<CR>')
+silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
+
+-- lsp
+silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
+silnoremap('n', '<F2>', ':lua vim.diagnostic.goto_prev()<CR>')
+silnoremap('n', '<F3>', ':lua vim.diagnostic.goto_next()<CR>')
+silnoremap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>')
+silnoremap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>')
+silnoremap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
+silnoremap('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>')
+silnoremap('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
+silnoremap('n', '<C-A-l>', ':w<CR>:Format<CR>')
+silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
 
 -- 打开文件时跳回上次离开的位置
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]])
@@ -56,40 +94,11 @@ function _G.get_mode(mode)
   return map[mode]
 end
 
-vim.o.statusline = '[%{v:lua.get_mode(mode())}][%t]%r%m %{v:lua.get_diag()}%=[%{&filetype}][%{&fileformat}] [%l/%L,%v]'
+function _G.get_filename()
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then return path end
 
-local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
-local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
+  return '[' .. path:match('[^/]*.$') .. ']'
+end
 
-noremap('', '<C-h>', '<C-w>h')
-noremap('', '<C-j>', '<C-w>j')
-noremap('', '<C-k>', '<C-w>k')
-noremap('', '<C-l>', '<C-w>l')
-
-noremap('n', 'k', 'gk')
-noremap('n', 'gk', 'k')
-noremap('n', 'j', 'gj')
-noremap('n', 'gj', 'j')
-
-noremap('n', '/', '/\\v')
-noremap('i', 'jj', '<Esc>')
-noremap('c', 'qq', 'qa!')
-noremap('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
-noremap('c', 'help', "tab help")
-noremap('n', '<leader>pc', ':PackerCompile<CR>')
-noremap('n', '<leader>ps', ':PackerSync<CR>')
-
-silnoremap('n', '<BackSpace>', ':nohl<CR>')
-silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
-
--- lsp
-silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
-silnoremap('n', '<F2>', ':lua vim.diagnostic.goto_prev()<CR>')
-silnoremap('n', '<F3>', ':lua vim.diagnostic.goto_next()<CR>')
-silnoremap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>')
-silnoremap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>')
-silnoremap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
-silnoremap('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>')
-silnoremap('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
-silnoremap('n', '<C-A-l>', ':w<CR>:Format<CR>')
-silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
+vim.o.statusline = '[%{v:lua.get_mode(mode())}]%{v:lua.get_filename()}%r%m %{v:lua.get_diag()}%=%y[%{&fileformat}] [%l/%L,%v]'

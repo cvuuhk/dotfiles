@@ -10,6 +10,8 @@ function config.gruvbox_material()
   vim.cmd("colorscheme gruvbox-material")
   vim.cmd('hi TelescopeSelection guifg=#282828 guibg=#a9b665')
   vim.cmd('hi TelescopeMatching guifg=#282828')
+  vim.cmd('hi FloatBorder guibg=NONE')
+  vim.cmd('hi StatusLine guibg=NONE')
 end
 
 function config.nvim_treesitter()
