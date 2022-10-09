@@ -1,5 +1,10 @@
 set ideajoin
 imap jj <Esc>
+nmap / /\v
 set clipboard+=unnamedplus
 set tabstop=2
 set shiftwidth=2
+
+set incsearch
+set smartcase
+set ignorecase
