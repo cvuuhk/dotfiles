@@ -1,15 +1,15 @@
 local config = {}
 
-function config.gruvbox_flat()
-  vim.g.gruvbox_transparent = true
-  vim.g.gruvbox_italic_keywords = false
-  vim.g.gruvbox_dark_sidebar = false
-  vim.cmd [[colorscheme gruvbox-flat]]
+function config.symbol_outline()
+  require("symbols-outline").setup()
 end
 
-function config.edge()
-  vim.o.background = 'light'
-  vim.cmd [[colorscheme edge]]
+function config.gruvbox_material()
+  vim.g.gruvbox_material_transparent_background = 1
+  -- vim.g.gruvbox_material_disable_italic_comment = 1
+  vim.cmd("colorscheme gruvbox-material")
+  vim.cmd('hi TelescopeSelection guifg=#282828 guibg=#a9b665')
+  vim.cmd('hi TelescopeMatching guifg=#282828')
 end
 
 function config.nvim_treesitter()
@@ -166,8 +166,13 @@ end
 function config.hop() require'hop'.setup() end
 
 function config.nvim_tree()
+  -- 自动关闭最后一个 nvim-tree 窗口
+  vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
   require'nvim-tree'.setup {
-    update_cwd = true,
+    view = {
+      side = 'right',
+      width = 40
+    },
     actions = {
       open_file = {
         quit_on_open = true
@@ -185,6 +190,7 @@ function config.nvim_tree()
         },
       },
       icons = {
+        webdev_colors = true,
         show = {
           folder_arrow = false
         }

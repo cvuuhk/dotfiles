@@ -11,7 +11,7 @@ vim.o.wrapscan = false -- 禁止循环搜索
 vim.o.ignorecase = true
 vim.o.smartcase = true -- 智能大小写敏感
 vim.o.mouse = "a" -- 启用鼠标
-vim.o.foldmethod = "marker" -- 设置折叠方式
+-- vim.o.foldmethod = "indent" -- 设置折叠方式
 vim.o.clipboard = "unnamedplus" -- 设置系统剪贴板
 vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
@@ -19,8 +19,13 @@ vim.g.mapleader = ','
 
 -- 打开文件时跳回上次离开的位置
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]])
--- 自动关闭最后一个 nvim-tree 窗口
-vim.cmd([[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]])
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 function _G.get_diag()
   local function count(s) return vim.diagnostic.get(0, {severity = s}) end
@@ -51,7 +56,7 @@ function _G.get_mode(mode)
   return map[mode]
 end
 
-vim.o.statusline = '[%{v:lua.get_mode(mode())}][%t]%r%m %{v:lua.get_diag()}%=[%{&fileformat}][%{&fileencoding}] [%l/%L,%v]'
+vim.o.statusline = '[%{v:lua.get_mode(mode())}][%t]%r%m %{v:lua.get_diag()}%=[%{&filetype}][%{&fileformat}] [%l/%L,%v]'
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
@@ -70,11 +75,12 @@ noremap('n', '/', '/\\v')
 noremap('i', 'jj', '<Esc>')
 noremap('c', 'qq', 'qa!')
 noremap('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
+noremap('c', 'help', "tab help")
 noremap('n', '<leader>pc', ':PackerCompile<CR>')
 noremap('n', '<leader>ps', ':PackerSync<CR>')
 
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
-silnoremap('n', '<Enter>', ':cd %:h<CR>')
+silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')

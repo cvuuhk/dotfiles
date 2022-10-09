@@ -7,23 +7,21 @@ end
 
 local config = require('plugin/config')
 require('packer').startup(function(use)
-  use {'wbthomason/packer.nvim'}
+  use 'wbthomason/packer.nvim'
   use 'itchyny/vim-cursorword'
-  use { -- theme
-    'eddyekofo94/gruvbox-flat.nvim',
-    opt = false,
-    config = config.gruvbox_flat
-  }
-  use { -- theme
-    'sainnhe/edge',
-    opt = true,
-    config = config.edge
-  }
   use { -- powerful code highlighter
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = config.nvim_treesitter
   }
+  use {
+    'sainnhe/gruvbox-material',
+    config = config.gruvbox_material
+  }
+  -- use {
+  --   'simrat39/symbols-outline.nvim',
+  --   config = config.symbol_outline
+  -- }
   use { -- show git status
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
@@ -61,7 +59,6 @@ require('packer').startup(function(use)
   use "numtostr/FTerm.nvim" -- float terminal
   use { -- explore files
     'kyazdani42/nvim-tree.lua',
-    opt = true,
     config = config.nvim_tree,
     cmd = {'NvimTreeToggle', 'NvimTreeOpen'},
     requires = {'kyazdani42/nvim-web-devicons'}
@@ -128,4 +125,4 @@ noremap('n', '<leader>fh', ':Telescope help_tags<CR>')
 silnoremap('n', '<leader>v', ':NvimTreeToggle<CR>')
 
 -- fterm
-silnoremap('n', '<space>', ':w<CR>:lua require("FTerm").toggle()<CR>')
+silnoremap('n', '<leader><space>', ':w<CR>:lua require("FTerm").toggle()<CR>')
