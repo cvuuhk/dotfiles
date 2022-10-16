@@ -18,10 +18,9 @@ require('packer').startup(function(use)
     'sainnhe/gruvbox-material',
     config = config.gruvbox_material
   }
-  -- use {
-  --   'simrat39/symbols-outline.nvim',
-  --   config = config.symbol_outline
-  -- }
+  use {
+    'mbbill/undotree'
+  }
   use { -- show git status
     'lewis6991/gitsigns.nvim',
     requires = 'nvim-lua/plenary.nvim',
@@ -56,7 +55,6 @@ require('packer').startup(function(use)
     config = config.hop,
     cmd = {'HopChar1', 'HopChar2'}
   }
-  use "numtostr/FTerm.nvim" -- float terminal
   use { -- explore files
     'kyazdani42/nvim-tree.lua',
     config = config.nvim_tree,
@@ -124,5 +122,5 @@ noremap('n', '<leader>fh', ':Telescope help_tags<CR>')
 -- nvim-tree
 silnoremap('n', '<leader>v', ':NvimTreeToggle<CR>')
 
--- fterm
-silnoremap('n', '<leader><space>', ':w<CR>:lua require("FTerm").toggle()<CR>')
+-- undotree
+silnoremap('n', '<leader>u', ':UndotreeToggle<CR>:UndotreeFocus<CR>')

@@ -1,5 +1,5 @@
 vim.o.number = true -- 显示行号
-vim.o.cursorline = true -- 突出显示当前行
+-- vim.o.cursorline = true -- 突出显示当前行
 vim.o.termguicolors = true -- true color
 vim.o.showmode = false -- 隐藏当前模式
 vim.o.tabstop = 2 -- 一个 \t 的宽度
@@ -42,6 +42,7 @@ noremap('n', '<leader>ps', ':PackerSync<CR>')
 
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
+silnoremap('n', '<leader><space>', ':tabnew<CR>:term<CR>:set<space>nonu<CR>i')
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
@@ -64,6 +65,8 @@ vim.cmd([[
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
+
+vim.cmd([[autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]])
 
 function _G.get_diag()
   local function count(s) return vim.diagnostic.get(0, {severity = s}) end
