@@ -8,8 +8,8 @@ function config.gruvbox_material()
   vim.g.gruvbox_material_transparent_background = 1
   -- vim.g.gruvbox_material_disable_italic_comment = 1
   vim.cmd("colorscheme gruvbox-material")
-  vim.cmd('hi TelescopeSelection guifg=#282828 guibg=#a9b665')
-  vim.cmd('hi TelescopeMatching guifg=#282828')
+  vim.cmd('hi TelescopeSelection guifg=#282828 guibg=#d4be98')
+  vim.cmd('hi TelescopeMatching guifg=#ea6962')
   vim.cmd('hi FloatBorder guibg=NONE')
   vim.cmd('hi StatusLine guibg=NONE')
 end
@@ -360,7 +360,7 @@ function config.lspconfig()
   })
   local lspconfig = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
   lspconfig.sumneko_lua.setup({
     cmd = {"lua-language-server"},
     settings = {
