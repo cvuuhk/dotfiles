@@ -1,0 +1,9 @@
+patch:
+  "switches/@0/reset": 1
+  "switches/@2/reset": 1
+  # "reverse_lookup/enable_completion": false
+  # "reverse_lookup/tips": 〔笔画〕
+  "engine/translators":
+    - punct_translator
+    - script_translator
+  "recognizer": {}
