@@ -1,5 +1,6 @@
 vim.o.number = true -- 显示行号
 -- vim.o.cursorline = true -- 突出显示当前行
+vim.o.cursorcolumn = true
 vim.o.termguicolors = true -- true color
 vim.o.showmode = false -- 隐藏当前模式
 vim.o.tabstop = 2 -- 一个 \t 的宽度
