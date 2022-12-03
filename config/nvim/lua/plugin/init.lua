@@ -49,12 +49,6 @@ require('packer').startup(function(use)
     'numToStr/Comment.nvim',
     config = config.Comment
   }
-  use { -- enhance the native motions
-    'phaazon/hop.nvim',
-    opt = true,
-    config = config.hop,
-    cmd = {'HopChar1', 'HopChar2'}
-  }
   use { -- explore files
     'kyazdani42/nvim-tree.lua',
     config = config.nvim_tree,
@@ -108,10 +102,6 @@ silnoremap('n', '<leader>c', ':ColorizerToggle<CR>')
 -- vim-easy-align
 noremap('x', '<leader>al', ':EasyAlign<CR>')
 noremap('n', '<leader>al', ':EasyAlign<CR>')
-
--- hop
-silnoremap('n', 's', ':HopChar2<CR>')
-silnoremap('n', '<leader>s', ':HopChar1<CR>')
 
 -- telescope
 noremap('n', '<leader>ff', ':Telescope find_files<CR>')
