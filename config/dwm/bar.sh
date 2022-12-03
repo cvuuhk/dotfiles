@@ -82,15 +82,12 @@ get_battery() {
 }
 # }}}
 
-while [ true ]; do
-    bar=""
-    bar="$bar$(get_datetime)$SEP2"
-    bar="$bar$SEP1$(get_memory)$SEP2"
-    bar="$bar$SEP1$(get_cpu)$SEP2"
-    # bar="$bar$SEP1$(get_storage)$SEP2"
-    bar="$bar$SEP1$(get_alsa)$SEP2"
-    bar="$bar$SEP1$(get_battery)$SEP2"
+bar=""
+bar="$bar$(get_datetime)$SEP2"
+bar="$bar$SEP1$(get_memory)$SEP2"
+bar="$bar$SEP1$(get_cpu)$SEP2"
+# bar="$bar$SEP1$(get_storage)$SEP2"
+bar="$bar$SEP1$(get_alsa)$SEP2"
+bar="$bar$SEP1$(get_battery)$SEP2"
 
-    xsetroot -name "$bar"
-    sleep 1
-done
+xsetroot -name "$bar"

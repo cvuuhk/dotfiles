@@ -30,6 +30,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # my own config
+function status_bar() {
+  while [ true ]; do
+    bash ~/.config/dwm-6.4/bar.sh
+    sleep 1
+  done
+}
 export _JAVA_AWT_WM_NONREPARENTING=1
 export QT_QPA_PLATFORMTHEME=qt5ct
 export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
@@ -52,8 +58,9 @@ xinput --disable $(xinput list --id-only "SynPS/2 Synaptics TouchPad")
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
 screenkey --start-disabled &
 
-bash ~/.config/dwm-6.4/bar.sh &
 feh --bg-scale ~/.wallpaper.png
+status_bar &
+
 exec dwm
 
 # exec awesome
