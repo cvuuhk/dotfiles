@@ -1,4 +1,4 @@
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root" ]]; then
   exec startx
 fi
 
@@ -101,10 +101,11 @@ alias ls='ls --color=tty'
 alias lg='lazygit'
 
 alias mountsmb='sudo mount -t cifs -o uid=cui,gid=cui,file_mode=0644,dir_mode=0755'
-alias mountusb='sudo mount /dev/sdc1'
+alias mountusb='sudo mount -t ntfs3 /dev/sdb1 /mnt'
 
 alias ossutil='/home/cui/.local/bin/ossutil64'
 
+alias pacman='sudo pacman'
 alias py='python'
 
 alias ra='. ranger'
