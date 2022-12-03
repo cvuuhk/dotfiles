@@ -3,8 +3,8 @@
 # vim:set ft=sh
 # 参考 https://github.com/joestandring/dwm-bar
 IDENTIFIER="unicode"
-SEP1="["
-SEP2="]"
+SEP1=" | "
+SEP2=""
 
 # datetime {{{
 get_datetime() {
@@ -42,9 +42,8 @@ get_cpu() {
 # storage {{{
 get_storage() {
     local main=$(df -h / | tail -n 1 | awk '{print $4}')
-    local data=$(df -h /home/cui/data | tail -n 1 | awk '{print $4}')
 
-    echo "$main|$data"
+    echo "$main"
 }
 # }}}
 # alsa {{{
@@ -85,10 +84,10 @@ get_battery() {
 
 while [ true ]; do
     bar=""
-    bar="$bar$SEP1$(get_datetime)$SEP2"
+    bar="$bar$(get_datetime)$SEP2"
     bar="$bar$SEP1$(get_memory)$SEP2"
     bar="$bar$SEP1$(get_cpu)$SEP2"
-    bar="$bar$SEP1$(get_storage)$SEP2"
+    # bar="$bar$SEP1$(get_storage)$SEP2"
     bar="$bar$SEP1$(get_alsa)$SEP2"
     bar="$bar$SEP1$(get_battery)$SEP2"
 

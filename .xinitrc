@@ -52,7 +52,7 @@ xinput --disable $(xinput list --id-only "SynPS/2 Synaptics TouchPad")
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
 screenkey --start-disabled &
 
-bash ~/.config/dwm/bar.sh &
+bash ~/.config/dwm-6.4/bar.sh &
 feh --bg-scale ~/.wallpaper.png
 exec dwm
 
