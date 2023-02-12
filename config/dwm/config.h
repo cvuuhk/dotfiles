@@ -28,7 +28,7 @@ static const char *colors[][3] = {
 };
 
 // tagging
-static const char *tags[] = {"崔", "二", "三", "四", "五", "六", "七", "八", "九"};
+static const char *tags[] = {"唱", "跳", "rap", "篮", "球", "鸡", "你", "太", "美"};
 
 static const Rule rules[] = {
   // xprop(1):

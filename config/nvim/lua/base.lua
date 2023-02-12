@@ -3,9 +3,9 @@ vim.o.number = true -- 显示行号
 vim.o.cursorcolumn = true
 vim.o.termguicolors = true -- true color
 vim.o.showmode = false -- 隐藏当前模式
-vim.o.tabstop = 2 -- 一个 \t 的宽度
+vim.o.tabstop = 4 -- 一个 \t 的宽度
 vim.o.expandtab = true -- 将 tab 转换为空格
-vim.o.shiftwidth = 2 -- normal 模式下缩进时的宽度
+vim.o.shiftwidth = 4 -- normal 模式下缩进时的宽度
 vim.o.splitbelow = true -- 新窗口位置
 vim.o.splitright = true -- 新窗口位置
 vim.o.wrapscan = false -- 禁止循环搜索
@@ -15,7 +15,7 @@ vim.o.mouse = "a" -- 启用鼠标
 vim.o.clipboard = "unnamedplus" -- 设置系统剪贴板
 vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
-vim.g.mapleader = ','
+vim.g.mapleader = ' '
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
@@ -37,13 +37,11 @@ noremap('n', '/', '/\\v')
 noremap('i', 'jj', '<Esc>')
 noremap('c', 'qq', 'qa!')
 noremap('c', 'ww', " execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
-noremap('c', 'help', "tab help")
 noremap('n', '<leader>pc', ':PackerCompile<CR>')
 noremap('n', '<leader>ps', ':PackerSync<CR>')
 
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
-silnoremap('n', '<leader><space>', ':tabnew<CR>:term<CR>:set<space>nonu<CR>i')
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
@@ -60,14 +58,8 @@ silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
 -- 打开文件时跳回上次离开的位置
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]])
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 vim.cmd([[autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]])
+vim.cmd([[autocmd TermOpen * startinsert]])
 
 function _G.get_diag()
   local function count(s) return vim.diagnostic.get(0, {severity = s}) end

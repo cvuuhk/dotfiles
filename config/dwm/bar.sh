@@ -8,7 +8,7 @@ SEP2=""
 
 # datetime {{{
 get_datetime() {
-    local datetime="$(date "+%m月%d日 周%a %H:%M")"
+    local datetime="$(date "+%Y年%m月%d日 周%a %H:%M")"
     # local icon="DAT"
     # local icon="📆"
 

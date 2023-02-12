@@ -361,7 +361,7 @@ function config.lspconfig()
   local lspconfig = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-  lspconfig.sumneko_lua.setup({
+  lspconfig.lua_ls.setup({
     cmd = {"lua-language-server"},
     settings = {
       Lua = {
