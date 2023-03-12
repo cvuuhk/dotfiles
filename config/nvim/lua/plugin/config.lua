@@ -82,8 +82,8 @@ function config.format()
       rust = function() return {exe = "rustfmt", stdin = true} end,
       json = function()
         return {
-          exe = "json-glib-format -p",
-          args = {vim.api.nvim_buf_get_name(0)},
+          exe = "jq",
+          -- args = {vim.api.nvim_buf_get_name(0)},
           stdin = true
         }
       end,
@@ -164,8 +164,6 @@ function config.Comment()
     post_hook = nil
   })
 end
-
-function config.hop() require'hop'.setup() end
 
 function config.nvim_tree()
   -- 自动关闭最后一个 nvim-tree 窗口
@@ -350,6 +348,23 @@ function config.nvim_autopairs()
   npairs.remove_rule("```")
 end
 
+function config.mason()
+    require("mason").setup()
+end
+
+function config.mason_lspconfig()
+    require("mason-lspconfig").setup {
+        ensure_installed = {
+            "bashls",
+            "clangd",
+            "lua_ls",
+            "pyright",
+            "rust_analyzer",
+            "yamlls"
+        }
+    }
+end
+
 function config.lspconfig()
   vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -379,7 +394,7 @@ function config.lspconfig()
     }
   })
 
-  local servers = {'clangd', 'rust_analyzer', 'bashls', 'pyright'}
+  local servers = {'bashls', 'clangd', 'lua_ls', 'pyright', 'rust_analyzer', 'yamlls'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup ({capabilities = capabilities})
   end

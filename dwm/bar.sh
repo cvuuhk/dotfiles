@@ -53,7 +53,7 @@ get_alsa() {
     local icon="VOL"
 
     if [ "$IDENTIFIER" == "unicode" ]; then
-        if [ "$switch" == off ]; then
+        if [ "$switch" == off ] || [ "$vol" -eq 0 ]; then
             echo "🔇"
         elif [ "$vol" -gt 0 ] && [ "$vol" -le 33 ]; then
             echo "🔈$vol%"

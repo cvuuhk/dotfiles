@@ -4,7 +4,7 @@ static const unsigned int gappx     = 5;    // gaps between windows
 static const unsigned int snap      = 8;    // snap pixel
 static const int showbar            = 1;    // 0 means no bar
 static const int topbar             = 1;    // 0 means bottom bar
-static const char *fonts[]          = { "cascadia code:size=12", "PingFang SC:size=12" };
+static const char *fonts[]          = { "CaskaydiaCove Nerd Font Mono:size=12", "PingFang SC:size=12" };
 static const char dmenufont[]       = "monospace:size=10";
 // Everforest
 // static const char normbgcolor[] = "#2f383e";
@@ -106,9 +106,12 @@ static const Key keys[] = {
   { MODKEY,                       XK_space,  spawn,          SHCMD("firefox")},
   { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui")},
 
-  { 0,             XF86XK_AudioMute,         spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && bash ~/.config/dwm-6.4/bar.sh")},
-  { 0,             XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && bash ~/.config/dwm-6.4/bar.sh")},
-  { 0,             XF86XK_AudioLowerVolume,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && bash ~/.config/dwm-6.4/bar.sh")},
+  { 0,             XF86XK_AudioMute,         spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && bash ~/.dotfiles/dwm/bar.sh")},
+  { 0,             XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && bash ~/.dotfiles/dwm/bar.sh")},
+  { 0,             XF86XK_AudioLowerVolume,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && bash ~/.dotfiles/dwm/bar.sh")},
+  // { 0,             XF86XK_AudioMute,         spawn,          SHCMD("amixer -q sset Master 0   && bash ~/.dotfiles/dwm/bar.sh")},
+  // { 0,             XF86XK_AudioRaiseVolume,  spawn,          SHCMD("amixer -q sset Master 3%+ && bash ~/.dotfiles/dwm/bar.sh")},
+  // { 0,             XF86XK_AudioLowerVolume,  spawn,          SHCMD("amixer -q sset Master 3%- && bash ~/.dotfiles/dwm/bar.sh")},
   { 0,             XF86XK_MonBrightnessUp,   spawn,          SHCMD("light -A 3%")},
   { 0,             XF86XK_MonBrightnessDown, spawn,          SHCMD("light -U 3%")},
 };

@@ -88,6 +88,8 @@ alias cr='cargo run'
 alias ct='cargo test'
 alias clbf='sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"'
 
+alias em='emerge'
+
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffprobe='ffprobe -hide_banner'
 
@@ -100,26 +102,18 @@ alias lla='ls -lAh'
 alias ls='ls --color=tty'
 alias lg='lazygit'
 
-alias mountsmb='sudo mount -t cifs -o uid=cui,gid=cui,file_mode=0644,dir_mode=0755'
-alias mountusb='sudo mount -t ntfs3 /dev/sdb1 /mnt'
-
-alias ossutil='/home/cui/.local/bin/ossutil64'
-
-alias pacman='sudo pacman'
 alias py='python'
 
 alias ra='. ranger'
-alias rename='perl-rename'
+alias reboot='sudo reboot'
 alias -g rf='rm -rf'
 
-alias sys='sudo systemctl'
 alias sudo='sudo '
 
 alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias todo='vi ~/.todo'
 
-alias vi='nvim'
 alias vv='nvim ~/.config/nvim/lua/plugin/config.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 

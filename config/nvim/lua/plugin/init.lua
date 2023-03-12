@@ -94,6 +94,14 @@ require('packer').startup(function(use)
     'windwp/nvim-autopairs',
     config = config.nvim_autopairs
   }
+  use {
+      'williamboman/mason.nvim',
+      config = config.mason
+  }
+  use {
+      'williamboman/mason-lspconfig.nvim',
+      config = config.mason_lspconfig
+  }
   use { -- native lsp client config
     'neovim/nvim-lspconfig',
     after = 'cmp-nvim-lsp',
