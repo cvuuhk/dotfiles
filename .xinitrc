@@ -1,5 +1,7 @@
 #!/bin/sh
 
+eval "$(dbus-launch --sh-syntax --exit-with-session)"
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -32,25 +34,24 @@ fi
 # my own config
 function status_bar() {
   while [ true ]; do
-    bash ~/.config/dwm-6.4/bar.sh
+    bash ~/.dotfiles/dwm/bar.sh
     sleep 1
   done
 }
-export _JAVA_AWT_WM_NONREPARENTING=1
-export QT_QPA_PLATFORMTHEME=qt5ct
-export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
-# see https://unix.stackexchange.com/a/295652/332452
-source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+# export _JAVA_AWT_WM_NONREPARENTING=1
+# export QT_QPA_PLATFORMTHEME=qt5ct
+# export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 
 # see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
-eval $(/usr/bin/gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
-# picom --experimental-backends --config ~/.config/picom/picom.conf &
+# eval $(/usr/bin/gnome-keyring-daemon --start)
+# export SSH_AUTH_SOCK
 picom -b &
-light -S 50%
 parcellite & # 剪贴板
 
-fcitx5 &
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+fcitx &
 numlockx & # auto enable numlock
 xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
@@ -60,7 +61,6 @@ screenkey --start-disabled &
 
 feh --bg-scale ~/.wallpaper.png
 status_bar &
-
+sudo sh -c "echo 468 > /sys/class/backlight/intel_backlight/brightness"
+# exec dbus-launch --sh-syntax --exit-with-session dwm
 exec dwm
-
-# exec awesome
