@@ -352,19 +352,6 @@ function config.mason()
     require("mason").setup()
 end
 
-function config.mason_lspconfig()
-    require("mason-lspconfig").setup {
-        ensure_installed = {
-            "bashls",
-            "clangd",
-            "lua_ls",
-            "pyright",
-            "rust_analyzer",
-            "yamlls"
-        }
-    }
-end
-
 function config.lspconfig()
   vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -394,7 +381,7 @@ function config.lspconfig()
     }
   })
 
-  local servers = {'bashls', 'clangd', 'lua_ls', 'pyright', 'rust_analyzer', 'yamlls'}
+  local servers = {'bashls', 'clangd', 'pyright', 'rust_analyzer', 'yamlls'}
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup ({capabilities = capabilities})
   end
