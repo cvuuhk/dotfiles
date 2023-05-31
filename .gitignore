@@ -1,8 +1,7 @@
-
-config/nvim/plugin
-config/ranger/plugins
 config/lazygit/state.yml
 config/nvim/lua/.luarc.json
+config/nvim/lazy-lock.json
+config/ranger/plugins
 dwm/drw.o
 dwm/dwm
 dwm/dwm.o

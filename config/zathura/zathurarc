@@ -11,7 +11,7 @@ set guioptions ""
 set incremental-search true
 set show-scrollbars true
 set sandbox "none"
-set font ".PingFang SC 11"
+set font "Harmony OS Sans SC 11"
 
 # key bindings
 # map <C-[> abort # Still doesn't work :(

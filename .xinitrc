@@ -38,7 +38,7 @@ function status_bar() {
     sleep 1
   done
 }
-# export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_AWT_WM_NONREPARENTING=1
 # export QT_QPA_PLATFORMTHEME=qt5ct
 # export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 
