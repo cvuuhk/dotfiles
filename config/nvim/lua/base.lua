@@ -37,8 +37,6 @@ noremap('n', '/', '/\\v')
 noremap('i', 'jj', '<Esc>')
 noremap('c', 'qq', 'qa!')
 noremap('c', 'ww', "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
-noremap('n', '<leader>pc', ':PackerCompile<CR>')
-noremap('n', '<leader>ps', ':PackerSync<CR>')
 
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
