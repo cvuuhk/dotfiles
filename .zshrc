@@ -2,7 +2,7 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root
   exec startx
 fi
 
-export http_proxy="http://127.0.0.1:7890"
+export http_proxy="http://localhost:7890"
 export https_proxy=$http_proxy
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -36,6 +36,7 @@ zinit ice lucid wait='0' atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 
+bindkey '^f' forward-word
 export EDITOR=nvim
 bindkey -e # for emacs
 # bindkey -v # for vi
@@ -106,7 +107,7 @@ alias py='python'
 
 alias ra='. ranger'
 alias reboot='sudo reboot'
-alias -g rf='rm -rf'
+alias rf='rm -rf'
 
 alias sudo='sudo '
 
@@ -114,7 +115,7 @@ alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias todo='vi ~/.todo'
 
-alias vv='nvim ~/.config/nvim/lua/plugin/config.lua -c "cd /home/cui/.config/nvim/lua"'
+alias vv='nvim ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
 alias yd='youtube-dl'
