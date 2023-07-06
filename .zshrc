@@ -2,8 +2,15 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root
   exec startx
 fi
 
+if [[ -e "/usr/share/fzf/key-bindings.zsh" ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+fi
+
 export http_proxy="http://localhost:7890"
 export https_proxy=$http_proxy
+
+export LANG=zh_CN.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -115,15 +122,18 @@ alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias todo='vi ~/.todo'
 
-alias vv='nvim ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
+alias vv='nvim -O ~/.config/nvim/lua/base.lua ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
 alias yd='youtube-dl'
 alias yde='youtube-dl --external-downloader aria2c --external-downloader-args "-x 8 -k 1M"'
 alias yg='you-get --no-caption'
 
+alias ssh="TERM=xterm-256color $(which ssh)"
+
 function ccat {
     dos2unix $1
     iconv -f GBK -t UTF8 $1 -o $1
     cat $1
 }
+export LFS=/mnt/lfs
