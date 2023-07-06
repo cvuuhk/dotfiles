@@ -69,18 +69,6 @@ get_alsa() {
     fi
 }
 # }}}
-# battery {{{
-get_battery() {
-    local charge=$(cat /sys/class/power_supply/BAT0/capacity)
-    local switch=$(cat /sys/class/power_supply/BAT0/status)
-    local icon="BAT"
-
-    if [ "$IDENTIFIER" == "unicode" ]; then
-        [ "$switch" == "Charging" ] && icon="🔌" || icon="🔋"
-    fi
-    echo "$icon$charge%"
-}
-# }}}
 
 bar=""
 bar="$bar$(get_datetime)$SEP2"
@@ -88,6 +76,5 @@ bar="$bar$SEP1$(get_memory)$SEP2"
 bar="$bar$SEP1$(get_cpu)$SEP2"
 # bar="$bar$SEP1$(get_storage)$SEP2"
 bar="$bar$SEP1$(get_alsa)$SEP2"
-bar="$bar$SEP1$(get_battery)$SEP2"
 
 xsetroot -name "$bar"
