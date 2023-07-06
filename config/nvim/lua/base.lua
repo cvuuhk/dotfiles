@@ -8,7 +8,7 @@ vim.o.expandtab = true -- 将 tab 转换为空格
 vim.o.shiftwidth = 4 -- normal 模式下缩进时的宽度
 vim.o.splitbelow = true -- 新窗口位置
 vim.o.splitright = true -- 新窗口位置
-vim.o.wrapscan = false -- 禁止循环搜索
+-- vim.o.wrapscan = false -- 禁止循环搜索
 vim.o.ignorecase = true
 vim.o.smartcase = true -- 智能大小写敏感
 vim.o.mouse = "a" -- 启用鼠标
@@ -40,6 +40,7 @@ noremap('c', 'ww', "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
 
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
+silnoremap('n', '<leader>t', ':tabnew +term<CR>')
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
