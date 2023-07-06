@@ -28,7 +28,7 @@ static const char *colors[][3] = {
 };
 
 // tagging
-static const char *tags[] = {"一", "切", "尽", "意","😋", "百", "事", "从", "欢"};
+static const char *tags[] = {"自", "己", "动", "手", "😋", "丰", "衣", "足", "食"};
 
 static const Rule rules[] = {
   // xprop(1):
