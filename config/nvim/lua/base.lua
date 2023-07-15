@@ -60,7 +60,7 @@ vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
 vim.cmd([[autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]])
 vim.cmd([[autocmd TermOpen * startinsert]])
 
-function _G.get_diag()
+function _G.get_diagnostics()
   local function count(s) return vim.diagnostic.get(0, {severity = s}) end
 
   local error = count(vim.diagnostic.severity.ERROR)
@@ -70,7 +70,7 @@ function _G.get_diag()
   return string.format("E:%d W:%d I:%d H:%d", #(error), #(warn), #(info), #(hint))
 end
 
-function _G.get_mode(mode)
+function _G.get_mode_icon(mode)
   local map = {
     ['n'] = 'Normal',
     ['v'] = 'Visual',
@@ -89,11 +89,11 @@ function _G.get_mode(mode)
   return map[mode]
 end
 
-function _G.get_filename()
+function _G.get_buffer_name()
   local path = vim.api.nvim_buf_get_name(0)
   if path == '' then return path end
 
   return '[' .. path:match('[^/]*.$') .. ']'
 end
 
-vim.o.statusline = '[%{v:lua.get_mode(mode())}]%{v:lua.get_filename()}%r%m %{v:lua.get_diag()}%=%y[%{&fileformat}] [%l/%L,%v]'
+vim.o.statusline = '[%{v:lua.get_mode_icon(mode())}]%{v:lua.get_buffer_name()}%r%m %{v:lua.get_diagnostics()}%=%y[%{&fileformat}] [%l/%L,%v]'
