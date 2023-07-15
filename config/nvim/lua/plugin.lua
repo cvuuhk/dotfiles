@@ -404,7 +404,7 @@ require("lazy").setup({
             vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
                 virtual_text = true,
                 signs = true,
-                underline = true,
+                underline = false,
                 update_in_insert = false
             })
             local lspconfig = require("lspconfig")
@@ -416,7 +416,7 @@ require("lazy").setup({
                     Lua = {
                         diagnostics = {
                             -- Get the language server to recognize the `vim` global
-                            globals = {"vim"}
+                            globals = {"vim", "client", "awesome", "root", "screen"}
                         },
                         workspace = {
                             -- Make the server aware of Neovim runtime files
