@@ -59,8 +59,9 @@ xset s off -dpms # disable screensaver
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
 screenkey --start-disabled &
 
-feh --bg-scale ~/.wallpaper.png
-status_bar &
+# feh --bg-scale ~/.wallpaper.png
+# status_bar &
 # sudo sh -c "echo 468 > /sys/class/backlight/intel_backlight/brightness"
 # exec dbus-launch --sh-syntax --exit-with-session dwm
-exec dwm
+# exec dwm
+exec dbus-launch --sh-syntax --exit-with-session awesome

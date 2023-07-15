@@ -39,6 +39,9 @@ end
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.useless_gap = 4
+beautiful.wallpaper = os.getenv("HOME") .. "/.wallpaper.png"
+beautiful.font = "PingFang SC 12"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "alacritty"
@@ -52,18 +55,18 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile.top,
     awful.layout.suit.tile.left,
+    awful.layout.suit.tile.top,
     -- awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile,
+    -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
+    awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
+    awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -72,9 +75,6 @@ awful.layout.layouts = {
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
-
--- Keyboard map indicator and switcher
-local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 os.setlocale(os.getenv("LANG"))
@@ -103,22 +103,13 @@ local tasklist_buttons = gears.table.join(
         if c == client.focus then
             c.minimized = true
         else
-            c:emit_signal(
-            "request::activate",
-            "tasklist",
-            {raise = true}
-            )
+            c:emit_signal( "request::activate", "tasklist", {raise = true})
         end
     end),
-    awful.button({ }, 3, function()
-        awful.menu.client_list({ theme = { width = 250 } })
-    end),
-    awful.button({ }, 4, function ()
-        awful.client.focus.byidx(1)
-    end),
-    awful.button({ }, 5, function ()
-        awful.client.focus.byidx(-1)
-end))
+    awful.button({ }, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end),
+    awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
+    awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
+)
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -140,10 +131,8 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({"日", "拱", "一", "卒", "😋", "功", "不", "唐", "捐"}, s, awful.layout.layouts[1])
+    awful.tag({"日", "拱", "一", "卒", "功", "不", "唐", "捐"}, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -159,28 +148,28 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-    }
-
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        -- Left widgets
+        {
             layout = wibox.layout.fixed.horizontal,
+            spacing = 2,
             s.mytaglist,
-            s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+        -- Middle widget
+        awful.widget.tasklist {
+            screen  = s,
+            filter  = awful.widget.tasklist.filter.currenttags,
+            buttons = tasklist_buttons
+        },
+        -- Right widgets
+        {
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            spacing = 10,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -206,6 +195,11 @@ local restore_from_minimize = function ()
     end
 end
 
+local toggle_topbar = function()
+    local myscreen = awful.screen.focused()
+    myscreen.mywibox.visible = not myscreen.mywibox.visible
+end
+
 local global_keys = gears.table.join(
     awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%") end, {description="增加音量",        group="系统"}),
     awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%") end, {description="降低音量",        group="系统"}),
@@ -218,39 +212,38 @@ local global_keys = gears.table.join(
     awful.key({ modkey, }, "Right", awful.tag.viewnext,        {description = "下一个 tag", group = "tag"}),
     awful.key({ modkey, }, "Tab",   awful.tag.history.restore, {description = "切换 tag",   group = "tag"}),
 
-    awful.key({ modkey,           }, "u",      awful.client.urgent.jumpto,                   {description = "跳转到激活的 client",  group = "client"}),
-    awful.key({ modkey,           }, "Escape", switch_in_tag,                                {description = "tag 内切换 client",    group = "client"}),
-    awful.key({ modkey,           }, "j",      function () awful.client.focus.byidx( 1) end, {description = "下一个 client",        group = "client"}),
-    awful.key({ modkey,           }, "k",      function () awful.client.focus.byidx(-1) end, {description = "上一个 client",        group = "client"}),
-    awful.key({ modkey, "Shift"   }, "j",      function () awful.client.swap.byidx(  1) end, {description = "和下一个 client 交换", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k",      function () awful.client.swap.byidx( -1) end, {description = "和上一个 client 交换", group = "client"}),
-    awful.key({ modkey, "Control" }, "n",      restore_from_minimize,                        {description = "取消最小化",           group = "client"}),
+    awful.key({ modkey,         }, "u",      awful.client.urgent.jumpto,                   {description = "跳转到激活的 client",  group = "client"}),
+    awful.key({ modkey,         }, "Escape", switch_in_tag,                                {description = "tag 内切换 client",    group = "client"}),
+    awful.key({ modkey,         }, "j",      function () awful.client.focus.byidx( 1) end, {description = "下一个 client",        group = "client"}),
+    awful.key({ modkey,         }, "k",      function () awful.client.focus.byidx(-1) end, {description = "上一个 client",        group = "client"}),
+    awful.key({ modkey, "Shift" }, "j",      function () awful.client.swap.byidx(  1) end, {description = "和下一个 client 交换", group = "client"}),
+    awful.key({ modkey, "Shift" }, "k",      function () awful.client.swap.byidx( -1) end, {description = "和上一个 client 交换", group = "client"}),
+    awful.key({ modkey, "Shift" }, "n",      restore_from_minimize,                        {description = "取消最小化",           group = "client"}),
 
     awful.key({ modkey, }, "Return", function () awful.spawn(terminal) end,  {description = "打开终端", group = "程序启动"}),
     awful.key({ modkey, }, "space",  function () awful.spawn("firefox") end, {description = "打开火狐", group = "程序启动"}),
 
-    awful.key({ modkey, "Control" }, "r", awesome.restart, {description = "应用 awesome 配置", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,    {description = "退出 awesome",      group = "awesome"}),
+    awful.key({ modkey, "Shift" }, "r", awesome.restart, {description = "应用 awesome 配置", group = "awesome"}),
+    awful.key({ modkey, "Shift" }, "q", awesome.quit,    {description = "退出 awesome",      group = "awesome"}),
+    awful.key({ modkey,         }, "b", toggle_topbar,   {description = "开关 topbar",       group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05) end, {description = "增加主分区宽度", group = "布局"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05) end, {description = "减少主分区宽度", group = "布局"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(1) end,        {description = "使用下一个分区", group = "布局"})
 )
 
-local clientkeys = gears.table.join(
+local client_keys = gears.table.join(
     -- The client currently has the input focus, so it cannot be
     -- minimized, since minimized clients can't have the focus.
     awful.key({ modkey,           }, "n",      function (c) c.minimized = true end,                      {description = "最小化",            group = "client"}),
     awful.key({ modkey,    },        "q",      function (c) c:kill() end,                                {description = "关闭当前 client",   group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle,                             {description = "切换浮动模式",      group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,        {description = "移至主分区",        group = "client"}),
+    awful.key({ modkey, "Shift"   }, "Return", function (c) c:swap(awful.client.getmaster()) end,        {description = "移至主分区",        group = "client"}),
     awful.key({ modkey,           }, "m",      function (c) c.maximized = not c.maximized c:raise() end, {description = "最大化/取消最大化", group = "client"})
 )
 
 -- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 8 do
     global_keys = gears.table.join(global_keys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -286,7 +279,8 @@ for i = 1, 9 do
     )
 end
 
-local client_keys = gears.table.join(
+client_keys = gears.table.join(
+    client_keys,
     awful.button({},         1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
     awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
     awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end)
@@ -298,12 +292,12 @@ root.keys(global_keys)
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
+    { rule = {},
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
-                     keys = clientkeys,
+                     keys = client_keys,
                      buttons = client_keys,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
@@ -340,15 +334,6 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
-
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
 
 -- Signal function to execute when a new client appears.
@@ -371,4 +356,4 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=1 end)
