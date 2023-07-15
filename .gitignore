@@ -6,3 +6,7 @@ dwm/drw.o
 dwm/dwm
 dwm/dwm.o
 dwm/util.o
+
+dwm/.cache/clangd/index
+dwm/compile_commands.json
+.luarc.json
