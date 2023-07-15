@@ -28,7 +28,7 @@ static const char *colors[][3] = {
 };
 
 // tagging
-static const char *tags[] = {"自", "己", "动", "手", "😋", "丰", "衣", "足", "食"};
+static const char *tags[] = {"日", "拱", "一", "卒", "😋", "功", "不", "唐", "捐"};
 
 static const Rule rules[] = {
   // xprop(1):
@@ -103,6 +103,8 @@ static const Key keys[] = {
   TAGKEYS(                        XK_7,                      6)
   TAGKEYS(                        XK_8,                      7)
   TAGKEYS(                        XK_9,                      8)
+
+  { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("xset dpms force off")},
   { MODKEY,                       XK_space,  spawn,          SHCMD("firefox")},
   { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui")},
 
