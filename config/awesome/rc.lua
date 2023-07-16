@@ -204,7 +204,7 @@ local global_keys = gears.table.join(
     awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%") end, {description="增加音量",        group="系统"}),
     awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%") end, {description="降低音量",        group="系统"}),
     awful.key({},                  "Print",                 function() awful.spawn("flameshot gui") end,                                       {description="截屏",            group="系统"}),
-    awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("xset dpms force off") end,                      {description="熄屏",            group="系统"}),
+    awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
     awful.key({ modkey, },         "s",                     hotkeys_popup.show_help,                                                           {description="显示快捷键",      group="系统"}),
     awful.key({ modkey },          "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons") end,              {description="打开 App 启动器", group="系统"}),
 
