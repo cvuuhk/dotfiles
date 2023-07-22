@@ -201,8 +201,8 @@ local toggle_topbar = function()
 end
 
 local global_keys = gears.table.join(
-    awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%") end, {description="增加音量",        group="系统"}),
-    awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%") end, {description="降低音量",        group="系统"}),
+    awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("amixer sset Master 5%+") end, {description="增加音量",        group="系统"}),
+    awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("amixer sset Master 5%-") end, {description="降低音量",        group="系统"}),
     awful.key({},                  "Print",                 function() awful.spawn("flameshot gui") end,                                       {description="截屏",            group="系统"}),
     awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
     awful.key({ modkey, },         "s",                     hotkeys_popup.show_help,                                                           {description="显示快捷键",      group="系统"}),
@@ -304,6 +304,16 @@ awful.rules.rules = {
      }
     },
 
+    {
+        rule_any = {
+            class = {"mpv", "feh"},
+        },
+        properties = {
+            fullscreen = true
+        }
+
+    },
+
     -- Floating clients.
     { rule_any = {
         instance = {
@@ -355,5 +365,5 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=1 end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity=1 end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=0.9 end)
