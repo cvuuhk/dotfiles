@@ -2,10 +2,6 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root
   exec startx
 fi
 
-if [[ -e "/usr/share/fzf/key-bindings.zsh" ]]; then
-  source /usr/share/fzf/key-bindings.zsh
-fi
-
 export http_proxy="http://localhost:7890"
 export https_proxy=$http_proxy
 
@@ -34,17 +30,20 @@ autoload -U compinit; compinit
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
 ### End of Zinit's installer chunk
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-zinit light zdharma-continuum/fast-syntax-highlighting 
-zinit ice lucid wait='0' atload='_zsh_autosuggest_start'
+# Load powerlevel10k theme
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
+
+zinit ice lucid wait atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting 
 
 bindkey '^f' forward-word
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 bindkey -e # for emacs
 # bindkey -v # for vi
 # the detailed meaning of the below three variable can be found in `man zshparam`.
@@ -84,6 +83,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 bindkey '\e[H'    beginning-of-line
 bindkey '\e[F'    end-of-line
 
+ # zsh hook function
+function zshaddhistory() {
+  emulate -L zsh
+  if ! [[ "$1" =~ "(http)" ]] ; then
+      print -sr -- "${1%%$'\n'}"
+      fc -p
+  else
+      return 1
+  fi
+}
+
 alias ..='cd ..'
 alias cp='cp -ri'
 alias aa='sudo chattr +a .'
@@ -110,8 +120,6 @@ alias lla='ls -lAh'
 alias ls='ls --color=tty'
 alias lg='lazygit'
 
-alias py='python'
-
 alias ra='. ranger'
 alias reboot='sudo reboot'
 alias rf='rm -rf'
@@ -125,9 +133,7 @@ alias todo='vi ~/.todo'
 alias vv='nvim -O ~/.config/nvim/lua/base.lua ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
-alias yd='youtube-dl'
-alias yde='youtube-dl --external-downloader aria2c --external-downloader-args "-x 8 -k 1M"'
-alias yg='you-get --no-caption'
+alias yt='yt-dlp'
 
 alias ssh="TERM=xterm-256color $(which ssh)"
 
@@ -136,4 +142,5 @@ function ccat {
     iconv -f GBK -t UTF8 $1 -o $1
     cat $1
 }
+
 export LFS=/mnt/lfs
