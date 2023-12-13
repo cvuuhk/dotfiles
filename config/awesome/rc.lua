@@ -55,7 +55,8 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.right,
+    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.top,
     -- awful.layout.suit.floating,
     -- awful.layout.suit.tile,
@@ -178,8 +179,8 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 root.buttons(gears.table.join(
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 4, awful.tag.viewprev),
+    awful.button({ }, 5, awful.tag.viewnext)
 ))
 local switch_in_tag = function ()
     awful.client.focus.history.previous()
@@ -366,4 +367,4 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity=1 end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=0.9 end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=1 end)

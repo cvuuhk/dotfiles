@@ -1,6 +1,6 @@
 #!/bin/sh
 
-eval "$(dbus-launch --sh-syntax --exit-with-session)"
+# eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -39,19 +39,14 @@ function status_bar() {
   done
 }
 export _JAVA_AWT_WM_NONREPARENTING=1
-# export QT_QPA_PLATFORMTHEME=qt5ct
-# export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
-
-# see https://wiki.archlinux.org/title/GNOME/Keyring#xinitrc
-# eval $(/usr/bin/gnome-keyring-daemon --start)
-# export SSH_AUTH_SOCK
 picom -b &
 parcellite & # 剪贴板
 
 export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE=fcitx
-export GTK_IM_MODULE=fcitx
-fcitx &
+export QT_IM_MODULE=fcitx5
+export GTK_IM_MODULE=fcitx5
+
+fcitx5 -d
 numlockx & # auto enable numlock
 xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
