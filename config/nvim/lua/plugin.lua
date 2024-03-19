@@ -272,14 +272,19 @@ require("lazy").setup({
             'hrsh7th/cmp-nvim-lua', -- lua source for nvim-cmp
             'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
             'saadparwaiz1/cmp_luasnip', -- luasnip source for nvim-cmp
-            'L3MON4D3/LuaSnip', -- snippets completion engine for nvim-cmp
+            { -- snippets completion engine for nvim-cmp
+                'L3MON4D3/LuaSnip',
+                -- follow latest release.
+                version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+                -- install jsregexp (optional!).
+                build = 'make install_jsregexp'
+            },
             { -- tabnine source for nvim-cmp
                 'tzachar/cmp-tabnine',
                 build = './install.sh',
             }
         },
         config = function()
-            vim.o.completeopt = 'menu,menuone,noselect'
             local kind_icons = {
                 Text = "",
                 Method = "",
@@ -312,6 +317,7 @@ require("lazy").setup({
 
             cmp.setup({
                 snippet = {expand = function(args) require('luasnip').lsp_expand(args.body) end},
+                completion = { completeopt = 'menu,menuone,noinsert' },
                 formatting = {
                     format = function(entry, vim_item)
                         -- This concatonates the icons with the name of the item kind
@@ -331,7 +337,9 @@ require("lazy").setup({
                 mapping = {
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                    ['<CR>'] = cmp.mapping.confirm({select = false}),
+                    ['<CR>'] = cmp.mapping.confirm({select = true}),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
                     ['<C-n>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
@@ -347,8 +355,8 @@ require("lazy").setup({
                         end
                     end, {"i", "s"}),
                     ['<Tab>'] = cmp.mapping(function(fallback)
-                        if luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
+                        if luasnip.jumpable(1) then
+                            luasnip.jump(1)
                         else
                             fallback()
                         end
@@ -428,7 +436,7 @@ require("lazy").setup({
                 }
             })
 
-            local servers = {'bashls', 'clangd', 'pyright', 'rust_analyzer'}
+            local servers = {'bashls', 'ccls', 'cmake', 'pyright', 'rust_analyzer'}
             for _, lsp in ipairs(servers) do
                 lspconfig[lsp].setup ({capabilities = capabilities})
             end

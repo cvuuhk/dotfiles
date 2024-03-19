@@ -10,3 +10,4 @@ dwm/util.o
 dwm/.cache/clangd/index
 dwm/compile_commands.json
 .luarc.json
+dwm/.ccls-cache

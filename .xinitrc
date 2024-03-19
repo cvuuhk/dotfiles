@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# eval "$(dbus-launch --sh-syntax --exit-with-session)"
+eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -32,27 +32,20 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # my own config
-function status_bar() {
-  while [ true ]; do
-    bash ~/.dotfiles/dwm/bar.sh
-    sleep 1
-  done
-}
+export LANG=zh_CN.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+
 export _JAVA_AWT_WM_NONREPARENTING=1
-picom -b &
-parcellite & # 剪贴板
-
 export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE=fcitx5
-export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_QPA_PLATFORMTHEME=qt6ct
 
-fcitx5 -d
-numlockx & # auto enable numlock
 xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
 # xinput --disable $(xinput list --id-only "SynPS/2 Synaptics TouchPad")
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
-screenkey --start-disabled &
+# screenkey --start-disabled &
 
 # feh --bg-scale ~/.wallpaper.png
 # status_bar &
