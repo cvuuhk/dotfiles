@@ -15,7 +15,7 @@ vim.o.mouse = "a" -- 启用鼠标
 vim.o.clipboard = "unnamedplus" -- 设置系统剪贴板
 vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
-vim.g.mapleader = ' '
+vim.g.mapleader = ','
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end

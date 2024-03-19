@@ -5,9 +5,6 @@ fi
 export http_proxy="http://localhost:7890"
 export https_proxy=$http_proxy
 
-export LANG=zh_CN.UTF-8
-export LC_MESSAGES=en_US.UTF-8
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -39,32 +36,40 @@ zinit light romkatv/powerlevel10k
 zinit ice lucid wait atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+autoload compinit
+compinit
 zinit light zdharma-continuum/fast-syntax-highlighting 
 
-bindkey '^f' forward-word
+# bindkey -v # for vi
+bindkey -e # for emacs
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+# 使用 Home End 键
+bindkey '\e[H'    beginning-of-line
+bindkey '\e[F'    end-of-line
+
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'
-bindkey -e # for emacs
-# bindkey -v # for vi
+
 # the detailed meaning of the below three variable can be found in `man zshparam`.
 export HISTFILE=~/.histfile
 export HISTSIZE=1000000   # the number of items for the internal history list
 export SAVEHIST=1000000   # maximum number of items for the history file
 
 # man 色彩高亮
-export LESS_TERMCAP_mb=$'\E[1m\E[32m'
-export LESS_TERMCAP_mh=$'\E[2m'
-export LESS_TERMCAP_mr=$'\E[7m'
-export LESS_TERMCAP_md=$'\E[1m\E[36m'
-export LESS_TERMCAP_ZW=""
-export LESS_TERMCAP_us=$'\E[4m\E[1m\E[37m'
-export LESS_TERMCAP_me=$'\E(B\E[m'
-export LESS_TERMCAP_ue=$'\E[24m\E(B\E[m'
-export LESS_TERMCAP_ZO=""
-export LESS_TERMCAP_ZN=""
-export LESS_TERMCAP_se=$'\E[27m\E(B\E[m'
-export LESS_TERMCAP_ZV=""
-export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
+# export LESS_TERMCAP_mb=$'\E[1m\E[32m'
+# export LESS_TERMCAP_mh=$'\E[2m'
+# export LESS_TERMCAP_mr=$'\E[7m'
+# export LESS_TERMCAP_md=$'\E[1m\E[36m'
+# export LESS_TERMCAP_ZW=""
+# export LESS_TERMCAP_us=$'\E[4m\E[1m\E[37m'
+# export LESS_TERMCAP_me=$'\E(B\E[m'
+# export LESS_TERMCAP_ue=$'\E[24m\E(B\E[m'
+# export LESS_TERMCAP_ZO=""
+# export LESS_TERMCAP_ZN=""
+# export LESS_TERMCAP_se=$'\E[27m\E(B\E[m'
+# export LESS_TERMCAP_ZV=""
+# export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 
 # The meaning of these options can be found in man page of `zshoptions`.
 setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
@@ -79,9 +84,8 @@ setopt NO_NOMATCH
 zstyle ':completion:*' completer _expand _complete _ignored
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# 使用 Home End 键
-bindkey '\e[H'    beginning-of-line
-bindkey '\e[F'    end-of-line
+# 控制 CTRL-W 行为
+WORDCHARS=${WORDCHARS/\/}
 
  # zsh hook function
 function zshaddhistory() {
