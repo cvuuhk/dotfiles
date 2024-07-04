@@ -20,10 +20,10 @@ vim.g.mapleader = ','
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
 
-noremap('', '<C-h>', '<C-w>h')
-noremap('', '<C-j>', '<C-w>j')
-noremap('', '<C-k>', '<C-w>k')
-noremap('', '<C-l>', '<C-w>l')
+-- noremap('', '<C-h>', '<C-w>h')
+-- noremap('', '<C-j>', '<C-w>j')
+-- noremap('', '<C-k>', '<C-w>k')
+-- noremap('', '<C-l>', '<C-w>l')
 
 noremap('n', '<A-j>', 'gt')
 noremap('n', '<A-k>', 'gT')

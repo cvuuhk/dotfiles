@@ -24,6 +24,18 @@ require("lazy").setup({
             })
         end
     },
+    -- {
+    --     "olimorris/onedarkpro.nvim",
+    --     priority = 1000, -- Ensure it loads first
+    --     config = function()
+    --         require("onedarkpro").setup({
+    --             options = {
+    --                 transparency = true
+    --             }
+    --         })
+    --         vim.cmd("colorscheme onedark")
+    --     end
+    -- },
     {
         "sainnhe/gruvbox-material",
         lazy = false,
@@ -40,47 +52,47 @@ require("lazy").setup({
     {
         "mbbill/undotree"
     },
-    {
-        'lewis6991/gitsigns.nvim',
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("gitsigns").setup({
-                signs = {
-                    add = {
-                        hl = "GitSignsAdd",
-                        text = "│",
-                        numhl = "GitSignsAddNr",
-                        linehl = "GitSignsAddLn"
-                    },
-                    change = {
-                        hl = "GitSignsChange",
-                        text = "│",
-                        numhl = "GitSignsChangeNr",
-                        linehl = "GitSignsChangeLn"
-                    },
-                    delete = {
-                        hl = "GitSignsDelete",
-                        text = "_",
-                        numhl = "GitSignsDeleteNr",
-                        linehl = "GitSignsDeleteLn"
-                    },
-                    topdelete = {
-                        hl = "GitSignsDelete",
-                        text = "‾",
-                        numhl = "GitSignsDeleteNr",
-                        linehl = "GitSignsDeleteLn"
-                    },
-                    changedelete = {
-                        hl = "GitSignsChange",
-                        text = "~",
-                        numhl = "GitSignsChangeNr",
-                        linehl = "GitSignsChangeLn"
-                    }
-                },
-                numhl = true
-            })
-        end
-    },
+    -- {
+    --     'lewis6991/gitsigns.nvim',
+    --     dependencies = { "nvim-lua/plenary.nvim" },
+    --     config = function()
+    --         require("gitsigns").setup({
+    --             signs = {
+    --                 add = {
+    --                     hl = "GitSignsAdd",
+    --                     text = "│",
+    --                     numhl = "GitSignsAddNr",
+    --                     linehl = "GitSignsAddLn"
+    --                 },
+    --                 change = {
+    --                     hl = "GitSignsChange",
+    --                     text = "│",
+    --                     numhl = "GitSignsChangeNr",
+    --                     linehl = "GitSignsChangeLn"
+    --                 },
+    --                 delete = {
+    --                     hl = "GitSignsDelete",
+    --                     text = "_",
+    --                     numhl = "GitSignsDeleteNr",
+    --                     linehl = "GitSignsDeleteLn"
+    --                 },
+    --                 topdelete = {
+    --                     hl = "GitSignsDelete",
+    --                     text = "‾",
+    --                     numhl = "GitSignsDeleteNr",
+    --                     linehl = "GitSignsDeleteLn"
+    --                 },
+    --                 changedelete = {
+    --                     hl = "GitSignsChange",
+    --                     text = "~",
+    --                     numhl = "GitSignsChangeNr",
+    --                     linehl = "GitSignsChangeLn"
+    --                 }
+    --             },
+    --             numhl = true
+    --         })
+    --     end
+    -- },
     {
         "iamcco/markdown-preview.nvim",
         lazy = true,
@@ -370,9 +382,9 @@ require("lazy").setup({
                     end, {"i", "s"})
                 },
                 sources = cmp.config.sources({
+                    {name = 'buffer'},
                     {name = 'nvim_lsp'},
                     {name = 'path'},
-                    {name = 'buffer'},
                     {name = 'luasnip'},
                     {name = 'nvim_lua'},
                     {name = 'cmp_tabnine'}

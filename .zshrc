@@ -1,8 +1,8 @@
 if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root" ]]; then
-  exec startx
+  # exec startx
 fi
 
-export http_proxy="http://localhost:7890"
+export http_proxy="http://127.0.0.1:7890"
 export https_proxy=$http_proxy
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -90,7 +90,7 @@ WORDCHARS=${WORDCHARS/\/}
  # zsh hook function
 function zshaddhistory() {
   emulate -L zsh
-  if ! [[ "$1" =~ "(http)" ]] ; then
+  if ! [[ "$1" =~ "(^ |http|reset)" ]] ; then
       print -sr -- "${1%%$'\n'}"
       fc -p
   else
@@ -137,8 +137,6 @@ alias todo='vi ~/.todo'
 alias vv='nvim -O ~/.config/nvim/lua/base.lua ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
-alias yt='yt-dlp'
-
 alias ssh="TERM=xterm-256color $(which ssh)"
 
 function ccat {
@@ -146,5 +144,3 @@ function ccat {
     iconv -f GBK -t UTF8 $1 -o $1
     cat $1
 }
-
-export LFS=/mnt/lfs

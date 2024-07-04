@@ -41,8 +41,7 @@ FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lowe
 ## Settings
 HIGHLIGHT_SIZE_MAX=262143  # 256KiB
 HIGHLIGHT_TABWIDTH=${HIGHLIGHT_TABWIDTH:-base16/macintosh}
-HIGHLIGHT_STYLE=${HIGHLIGHT_STYLE:-/home/cui/.dotfiles/highlight.theme}
-HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYLE} ${HIGHLIGHT_OPTIONS:-}"
+HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} ${HIGHLIGHT_OPTIONS:-}"
 PYGMENTIZE_STYLE=${PYGMENTIZE_STYLE:-autumn}
 OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
 OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
@@ -95,7 +94,7 @@ handle_extension() {
             exit 1;;
 
         ## HTML
-        htm|html|xhtml|ebuild)
+        htm|html|xhtml)
             ## Preview as text conversion
             w3m -dump "${FILE_PATH}" && exit 5
             lynx -dump -- "${FILE_PATH}" && exit 5
@@ -115,6 +114,10 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ebuild)
+            bat --color=always --style="plain" --theme="base16" -- "${FILE_PATH}" && exit 5
+            ;;
     esac
 }
 
@@ -295,20 +298,21 @@ handle_mime() {
             if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
                 exit 2
             fi
-            if [[ "$( tput colors )" -ge 256 ]]; then
-                local pygmentize_format='terminal256'
-                local highlight_format='xterm256'
-            else
-                local pygmentize_format='terminal'
-                local highlight_format='ansi'
-            fi
-            env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
-                --out-format="${highlight_format}" \
-                --force -- "${FILE_PATH}" && exit 5
-            env COLORTERM=8bit bat --color=always --style="plain" \
-                -- "${FILE_PATH}" && exit 5
-            pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
-                -- "${FILE_PATH}" && exit 5
+            # if [[ "$( tput colors )" -ge 256 ]]; then
+                # local pygmentize_format='terminal256'
+                # local highlight_format='xterm256'
+            # else
+                # local pygmentize_format='terminal'
+                # local highlight_format='ansi'
+            # fi
+            # env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
+            #     --out-format="${highlight_format}" \
+            #     --force -- "${FILE_PATH}" && exit 5
+            # env COLORTERM=8bit bat --color=always --style="base16" \
+                # -- "${FILE_PATH}" && exit 5
+            bat --color=always --style="plain" --theme="base16" -- "${FILE_PATH}" && exit 5
+            # pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
+                # -- "${FILE_PATH}" && exit 5
             exit 2;;
 
         ## DjVu
