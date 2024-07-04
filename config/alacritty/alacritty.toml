@@ -1,0 +1,60 @@
+live_config_reload = true
+
+[colors.bright]
+black = "#928374"
+blue = "#7daea3"
+cyan = "#89b482"
+green = "#a9b665"
+magenta = "#d3869b"
+red = "#ea6962"
+white = "#d4be98"
+yellow = "#d8a657"
+
+[colors.dim]
+black = "#928374"
+blue = "#7daea3"
+cyan = "#89b482"
+green = "#a9b665"
+magenta = "#d3869b"
+red = "#ea6962"
+white = "#d4be98"
+yellow = "#d8a657"
+
+[colors.normal]
+black = "#928374"
+blue = "#7daea3"
+cyan = "#89b482"
+green = "#a9b665"
+magenta = "#d3869b"
+red = "#ea6962"
+white = "#d4be98"
+yellow = "#d8a657"
+
+[colors.primary]
+background = "#282828"
+foreground = "#d4be98"
+
+[cursor]
+# shape = "Block"
+vi_mode_style = "Underline"
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "monospace"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[scrolling]
+history = 100000
+
+[selection]
+save_to_clipboard = true
+
+[window]
+dynamic_padding = true
+opacity = 0.9
