@@ -2,7 +2,7 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]] && [[ "$(whoami)" != "root
   # exec startx
 fi
 
-export http_proxy="http://127.0.0.1:7890"
+export http_proxy="http://localhost:7890"
 export https_proxy=$http_proxy
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
