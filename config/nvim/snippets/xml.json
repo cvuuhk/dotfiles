@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "prefix": "metadata",
+    "body": [
+      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+      "<!DOCTYPE pkgmetadata SYSTEM \"https://www.gentoo.org/dtd/metadata.dtd\">",
+      "<pkgmetadata>",
+      "  <maintainer type=\"person\">",
+      "    <email>im@cuishuhao.com</email>",
+      "    <description>maintainer</description>",
+      "  </maintainer>",
+      "  <longdescription>",
+      "    ${0:description}",
+      "  </longdescription>",
+      "  <use>",
+      "    <flag name=\"aspell\">Uses <pkg>app-text/aspell</pkg> for spell checking.",
+      "      Requires an installed dictionary from <cat>app-dicts</cat></flag>",
+      "    <flag name=\"flag\">Description of how USE='flag' affects this package</flag>",
+      "    <flag name=\"kernel_linux\">",
+      "      Description of how KERNEL=\"linux\" affects this package",
+      "    </flag>",
+      "  </use>",
+      "</pkgmetadata>"
+    ],
+    "description": "gentoo package metadata template"
+  }
+}
