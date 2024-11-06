@@ -132,7 +132,9 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({"日", "拱", "一", "卒", "功", "不", "唐", "捐"}, s, awful.layout.layouts[1])
+    -- awful.tag({"日", "拱", "一", "卒", "功", "不", "唐", "捐"}, s, awful.layout.layouts[1])
+    awful.tag({"欲", "学", "前", "人", "当", "坚", "苦", "志"}, s, awful.layout.layouts[1])
+
 
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
