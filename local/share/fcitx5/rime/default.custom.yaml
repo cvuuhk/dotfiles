@@ -1,94 +1,22 @@
-patch:
-  key_binder:
-    bindings:
-      - {accept: "Control+p", send: Up, when: composing}
-      - {accept: "Control+n", send: Down, when: composing}
-      - {accept: "Control+a", send: Home, when: composing}
-      - {accept: "Control+e", send: End, when: composing}
-      - {accept: Tab, send: Down, when: composing}
-      - {accept: comma, send: Page_Up, when: paging}
-      - {accept: period, send: Page_Down, when: has_menu}
-      - {accept: minus, send: Page_Up, when: has_menu}
-      - {accept: equal, send: Page_Down, when: has_menu}
-      - {accept: "Control+u", send: Escape, when: composing}
-  # 右 Shift 大小写切换
-  ascii_composer:
-    switch_key:
-      Shift_R: commit_code
-  menu:
-    page_size: 9
-  punctuator:
-    full_shape:
-      ' ' : { commit: '　' }
-      ',' : { commit: ， }
-      '.' : { commit: 。 }
-      '<' : [ 《, 〈, «, ‹ ]
-      '>' : [ 》, 〉, », › ]
-      '/' : { commit ÷ }
-      '?' : { commit: ？ }
-      ';' : { commit: ； }
-      ':' : { commit: ： }
-      '''' : { pair: [ '‘', '’' ] }
-      '"' : { pair: [ '“', '”' ] }
-      '\' : [ 、, ＼ ]
-      '|' : [ ·, ｜, '§', '¦' ]
-      '`' : ｀
-      '~' : ～
-      '!' : { commit: ！ }
-      '@' : '＠'
-      '#' : [ ＃, ⌘ ]
-      '%' : [ ％, '°', '℃' ]
-      '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
-      '^' : { commit: …… }
-      '&' : ＆
-      '*' : [ ＊, ·, ・, ×, ※, ❂ ]
-      '(' : （
-      ')' : ）
-      '-' : －
-      '_' : ——
-      '+' : ＋
-      '=' : ＝
-      '[' : [ 「, 【, 〔, ［ ]
-      ']' : [ 」, 】, 〕, ］ ]
-      '{' : [ 『, 〖, ｛ ]
-      '}' : [ 』, 〗, ｝ ]
+# encoding: utf-8
 
-    half_shape:
-      ',' : '，'
-      '.' : '。'
-      '<' : '《'
-      '>' : '》'
-      '/' : '/'
-      '?' : '？'
-      ';' : '；'
-      ':' : '：'
-      '''' : { pair: [ 「, 」 ] }
-      '"' : { pair: [ 『, 』 ] }
-      '\' : '、'
-      '|' : '·'
-      '`' : '`'
-      '~' : '~'
-      '!' : '！'
-      '@' : '@'
-      '#' : '#'
-      '%' : '%'
-      '$' : '¥'
-      '^' : '……'
-      '&' : '&'
-      '*' : '*'
-      '(' : '（'
-      ')' : '）'
-      '-' : '-'
-      '_' : '——'
-      '+' : '+'
-      '=' : '='
-      '[' : { pair: [ '[', ']' ] }
-      ']' : { pair: [ '【', '】' ] }
-      '{' : { pair: [ '{', '}' ] }
-      '}' : { pair: [ '×', '÷' ] }
+patch:
+  menu/page_size: 9
+  switcher/hotkeys:
+    - "Control+grave"
   schema_list:
     - schema: double_pinyin
-  switcher:
-    caption: "〔方案〕"
-    hotkeys:
-      - "Control+grave"
+  ascii_composer/switch_key:
+    Caps_Lock: noop
+    Shift_L: noop
+    Shift_R: commit_code
+    Control_L: noop
+    Control_R: noop
+  key_binder:
+    bindings:
+      - { when: composing, accept: Tab, send: Down }
+      - { when: composing, accept: Shift+Tab, send: Up }
+      - { when: composing, accept: Control+p, send: Up }
+      - { when: composing, accept: Control+n, send: Down }
+      - { when: has_menu, accept: minus, send: Page_Up }
+      - { when: has_menu, accept: equal, send: Page_Down }
