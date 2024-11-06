@@ -10,5 +10,4 @@ dwm/.cache/clangd/index
 dwm/compile_commands.json
 .luarc.json
 dwm/.ccls-cache
-config/ranger/plugins/__pycache__
-config/ranger/plugins/ranger_devicons/__pycache__
+*.pyc
