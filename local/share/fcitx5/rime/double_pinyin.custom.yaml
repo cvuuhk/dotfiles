@@ -15,3 +15,20 @@ patch:
       reset: 1
     - name: ascii_punct
       states: [ 。，, ．， ]
+  punctuator:
+    import_preset: default
+    __append:
+      half_shape:
+        '<' : '《'
+        '>' : '》'
+        '/' : '/'
+        '\' : '、'
+        '`' : '`'
+        '~' : '~'
+        '%' : '%'
+        '$' : [ '¥', ￥ ]
+        '*' : '*'
+        '[' : '〔'
+        ']' : '〕'
+        '{' : '{'
+        '}' : '}'
