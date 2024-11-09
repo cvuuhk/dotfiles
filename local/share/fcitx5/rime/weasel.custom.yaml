@@ -1,0 +1,35 @@
+patch:
+  style:
+    # 这个字体要装，不然有问题
+    font_face: "MiFans"
+    horizontal: true
+    inline_preedit: true
+    corner_radius: 5
+    # 高亮圆角
+    hilited_corner_radius: 4
+    # 窗口边界高度，大于圆角半径才生效
+    border_height: 6
+    # 窗口边界宽度，大于圆角半径才生效
+    border_width: 6
+    font_point: 18
+    color_scheme: wechat
+
+  preset_color_schemes:
+    wechat:
+      name: wechat # 配色取自微信键盘
+      author: zsakvo
+      border_color: 0xCCCCCC
+      border_height: 0
+      border_width: 8
+      candidate_format: '%c %@ '
+      comment_text_color: 0x999999
+      corner_radius: 5
+      hilited_corner_radius: 5
+      font_face: PingFangSC
+      font_point: 16
+      hilited_candidate_back_color: 0x75B100
+      hilited_candidate_text_color: 0xFFFFFF
+      horizontal: true
+      inline_preedit: true
+      label_font_point: 12
+      text_color: 0x424242
