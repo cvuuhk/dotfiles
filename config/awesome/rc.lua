@@ -41,7 +41,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.useless_gap = 4
 beautiful.wallpaper = os.getenv("HOME") .. "/.wallpaper.png"
-beautiful.font = "PingFang SC 12"
+beautiful.font = "MiFans 12"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "alacritty"
@@ -207,6 +207,7 @@ local global_keys = gears.table.join(
     awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("amixer sset Master 5%+") end, {description="增加音量",        group="系统"}),
     awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("amixer sset Master 5%-") end, {description="降低音量",        group="系统"}),
     awful.key({},                  "Print",                 function() awful.spawn("flameshot gui") end,                                       {description="截屏",            group="系统"}),
+    awful.key({ "Shift" },         "Print",                 function() awful.spawn.with_shell("import -window root \"/home/cui/data/$(date +%Y%m%d_%H%M%S).png\"") end,  {description="截屏",            group="系统"}),
     awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
     awful.key({ modkey, },         "s",                     hotkeys_popup.show_help,                                                           {description="显示快捷键",      group="系统"}),
     awful.key({ modkey },          "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons") end,              {description="打开 App 启动器", group="系统"}),
