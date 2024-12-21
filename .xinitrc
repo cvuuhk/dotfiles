@@ -41,6 +41,11 @@ export QT_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_QPA_PLATFORMTHEME=qt6ct
 
+# kitty support IME
+export SDL_IM_MODULE=fcitx
+export INPUT_METHOD=fcitx
+export GLFW_IM_MODULE=ibus
+
 xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
 # xinput --disable $(xinput list --id-only "SynPS/2 Synaptics TouchPad")
