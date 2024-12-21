@@ -15,6 +15,7 @@ vim.o.mouse = "a" -- 启用鼠标
 vim.o.clipboard = "unnamedplus" -- 设置系统剪贴板
 vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
+vim.o.jumpoptions = "stack"
 vim.g.mapleader = ','
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
@@ -54,6 +55,8 @@ silnoremap('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
 silnoremap('n', '<C-A-l>', ':w<CR>:Format<CR>')
 silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
 
+-- 每次打开使用新的 jumplist
+vim.cmd([[autocmd VimEnter * :clearjumps]])
 -- 打开文件时跳回上次离开的位置
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]])
 
