@@ -32,3 +32,9 @@ patch:
         ']' : '〕'
         '{' : '{'
         '}' : '}'
+  recognizer:
+    # 中文模式下输入大写字母直接上屏
+    # 参考 https://www.zhihu.com/question/342476247/answer/843985328
+    # import_preset: default
+    patterns:
+      reverse_lookup: "`[a-z]*'?$"
