@@ -17,7 +17,7 @@ require("lazy").setup({
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"rust", "lua", "toml", "c", "cpp", "bash", "yaml", "json", "make", "python"},
+                ensure_installed = {"lua", "c", "cpp", "bash", "yaml", "json", "make", "python"},
                 highlight = {
                     enable = true
                 }
@@ -70,10 +70,21 @@ require("lazy").setup({
         end
     },
     {
+        -- Install markdown preview, use npx if available.
         "iamcco/markdown-preview.nvim",
-        lazy = true,
-        ft = "markdown",
-        build = function() vim.fn["mkdp#util#install"]() end,
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function(plugin)
+            if vim.fn.executable "npx" then
+                vim.cmd("!cd " .. plugin.dir .. " && cd app && npx --yes yarn install")
+            else
+                vim.cmd [[Lazy load markdown-preview.nvim]]
+                vim.fn["mkdp#util#install"]()
+            end
+        end,
+        init = function()
+            if vim.fn.executable "npx" then vim.g.mkdp_filetypes = { "markdown" } end
+        end,
     },
     {
         'norcalli/nvim-colorizer.lua',
@@ -251,7 +262,17 @@ require("lazy").setup({
             })
         end
     },
-
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        -- opts = {
+        --     library = {
+        --         -- See the configuration section for more details
+        --         -- Load luvit types when the `vim.uv` word is found
+        --         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        --     },
+        -- },
+    },
     {
         'hrsh7th/nvim-cmp', -- Autocompletion plugin
         dependencies = {
