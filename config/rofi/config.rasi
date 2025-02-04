@@ -1,8 +1,8 @@
 configuration {
     modi: "drun";
-    font: "PingFang SC 13";
+    font: "MiSans SC 13";
     show-icons: true;
-    terminal: "alacritty";
+    terminal: "kitty";
     matching: "fuzzy";
     cycle: false;
     filebrowser {
