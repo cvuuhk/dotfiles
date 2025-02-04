@@ -115,7 +115,7 @@ handle_extension() {
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
 
-        ebuild)
+        ebuild|lua)
             bat --color=always --style="plain" --theme="base16" -- "${FILE_PATH}" && exit 5
             ;;
     esac
