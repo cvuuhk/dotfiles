@@ -17,6 +17,8 @@ vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
 vim.o.jumpoptions = "stack"
 vim.g.mapleader = ','
+vim.o.laststatus = 3
+vim.o.relativenumber = true
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
@@ -96,7 +98,8 @@ function _G.get_buffer_name()
   local path = vim.api.nvim_buf_get_name(0)
   if path == '' then return path end
 
-  return '[' .. path:match('[^/]*.$') .. ']'
+  -- return '[' .. path:match('[^/]*.$') .. ']'
+  return '[' .. path .. ']'
 end
 
 vim.o.statusline = '[%{v:lua.get_mode_icon(mode())}]%{v:lua.get_buffer_name()}%r%m %{v:lua.get_diagnostics()}%=%y[%{&fileformat}] [%l/%L,%v]'
