@@ -17,16 +17,11 @@ vim.o.undofile = true -- 记录 undo 历史
 vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
 vim.o.jumpoptions = "stack"
 vim.g.mapleader = ','
-vim.o.laststatus = 3
+-- vim.o.laststatus = 3
 vim.o.relativenumber = true
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
-
--- noremap('', '<C-h>', '<C-w>h')
--- noremap('', '<C-j>', '<C-w>j')
--- noremap('', '<C-k>', '<C-w>k')
--- noremap('', '<C-l>', '<C-w>l')
 
 noremap('n', '<A-j>', 'gt')
 noremap('n', '<A-k>', 'gT')
@@ -66,42 +61,3 @@ vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
 
 vim.cmd([[autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]])
 vim.cmd([[autocmd TermOpen * startinsert]])
-
-function _G.get_diagnostics()
-  local function count(s) return vim.diagnostic.get(0, {severity = s}) end
-
-  local error = count(vim.diagnostic.severity.ERROR)
-  local warn = count(vim.diagnostic.severity.WARN)
-  local info = count(vim.diagnostic.severity.INFO)
-  local hint = count(vim.diagnostic.severity.HINT)
-  return string.format("E:%d W:%d I:%d H:%d", #(error), #(warn), #(info), #(hint))
-end
-
-function _G.get_mode_icon(mode)
-  local map = {
-    ['n'] = 'Normal',
-    ['v'] = 'Visual',
-    ['V'] = 'VisualLine',
-    [''] = 'VisualBlock',
-    ['s'] = 'Select',
-    ['S'] = 'SelectLine',
-    [''] = 'SelectBlock',
-    ['i'] = 'Insert',
-    ['R'] = 'Replace',
-    ['c'] = 'Command',
-    ['r'] = 'Prompt',
-    ['!'] = 'Shell',
-    ['t'] = 'Terminal'
-  }
-  return map[mode]
-end
-
-function _G.get_buffer_name()
-  local path = vim.api.nvim_buf_get_name(0)
-  if path == '' then return path end
-
-  -- return '[' .. path:match('[^/]*.$') .. ']'
-  return '[' .. path .. ']'
-end
-
-vim.o.statusline = '[%{v:lua.get_mode_icon(mode())}]%{v:lua.get_buffer_name()}%r%m %{v:lua.get_diagnostics()}%=%y[%{&fileformat}] [%l/%L,%v]'
