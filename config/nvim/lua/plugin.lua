@@ -45,8 +45,8 @@ require("lazy").setup({
             vim.cmd("colorscheme gruvbox-material")
             vim.cmd('hi TelescopeSelection guifg=#282828 guibg=#d4be98')
             vim.cmd('hi TelescopeMatching guifg=#ea6962')
-            vim.cmd('hi FloatBorder guibg=NONE')
-            vim.cmd('hi StatusLine guibg=NONE')
+            -- vim.cmd('hi FloatBorder guibg=NONE')
+            -- vim.cmd('hi StatusLine guibg=NONE')
         end
     },
     {
