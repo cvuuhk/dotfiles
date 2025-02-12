@@ -23,7 +23,7 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{160} The clone has failed.%f%b"
 fi
 
-autoload -U compinit; compinit
+autoload -Uz compinit;
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -36,9 +36,8 @@ zinit light romkatv/powerlevel10k
 zinit ice lucid wait atload='_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-autoload compinit
-compinit
 zinit light zdharma-continuum/fast-syntax-highlighting 
+compinit
 
 # bindkey -v # for vi
 bindkey -e # for emacs
@@ -87,14 +86,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 控制 CTRL-W 行为
 WORDCHARS=${WORDCHARS/\/}
 
- # zsh hook function
 function zshaddhistory() {
-  emulate -L zsh
-  if ! [[ "$1" =~ "(^ |http|reset)" ]] ; then
-      print -sr -- "${1%%$'\n'}"
-      fc -p
-  else
+  if [[ "$1" =~ "(^ |http|reset|rar|zip)" ]] ; then
       return 1
+  else
+      return 0
   fi
 }
 
@@ -143,4 +139,11 @@ function ccat {
     dos2unix $1
     iconv -f GBK -t UTF8 $1 -o $1
     cat $1
+}
+
+function tmp {
+    prefix=$(date +"%Y%m%d_%H%M%S")
+    temp_dir=$(mktemp -d /tmp/$prefix.XXXXXX)
+
+    cd "$temp_dir"
 }
