@@ -44,6 +44,8 @@ noremap('c', 'ww', "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
 silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
 silnoremap('n', '<leader>t', ':tabnew +term<CR>')
+silnoremap('v', 'J', ":m '>+1<CR>gv=gv")
+silnoremap('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
