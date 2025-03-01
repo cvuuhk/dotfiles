@@ -18,7 +18,11 @@ vim.o.shortmess = vim.o.shortmess .. "c" -- 隐藏补全提示
 vim.o.jumpoptions = "stack"
 vim.g.mapleader = ','
 -- vim.o.laststatus = 3
-vim.o.relativenumber = true
+-- vim.o.relativenumber = true
+-- 不开粘贴时自动缩进，防止以下场景
+-- content
+--     content
+--         content
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end
@@ -36,11 +40,11 @@ noremap('i', 'jj', '<Esc>')
 noremap('c', 'qq', 'qa!')
 noremap('c', 'ww', "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!")
 
-silnoremap('n', '<BackSpace>', ':nohl<CR>')
 silnoremap('n', '<leader><Enter>', ':cd %:h<CR>')
-silnoremap('n', '<leader>t', ':tabnew +term<CR>')
-silnoremap('v', 'J', ":m '>+1<CR>gv=gv")
-silnoremap('v', 'K', ":m '<-2<CR>gv=gv")
+silnoremap('v', 'H', ":m '>+1<CR>gv=gv")
+silnoremap('v', 'L', ":m '<-2<CR>gv=gv")
+-- 注意终端是否正确处理信号
+silnoremap('i', '<S-CR>', '<Esc>o')
 
 -- lsp
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
@@ -58,6 +62,5 @@ silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
 vim.cmd([[autocmd VimEnter * :clearjumps]])
 -- 打开文件时跳回上次离开的位置
 vim.cmd([[autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]])
-
-vim.cmd([[autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif]])
-vim.cmd([[autocmd TermOpen * startinsert]])
+-- normal 模式下从注释行 o 的时候不要插入注释头
+vim.cmd([[autocmd BufEnter * :set formatoptions=jcrql]])

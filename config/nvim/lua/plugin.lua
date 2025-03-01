@@ -83,9 +83,9 @@ require("lazy").setup({
                     lualine_x = {{'encoding'}, {
                         'fileformat',
                         symbols = {
-                            unix = 'UNIX',
-                            dos = 'DOS',
-                            mac = 'MAC',
+                            unix = 'unix',
+                            dos = 'dos',
+                            mac = 'mac',
                         }
                 }, {'filetype'}},
                 lualine_y = {'progress'},
@@ -169,14 +169,10 @@ require("lazy").setup({
         config = function()
             require("formatter").setup({
                 filetype = {
-                    rust = function() return {exe = "rustfmt", stdin = true} end,
-                    json = function()
-                        return {
-                            exe = "jq",
-                            -- args = {vim.api.nvim_buf_get_name(0)},
-                            stdin = true
-                        }
-                    end,
+                    rust = require('formatter.filetypes.rust').rustfmt,
+                    json = require('formatter.filetypes.json').jq,
+                    c    = require('formatter.filetypes.c').clangformat,
+                    cpp  = require('formatter.filetypes.cpp').clangformat,
                     ["*"] = {
                         require("formatter.filetypes.any").remove_trailing_whitespace
                     }
@@ -433,12 +429,12 @@ require("lazy").setup({
                     end, {"i", "s"})
                 },
                 sources = cmp.config.sources({
-                    {name = 'buffer'},
+                    -- {name = 'buffer'},
                     {name = 'nvim_lsp'},
                     {name = 'path'},
                     {name = 'luasnip'},
                     {name = 'nvim_lua'},
-                    {name = 'cmp_tabnine'}
+                    -- {name = 'cmp_tabnine'}
                 })
             })
             require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
