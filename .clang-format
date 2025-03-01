@@ -1,0 +1,18 @@
+BasedOnStyle: LLVM
+ColumnLimit: 130
+
+Language: Cpp
+# 四个空格缩进
+IndentWidth: 4
+# 允许简单代码块保持单行
+AllowShortBlocksOnASingleLine: Always
+# 允许简单 if 语句保持单行
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+# 允许简单 switch-case 保持单行
+AllowShortCaseExpressionOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+# 允许简单循环语句保持单行
+AllowShortLoopsOnASingleLine: true
+
+# 定义宏时的反斜杠对齐
+AlignEscapedNewlines: Left

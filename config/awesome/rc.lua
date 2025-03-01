@@ -210,7 +210,7 @@ local global_keys = gears.table.join(
     awful.key({ "Shift" },         "Print",                 function() awful.spawn.with_shell("import -window root \"/home/cui/data/$(date +%Y%m%d_%H%M%S).png\"") end,  {description="截屏",            group="系统"}),
     awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
     awful.key({ modkey, },         "s",                     hotkeys_popup.show_help,                                                           {description="显示快捷键",      group="系统"}),
-    awful.key({ modkey },          "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons") end,              {description="打开 App 启动器", group="系统"}),
+    awful.key({ modkey, },         "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons") end,              {description="打开 App 启动器", group="系统"}),
 
     awful.key({ modkey, }, "Left",  awful.tag.viewprev,        {description = "上一个 tag", group = "tag"}),
     awful.key({ modkey, }, "Right", awful.tag.viewnext,        {description = "下一个 tag", group = "tag"}),
