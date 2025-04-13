@@ -8,6 +8,7 @@ app-editors/neovim
 app-emulation/qemu
 app-emulation/virtualbox
 app-eselect/eselect-repository
+app-i18n/fcitx-configtool
 app-i18n/fcitx-gtk
 app-i18n/fcitx-rime
 app-i18n/fcitx:5
@@ -67,7 +68,10 @@ media-gfx/feh
 media-gfx/flameshot
 media-gfx/gimp
 media-gfx/ueberzugpp
+media-libs/exiftool
+media-libs/libv4l
 media-sound/alsa-utils
+media-sound/pulsemixer
 media-video/ffmpeg
 media-video/ffmpegthumbnailer
 media-video/mpv
@@ -76,6 +80,7 @@ net-analyzer/wireshark
 net-fs/samba
 net-libs/nodejs
 net-libs/webkit-gtk:4
+net-misc/baidunetdisk
 net-misc/chrony
 net-misc/dhcpcd
 net-misc/postman-bin
@@ -84,6 +89,7 @@ net-misc/yt-dlp
 net-p2p/qbittorrent-enhanced
 net-proxy/mihomo
 net-wireless/bluez
+net-wireless/iwd
 sys-apps/baobab
 sys-apps/bat
 sys-apps/nvme-cli
