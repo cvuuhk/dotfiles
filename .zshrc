@@ -78,7 +78,7 @@ function zshaddhistory() {
 alias ..='cd ..'
 alias cp='cp -ri'
 alias aa='sudo chattr +a .'
-alias ra='sudo chattr -a .'
+# alias ra='sudo chattr -a .'
 
 alias au='aunpack'
 
@@ -103,7 +103,7 @@ alias lg='lazygit'
 
 alias nvcc='/opt/cuda/bin/nvcc'
 
-alias ra='. ranger'
+# alias ra='. ranger'
 alias reboot='sudo reboot'
 alias rf='rm -rf'
 
@@ -129,4 +129,13 @@ function tmp {
     temp_dir=$(mktemp -d /tmp/$prefix.XXXXXX)
 
     cd "$temp_dir"
+}
+
+function ra() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }

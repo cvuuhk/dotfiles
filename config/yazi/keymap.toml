@@ -1,0 +1,20 @@
+[manager]
+prepend_keymap = [
+	{ on = "o",          run = "plugin smart-enter",        desc = "Open selected files" },
+	{ on = "<Enter>",    run = "plugin smart-enter",        desc = "Open selected files" },
+
+	{ on = "d",          run = "remove --permanently",      desc = "Permanently delete selected files" },
+	{ on = "D",          run = "remove --permanently",      desc = "Permanently delete selected files" },
+
+	{ on = [ "g", "b" ], run = "cd /boot",                  desc = "Go /boot" },
+	{ on = [ "g", "d" ], run = "cd /home/cui/data",         desc = "Go /home/cui/data" },
+	{ on = [ "g", "e" ], run = "cd /etc",                   desc = "Go /etc" },
+	{ on = [ "g", "l" ], run = "cd /home/cui/.local/share", desc = "Go /home/cui/.local/share" },
+	{ on = [ "g", "m" ], run = "cd /mnt",                   desc = "Go /mnt" },
+	{ on = [ "g", "s" ], run = "cd /usr/src/linux",         desc = "Go /usr/src/linux" },
+	{ on = [ "g", "u" ], run = "cd /usr",                   desc = "Go /usr" },
+	{ on = [ "g", "v" ], run = "cd /var",                   desc = "Go /var" },
+
+	{ on = "s",          run = "search --via=rg",           desc = "Search files by content via ripgrep" },
+	{ on = "S",          run = "search --via=fd",           desc = "Search files by name via fd" },
+]
