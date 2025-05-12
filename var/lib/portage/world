@@ -15,7 +15,6 @@ app-i18n/fcitx:5
 app-misc/hwd
 app-misc/jq
 app-misc/neofetch
-app-misc/nnn
 app-misc/ranger
 app-misc/tmux
 app-misc/yazi
@@ -29,8 +28,6 @@ app-shells/gentoo-zsh-completions
 app-shells/zsh
 app-text/dos2unix
 app-text/evince
-app-text/highlight
-app-text/lowdown
 app-text/tree
 app-text/zathura
 app-text/zathura-pdf-poppler
@@ -38,7 +35,6 @@ cross-riscv64-gentoo-linux-gnu/binutils
 cross-riscv64-gentoo-linux-gnu/gcc
 cross-riscv64-gentoo-linux-gnu/glibc
 cross-riscv64-gentoo-linux-gnu/linux-headers
-dev-db/redis
 dev-debug/gdb
 dev-java/maven-bin
 dev-java/openjdk
@@ -71,7 +67,6 @@ media-gfx/ueberzugpp
 media-libs/exiftool
 media-libs/libv4l
 media-sound/alsa-utils
-media-sound/pulsemixer
 media-video/ffmpeg
 media-video/ffmpegthumbnailer
 media-video/mpv
@@ -91,7 +86,6 @@ net-proxy/mihomo
 net-wireless/bluez
 net-wireless/iwd
 sys-apps/baobab
-sys-apps/bat
 sys-apps/nvme-cli
 sys-apps/ripgrep
 sys-apps/usbutils
@@ -120,7 +114,6 @@ x11-misc/rofi
 x11-misc/screenkey
 x11-misc/unclutter-xfixes
 x11-misc/xsel
-x11-terms/alacritty
 x11-terms/kitty
 x11-terms/terminology
 x11-themes/arc-theme
