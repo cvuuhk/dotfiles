@@ -41,7 +41,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.useless_gap = 4
 beautiful.wallpaper = os.getenv("HOME") .. "/.wallpaper.png"
-beautiful.font = "MiFans 12"
+beautiful.font = "Iosevka 12"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
@@ -79,7 +79,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Create a textclock widget
 os.setlocale(os.getenv("LANG"))
-local mytextclock = wibox.widget.textclock("%Y年%m月%d日 周%a %H:%M:%S", 1)
+-- local mytextclock = wibox.widget.textclock("%Y年%m月%d日 周%a %H:%M:%S", 1)
+local mytextclock = wibox.widget.textclock("周%a %Y-%m-%d %H:%M:%S", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
