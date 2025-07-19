@@ -79,8 +79,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Create a textclock widget
 os.setlocale(os.getenv("LANG"))
--- local mytextclock = wibox.widget.textclock("%Y年%m月%d日 周%a %H:%M:%S", 1)
-local mytextclock = wibox.widget.textclock("周%a %Y-%m-%d %H:%M:%S", 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -127,6 +125,8 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
+
+local pulseaudio_widget = require('pulseaudio_widget')
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -175,7 +175,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             spacing = 10,
             wibox.widget.systray(),
-            mytextclock,
+            pulseaudio_widget,            -- wibox.widget.textclock("%Y年%m月%d日 周%a %H:%M:%S", 1)
+            wibox.widget.textclock("周%a %Y-%m-%d %H:%M:%S", 1),
             s.mylayoutbox,
         },
     }
@@ -205,8 +206,11 @@ local toggle_topbar = function()
 end
 
 local global_keys = gears.table.join(
-    awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("amixer sset Master 5%+") end, {description="增加音量",        group="系统"}),
-    awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("amixer sset Master 5%-") end, {description="降低音量",        group="系统"}),
+    -- awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("amixer sset Master 5%+") end, {description="增加音量",        group="系统"}),
+    -- awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("amixer sset Master 5%-") end, {description="降低音量",        group="系统"}),
+    awful.key({},                  "XF86AudioRaiseVolume",  pulseaudio_widget.Up,         {description="增加音量",        group="系统"}),
+    awful.key({},                  "XF86AudioLowerVolume",  pulseaudio_widget.Down,       {description="降低音量",        group="系统"}),
+    awful.key({},                  "XF86AudioMute",         pulseaudio_widget.ToggleMute, {description="开启/关闭静音",   group="系统"}),
     awful.key({},                  "Print",                 function() awful.spawn("flameshot gui") end,                                       {description="截屏",            group="系统"}),
     awful.key({ "Shift" },         "Print",                 function() awful.spawn.with_shell("import -window root \"/home/cui/data/$(date +%Y%m%d_%H%M%S).png\"") end,  {description="截屏",            group="系统"}),
     awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
