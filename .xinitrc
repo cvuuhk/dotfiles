@@ -57,4 +57,5 @@ unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
 # sudo sh -c "echo 468 > /sys/class/backlight/intel_backlight/brightness"
 # exec dbus-launch --sh-syntax --exit-with-session dwm
 # exec dwm
+# dbus-lanuch 会设置一个 DBUS_SESSION_BUS_ADDRESS 变量，pipewire 会用到
 exec dbus-launch --sh-syntax --exit-with-session awesome

@@ -38,6 +38,7 @@ cross-riscv64-gentoo-linux-gnu/binutils
 cross-riscv64-gentoo-linux-gnu/gcc
 cross-riscv64-gentoo-linux-gnu/glibc
 cross-riscv64-gentoo-linux-gnu/linux-headers
+dev-db/dbeaver-bin
 dev-debug/gdb
 dev-java/maven-bin
 dev-java/openjdk
@@ -81,9 +82,9 @@ net-analyzer/wireshark
 net-fs/samba
 net-libs/nodejs
 net-misc/another-redis-desktop-manager-bin
+net-misc/bruno-bin
 net-misc/chrony
 net-misc/dhcpcd
-net-misc/postman-bin
 net-misc/telnet-bsd
 net-misc/yt-dlp
 net-p2p/qbittorrent-enhanced
