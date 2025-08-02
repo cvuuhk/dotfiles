@@ -128,6 +128,13 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 local pulseaudio_widget = require('pulseaudio_widget')
 
+gears.timer({
+    timeout = 2,
+    call_now = false,
+    autostart = true,
+    callback = pulseaudio_widget.Refresh
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
