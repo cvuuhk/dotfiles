@@ -22,6 +22,7 @@
     <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
     <option name="KEEP_BLANK_LINES_BETWEEN_PACKAGE_DECLARATION_AND_HEADER" value="1" />
     <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="0" />
+    <option name="CASE_STATEMENT_ON_NEW_LINE" value="false" />
     <option name="THROWS_KEYWORD_WRAP" value="1" />
     <option name="METHOD_CALL_CHAIN_WRAP" value="2" />
     <option name="TERNARY_OPERATION_WRAP" value="5" />
