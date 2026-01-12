@@ -82,9 +82,8 @@ alias aa='sudo chattr +a .'
 
 alias au='aunpack'
 
-alias cb='cargo build'
-alias cr='cargo run'
-alias ct='cargo test'
+alias cb='cmake -S . -B build && cmake --build build'
+alias cbr='cmake -S . -B build && cmake --build build && ./build/bin/main'
 alias clbf='sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"'
 
 alias em='emerge'
@@ -101,6 +100,8 @@ alias lla='ls -lAh'
 alias ls='ls --color=tty'
 alias lg='lazygit'
 
+alias mountntfs="mount -t ntfs3 -o rw,uid=$(id -u),gid=$(id -g),umask=0022"
+
 alias nvcc='/opt/cuda/bin/nvcc'
 
 # alias ra='. ranger'
@@ -113,7 +114,8 @@ alias ta='tmux attach -t'
 alias tn='tmux new -s'
 alias todo='vi ~/.todo'
 
-alias vv='nvim -O ~/.config/nvim/lua/base.lua ~/.config/nvim/lua/plugin.lua -c "cd /home/cui/.config/nvim/lua"'
+alias vr='VIMRUNTIME=runtime ./build/bin/nvim'
+alias vv='nvim -O ~/.config/nvim/lua/plugins/config.lua ~/.config/nvim/lua/config/keymaps.lua -c "cd /home/cui/.config/nvim/lua"'
 alias vz='nvim ~/.zshrc'
 
 alias ssh="TERM=xterm-256color $(which ssh)"
@@ -139,3 +141,19 @@ function ra() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# NACOS_AUTH_TOKEN: Nacos 用于生成JWT Token的密钥，使用长度大于32字符的字符串，再经过Base64编码。
+# NACOS_AUTH_TOKEN=${your_nacos_auth_secret_token}
+export your_nacos_auth_secret_token='MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MA=='
+
+# NACOS_AUTH_IDENTITY_KEY: Nacos Server端之间 Inner API的身份标识的Key，必填。
+# NACOS_AUTH_IDENTITY_KEY=${your_nacos_server_identity_key}
+export your_nacos_server_identity_key='nacos_key'
+
+# NACOS_AUTH_IDENTITY_VALUE: Nacos Server端之间 Inner API的身份标识的Value，必填。
+# NACOS_AUTH_IDENTITY_VALUE=${your_nacos_server_identity_value}
+export your_nacos_server_identity_value='nacos_value'
+
+alias pku_env='docker run -it --rm maxxing/compiler-dev bash'
+
+export CMAKE_GENERATOR=Ninja

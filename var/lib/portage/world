@@ -39,6 +39,7 @@ cross-riscv64-gentoo-linux-gnu/gcc
 cross-riscv64-gentoo-linux-gnu/glibc
 cross-riscv64-gentoo-linux-gnu/linux-headers
 dev-db/dbeaver-bin
+dev-db/postgresql
 dev-debug/gdb
 dev-java/maven-bin
 dev-java/openjdk
@@ -48,10 +49,11 @@ dev-python/pip
 dev-util/bear
 dev-util/ccls
 dev-util/clion
-dev-util/idea-community
+dev-util/intellij-idea
 dev-util/meld
 dev-util/nvidia-cuda-toolkit
 dev-util/pkgdev
+dev-util/tree-sitter-cli
 dev-vcs/git
 dev-vcs/git-lfs
 dev-vcs/lazygit
@@ -72,6 +74,7 @@ media-gfx/ueberzugpp
 media-libs/exiftool
 media-libs/libv4l
 media-libs/nvidia-vaapi-driver
+media-sound/musescore
 media-sound/pamixer
 media-video/ffmpeg
 media-video/ffmpegthumbnailer
@@ -89,10 +92,13 @@ net-misc/telnet-bsd
 net-misc/yt-dlp
 net-p2p/qbittorrent-enhanced
 net-proxy/mihomo
+net-vpn/wireguard-tools
 net-wireless/bluez
 net-wireless/iwd
 sys-apps/baobab
+sys-apps/fd
 sys-apps/nvme-cli
+sys-apps/openrc
 sys-apps/ripgrep
 sys-apps/usbutils
 sys-boot/grub

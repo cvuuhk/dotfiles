@@ -10,5 +10,5 @@ run() {
 run picom -b
 run parcellite
 run fcitx5
-run gentoo-pipewire-launcher
+run gentoo-pipewire-launcher restart
 # run numlockx

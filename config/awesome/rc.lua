@@ -94,8 +94,8 @@ local taglist_buttons = gears.table.join(
             client.focus:toggle_tag(t)
         end
     end),
-    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
+    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
 )
 
 local tasklist_buttons = gears.table.join(
@@ -141,7 +141,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     -- awful.tag({"日", "拱", "一", "卒", "功", "不", "唐", "捐"}, s, awful.layout.layouts[1])
-    awful.tag({"欲", "学", "前", "人", "当", "坚", "苦", "志"}, s, awful.layout.layouts[1])
+    -- awful.tag({"欲", "学", "前", "人", "当", "坚", "苦", "志"}, s, awful.layout.layouts[1])
+    awful.tag({"广", "阔", "天", "地", "大", "有", "作", "为"}, s, awful.layout.layouts[1])
 
 
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
@@ -161,6 +162,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox.visible = false
 
     -- Add widgets to the wibox
     s.mywibox:setup {
