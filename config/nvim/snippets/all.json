@@ -1,0 +1,6 @@
+{
+  "hello": {
+    "prefix": "hel",
+    "body": ["hello"]
+  }
+}

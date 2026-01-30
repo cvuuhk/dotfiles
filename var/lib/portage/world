@@ -47,7 +47,6 @@ dev-lang/python:3.9
 dev-lang/rust
 dev-python/pip
 dev-util/bear
-dev-util/ccls
 dev-util/clion
 dev-util/intellij-idea
 dev-util/meld
