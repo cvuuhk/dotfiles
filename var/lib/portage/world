@@ -112,6 +112,7 @@ sys-kernel/linux-firmware
 sys-process/cronie
 sys-process/htop
 sys-process/lsof
+virtual/jdk:21
 www-client/firefox
 x11-apps/xmodmap
 x11-apps/xsetroot
