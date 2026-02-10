@@ -36,9 +36,9 @@ return {
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
       ghost_text = { enabled = false },
-      documentation = { auto_show = true },
+      documentation = { auto_show = false, window = { border = "rounded" }},
       list = { selection = { preselect = true, auto_insert = false }},
-      menu = { max_height = 30, },
+      menu = { max_height = 30, border = "rounded" },
 
     },
 

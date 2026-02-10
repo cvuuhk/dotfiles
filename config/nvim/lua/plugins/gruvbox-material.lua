@@ -9,5 +9,8 @@ return {
     vim.cmd('hi TelescopeMatching guifg=#ea6962')
     -- vim.cmd('hi FloatBorder guibg=NONE')
     -- vim.cmd('hi StatusLine guibg=NONE')
+
+    vim.cmd('hi Pmenu guibg=NONE')
+    vim.cmd('hi PmenuExtra guibg=NONE')
   end
 }
