@@ -24,6 +24,7 @@ vim.g.maplocalleader = ' '
 -- content
 --     content
 --         content
+vim.o.winborder = 'rounded'
 
 local noremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true}) end
 local silnoremap = function (mode, key, mapped) vim.keymap.set(mode, key, mapped, {noremap = true, silent = true}) end

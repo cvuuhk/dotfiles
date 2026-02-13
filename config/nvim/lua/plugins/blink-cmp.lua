@@ -38,7 +38,7 @@ return {
       ghost_text = { enabled = false },
       documentation = { auto_show = false, window = { border = "rounded" }},
       list = { selection = { preselect = true, auto_insert = false }},
-      menu = { max_height = 30, border = "rounded" },
+      menu = { max_height = 30, border = "rounded", scrollbar = false },
 
     },
 
