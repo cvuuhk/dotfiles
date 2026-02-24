@@ -297,8 +297,7 @@ awful.screen.connect_for_each_screen(function(s)
   )
 end
 
-client_keys = gears.table.join(
-  client_keys,
+local client_buttons = gears.table.join(
   awful.button({},         1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) end),
   awful.button({ modkey }, 1, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.move(c) end),
   awful.button({ modkey }, 3, function (c) c:emit_signal("request::activate", "mouse_click", {raise = true}) awful.mouse.client.resize(c) end)
@@ -312,58 +311,63 @@ awful.rules.rules = {
   -- All clients will match this rule.
   {
     rule = {},
-    properties = { border_width = beautiful.border_width,
-    border_color = beautiful.border_normal,
-    focus = awful.client.focus.filter,
-    raise = true,
-    keys = client_keys,
-    buttons = client_keys,
-    screen = awful.screen.preferred,
-    placement = awful.placement.no_overlap+awful.placement.no_offscreen
-  }
-},
-
-{
-  rule_any = {
-    class = {"mpv", "feh"},
-  },
-  properties = {
-    fullscreen = true
-  }
-
-},
-
--- Floating clients.
-{ rule_any = {
-  instance = {
-    "DTA",  -- Firefox addon DownThemAll.
-    "copyq",  -- Includes session name in class.
-    "pinentry",
-  },
-  class = {
-    "Arandr",
-    "Blueman-manager",
-    "Gpick",
-    "Kruler",
-    "MessageWin",  -- kalarm.
-    "Sxiv",
-    "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-    "Wpa_gui",
-    "veromix",
-    "xtightvncviewer"
-  },
-
-    -- Note that the name property shown in xprop might be set slightly after creation of the client
-    -- and the name shown there might not match defined rules here.
-    name = {
-      "Event Tester",  -- xev.
-    },
-    role = {
-      "AlarmWindow",  -- Thunderbird's calendar.
-      "ConfigManager",  -- Thunderbird's about:config.
-      "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+    properties = {
+      border_width = beautiful.border_width,
+      border_color = beautiful.border_normal,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = client_keys,
+      buttons = client_buttons,
+      screen = awful.screen.preferred,
+      placement = awful.placement.no_overlap+awful.placement.no_offscreen
     }
-  }, properties = { floating = true }},
+  },
+
+  {
+    rule_any = {
+      class = {"mpv", "feh"},
+    },
+    properties = {
+      fullscreen = true
+    }
+  },
+
+  -- Floating clients.
+  {
+    rule_any = {
+      instance = {
+        "DTA",  -- Firefox addon DownThemAll.
+        "copyq",  -- Includes session name in class.
+        "pinentry",
+      },
+      class = {
+        "Arandr",
+        "Blueman-manager",
+        "Gpick",
+        "Kruler",
+        "MessageWin",  -- kalarm.
+        "Sxiv",
+        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+        "Wpa_gui",
+        "veromix",
+        "xtightvncviewer"
+      },
+
+      -- Note that the name property shown in xprop might be set slightly after creation of the client
+      -- and the name shown there might not match defined rules here.
+      name = {
+        "Event Tester",  -- xev.
+      },
+      role = {
+        "AlarmWindow",  -- Thunderbird's calendar.
+        "ConfigManager",  -- Thunderbird's about:config.
+        "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+      }
+    },
+    properties = {
+      floating = true
+    }
+  },
 }
 
 -- Signal function to execute when a new client appears.
@@ -387,5 +391,3 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity=1 end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=1 end)
-
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")

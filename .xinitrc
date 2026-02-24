@@ -52,10 +52,21 @@ xset s off -dpms # disable screensaver
 unclutter --timeout 1 --jitter 4 --ignore-scrolling & # 隐藏鼠标指针
 # screenkey --start-disabled &
 
+run() {
+  # 使用 basename 提取命令名，-x 精确匹配进程名
+  cmd=$(basename "$1")
+  if ! pgrep -x "$cmd" >/dev/null; then
+    "$@" &
+  fi
+}
+
+run picom -b
+run parcellite
+run fcitx5
+run gentoo-pipewire-launcher restart
+run flameshot
+
 # feh --bg-scale ~/.wallpaper.png
-# status_bar &
-# sudo sh -c "echo 468 > /sys/class/backlight/intel_backlight/brightness"
-# exec dbus-launch --sh-syntax --exit-with-session dwm
-# exec dwm
-# dbus-lanuch 会设置一个 DBUS_SESSION_BUS_ADDRESS 变量，pipewire 会用到
-exec dbus-launch --sh-syntax --exit-with-session awesome
+# dwm
+
+awesome
