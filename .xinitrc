@@ -69,4 +69,4 @@ run flameshot
 # feh --bg-scale ~/.wallpaper.png
 # dwm
 
-awesome
+exec awesome
