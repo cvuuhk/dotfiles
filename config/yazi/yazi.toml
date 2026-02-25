@@ -8,5 +8,19 @@ max_height      = 1080
 image_filter    = "catmull-rom"
 image_quality   = 90
 
+[open]
+prepend_rules = [
+  { mime = "application/gentoo.ebuild", use = "edit" },
+  { mime = "application/gentoo.pkgmetadata+xml", use = "edit" },
+  { mime = "application/gentoo.manifest", use = "edit" },
+]
+
+[plugin]
+prepend_previewers = [
+  { mime = "application/gentoo.ebuild", run = "code" },
+  { mime = "application/gentoo.pkgmetadata+xml", run = "code" },
+  { mime = "application/gentoo.manifest", run = "code" },
+]
+
 [tasks]
 image_bound = [0,0]
