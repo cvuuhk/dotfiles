@@ -55,8 +55,8 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-  awful.layout.suit.tile.right,
-  -- awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.right,
+  awful.layout.suit.tile.left,
   awful.layout.suit.tile.top,
   -- awful.layout.suit.floating,
   -- awful.layout.suit.tile,
@@ -177,7 +177,10 @@ awful.screen.connect_for_each_screen(function(s)
       awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        source = function ()
+          return gears.table.reverse(client.get())
+        end
       },
       -- Right widgets
       {
