@@ -10,3 +10,5 @@ set autoindent
 set incsearch
 set smartcase
 set ignorecase
+
+set commentary
