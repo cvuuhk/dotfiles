@@ -42,6 +42,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.useless_gap = 4
 beautiful.wallpaper = os.getenv("HOME") .. "/.wallpaper.png"
 beautiful.font = "Iosevka 12"
+beautiful.xresources.set_dpi(144)
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
@@ -162,7 +163,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
-    s.mywibox.visible = false
+    s.mywibox.visible = true
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -227,7 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.key({ "Shift" },         "Print",                 function() awful.spawn.with_shell("import -window root \"/home/cui/data/$(date +%Y%m%d_%H%M%S).png\"") end,  {description="截屏",            group="系统"}),
     awful.key({ modkey, "Shift" }, "l",                     function() awful.spawn.with_shell("sleep 0.1 && xset dpms force off") end,         {description="熄屏",            group="系统"}),
     awful.key({ modkey, },         "s",                     hotkeys_popup.show_help,                                                           {description="显示快捷键",      group="系统"}),
-    awful.key({ modkey, },         "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons") end,              {description="打开 App 启动器", group="系统"}),
+    awful.key({ modkey, },         "p",                     function() awful.spawn.with_shell("rofi -show drun -show-icons -dpi 0") end,              {description="打开 App 启动器", group="系统"}),
 
     awful.key({ modkey, }, "Left",  awful.tag.viewprev,        {description = "上一个 tag", group = "tag"}),
     awful.key({ modkey, }, "Right", awful.tag.viewnext,        {description = "下一个 tag", group = "tag"}),
@@ -328,7 +329,7 @@ awful.rules.rules = {
 
   {
     rule_any = {
-      class = {"mpv", "feh"},
+      class = {"mpv", "feh", "Zathura"},
     },
     properties = {
       fullscreen = true
@@ -394,3 +395,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity=1 end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity=1 end)
+
+client.connect_signal("property::fullscreen", function(c) if c.fullscreen then gears.timer.delayed_call(function() if c.valid then c:geometry(c.screen.geometry) end end) end end)

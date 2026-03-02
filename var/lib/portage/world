@@ -113,6 +113,7 @@ sys-process/lsof
 virtual/jdk:21
 www-client/firefox
 x11-apps/xmodmap
+x11-apps/xrandr
 x11-apps/xsetroot
 x11-base/xorg-server
 x11-drivers/nvidia-drivers

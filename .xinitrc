@@ -68,5 +68,6 @@ run flameshot
 
 # feh --bg-scale ~/.wallpaper.png
 # dwm
-
+xrandr --output DP-2 --mode 3840x2160 --rate 180.00
+xrandr --dpi 144
 exec awesome

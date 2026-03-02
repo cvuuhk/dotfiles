@@ -4,9 +4,9 @@
 # set adjust-open width
 set selection-clipboard clipboard
 set first-page-column 1:1
-set window-width 1920
-set window-height 1080
-set pages-per-row 2
+set window-width 3840
+set window-height 2160
+set pages-per-row 3
 set guioptions ""
 set incremental-search true
 set show-scrollbars true
