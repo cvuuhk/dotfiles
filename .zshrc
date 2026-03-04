@@ -88,7 +88,7 @@ alias clbf='sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"'
 
 alias em='emerge'
 
-alias feh='feh -B black -F --start-at'
+# alias feh='feh -B black -F --start-at'
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffprobe='ffprobe -hide_banner'
 

@@ -98,6 +98,7 @@ sys-apps/nvme-cli
 sys-apps/openrc
 sys-apps/ripgrep
 sys-apps/usbutils
+sys-apps/yarn
 sys-boot/grub
 sys-boot/os-prober
 sys-devel/crossdev
