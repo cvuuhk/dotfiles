@@ -64,8 +64,7 @@ run picom -b
 run parcellite
 run fcitx5
 run gentoo-pipewire-launcher restart
-run flameshot
-
+run numlockx
 # feh --bg-scale ~/.wallpaper.png
 # dwm
 xrandr --output DP-2 --mode 3840x2160 --rate 180.00
