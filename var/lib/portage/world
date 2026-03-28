@@ -73,7 +73,8 @@ media-libs/exiftool
 media-libs/libv4l
 media-libs/nvidia-vaapi-driver
 media-sound/musescore
-media-sound/pamixer
+media-sound/qpwgraph
+media-sound/spek
 media-video/ffmpeg
 media-video/ffmpegthumbnailer
 media-video/mpv
@@ -83,6 +84,7 @@ net-analyzer/wireshark
 net-fs/samba
 net-libs/nodejs
 net-misc/another-redis-desktop-manager-bin
+net-misc/baidunetdisk
 net-misc/bruno-bin
 net-misc/chrony
 net-misc/dhcpcd
