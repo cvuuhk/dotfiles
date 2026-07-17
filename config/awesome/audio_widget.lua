@@ -18,7 +18,7 @@ function core:adjust(offset)
   if self.volume > 100 then self.volume = 100 end
   if self.volume < 0 then self.volume = 0 end
 
-  run("wpctl set-volume @DEFAULT_AUDIO_SINK@ " .. self.volume .. "%")
+  run("wpctl set-volume @DEFAULT_SINK@ " .. self.volume .. "%")
 end
 
 function core:toggle()

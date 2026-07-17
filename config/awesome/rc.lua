@@ -221,6 +221,8 @@ awful.screen.connect_for_each_screen(function(s)
   local global_keys = gears.table.join(
     -- awful.key({},                  "XF86AudioRaiseVolume",  function() awful.spawn.with_shell("amixer sset Master 5%+") end, {description="增加音量",        group="系统"}),
     -- awful.key({},                  "XF86AudioLowerVolume",  function() awful.spawn.with_shell("amixer sset Master 5%-") end, {description="降低音量",        group="系统"}),
+    awful.key({ modkey },                  "F12",  audio_widget.increase,         {description="增加音量",        group="系统"}),
+    awful.key({ modkey },                  "F11",  audio_widget.decrease,         {description="降低音量",        group="系统"}),
     awful.key({},                  "XF86AudioRaiseVolume",  audio_widget.increase,         {description="增加音量",        group="系统"}),
     awful.key({},                  "XF86AudioLowerVolume",  audio_widget.decrease,         {description="降低音量",        group="系统"}),
     awful.key({},                  "XF86AudioMute",         audio_widget.mute,             {description="开启/关闭静音",   group="系统"}),
