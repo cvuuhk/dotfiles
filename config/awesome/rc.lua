@@ -400,4 +400,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 client.connect_signal("property::fullscreen", function(c) if c.fullscreen then gears.timer.delayed_call(function() if c.valid then c:geometry(c.screen.geometry) end end) end end)
 
-awful.spawn.once("nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'")
+-- awful.spawn.once("nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'")
+awful.spawn.once("sudo nvidia-smi --lock-gpu-clocks=3120,3120")
+awful.spawn.once("sudo nvidia-smi --lock-memory-clocks=21002,21002")
