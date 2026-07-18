@@ -3,6 +3,7 @@
 
 patch:
   translator/preedit_format: []
+  translator/dictionary: my
   switches:
     - name: ascii_mode
       reset: 1
