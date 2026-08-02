@@ -331,7 +331,11 @@ awful.rules.rules = {
 
   {
     rule_any = {
-      class = {"mpv", "feh", "Zathura"},
+      class = {
+        -- "mpv",
+        "feh",
+        "Zathura"
+      },
     },
     properties = {
       fullscreen = true
