@@ -7,16 +7,14 @@ app-arch/unrar
 app-containers/docker
 app-containers/docker-cli
 app-editors/neovim
-app-editors/vscode
 app-emulation/qemu
 app-eselect/eselect-repository
 app-i18n/fcitx-configtool
 app-i18n/fcitx-gtk
 app-i18n/fcitx-rime
 app-i18n/fcitx:5
-app-misc/hwd
+app-misc/fastfetch
 app-misc/jq
-app-misc/neofetch
 app-misc/openrgb
 app-misc/ranger
 app-misc/tmux
@@ -38,6 +36,7 @@ cross-riscv64-gentoo-linux-gnu/binutils
 cross-riscv64-gentoo-linux-gnu/gcc
 cross-riscv64-gentoo-linux-gnu/glibc
 cross-riscv64-gentoo-linux-gnu/linux-headers
+dev-cpp/FTXUI
 dev-db/dbeaver-bin
 dev-db/postgresql
 dev-debug/gdb
@@ -74,7 +73,6 @@ media-libs/exiftool
 media-libs/libv4l
 media-libs/nvidia-vaapi-driver
 media-sound/alsa-utils
-media-sound/musescore
 media-sound/qpwgraph
 media-sound/spek
 media-video/ffmpeg
