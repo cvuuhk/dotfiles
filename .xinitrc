@@ -1,6 +1,6 @@
 #!/bin/sh
 
-eval "$(dbus-launch --sh-syntax --exit-with-session)"
+# eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -45,6 +45,8 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 export SDL_IM_MODULE=fcitx
 export INPUT_METHOD=fcitx
 export GLFW_IM_MODULE=ibus
+
+eval "$(dbus-launch --sh-syntax --exit-with-session)"
 
 xset r rate 180 50 # 键盘重复速度
 xset s off -dpms # disable screensaver
