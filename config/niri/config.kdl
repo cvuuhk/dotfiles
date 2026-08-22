@@ -647,6 +647,8 @@ binds {
 }
 
 cursor {
+    xcursor-theme "BreezeX-Dark"
+    xcursor-size 24
     hide-when-typing
     hide-after-inactive-ms 1000
 }
@@ -662,7 +664,12 @@ environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
 
     GTK_THEME "Arc-Lighter"
-    GTK_ICON_THEME "Papirus-Light";
-    XCURSOR_THEME "Breeze"
+    GTK_ICON_THEME "Papirus-Light"
+
+    XCURSOR_THEME "BreezeX-Dark"
     XCURSOR_SIZE "24"
+
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+    XDG_SESSION_DESKTOP "niri"
 }
