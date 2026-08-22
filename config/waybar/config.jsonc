@@ -1,0 +1,40 @@
+{
+  // "height": 21,
+  "spacing": 10,
+  "modules-left": [
+    "niri/workspaces"
+  ],
+  "modules-center": [ ],
+  "modules-right": [
+    "tray",
+    "wireplumber",
+    "clock"
+  ],
+  "clock": {
+    "interval": 1,
+    "timezone": "Asia/Shanghai",
+    "locale": "zh_CN.UTF-8",
+    "format": "周{:L%a %Y-%m-%d %H:%M:%S}",
+    "tooltip": false
+  },
+  "wireplumber": {
+    "format": "音量({volume}%)",
+    "format-muted": "静音中",
+    "tooltip": false,
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "active": "",
+      "default": ""
+    }
+  }
+}

@@ -1,0 +1,36 @@
+window#waybar {
+    font-family: "MiSans";
+    font-size: 16px;
+    font-weight: 500;
+    font-feature-settings: "tnum";
+    background-color: transparent;
+    color: #7fc8ff;
+}
+
+#workspaces {
+    margin-left: 8px;
+}
+
+#clock {
+    margin-right: 8px;
+}
+
+#workspaces button {
+    color: #7fc8ff;
+    padding: 0 5px;
+}
+
+#wireplumber,
+#clock,
+#tray,
+#workspaces {
+    background-color: rgba(135, 206, 235, 0.4);
+    border-radius: 8px;
+    padding: 0 8px;
+}
+
+#workspaces button:hover,
+#tray button:hover {
+    background-color: rgba(100, 170, 200, 0.55);
+    border-radius: 8px;
+}
