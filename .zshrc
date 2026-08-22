@@ -143,6 +143,10 @@ function ra() {
 	rm -f -- "$tmp"
 }
 
+function niristart() {
+  dbus-run-session niri --session
+}
+
 # NACOS_AUTH_TOKEN: Nacos 用于生成JWT Token的密钥，使用长度大于32字符的字符串，再经过Base64编码。
 # NACOS_AUTH_TOKEN=${your_nacos_auth_secret_token}
 export your_nacos_auth_secret_token='MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MA=='
