@@ -2,9 +2,10 @@
   // "height": 21,
   "spacing": 10,
   "modules-left": [
+  ],
+  "modules-center": [
     "niri/workspaces"
   ],
-  "modules-center": [ ],
   "modules-right": [
     "tray",
     "wireplumber",
