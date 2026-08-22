@@ -279,7 +279,8 @@ spawn-at-startup "fcitx5"
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 spawn-sh-at-startup "gentoo-pipewire-launcher restart"
 spawn-sh-at-startup "sudo nvidia-smi --lock-gpu-clocks=3120,3120 && sudo nvidia-smi --lock-memory-clocks=21002,21002"
-spawn-sh-at-startup "swaybg -m fill -i ~/.wallpaper.png"
+// spawn-sh-at-startup "swaybg -m fill -i ~/.wallpaper.png"
+spawn-sh-at-startup "~/.config/niri/wallpaper.sh"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -652,6 +653,10 @@ binds {
     Mod+Shift+Q { quit; }
 }
 
+clipboard {
+    disable-primary
+}
+
 cursor {
     xcursor-theme "BreezeX-Dark"
     xcursor-size 24
@@ -672,10 +677,12 @@ environment {
     GTK_THEME "Arc-Lighter"
     GTK_ICON_THEME "Papirus-Light"
 
-    XCURSOR_THEME "BreezeX-Dark"
-    XCURSOR_SIZE "24"
-
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
     XDG_SESSION_DESKTOP "niri"
+}
+
+layer-rule {
+    match namespace="^awww-daemonbackdrop$"
+    place-within-backdrop true
 }

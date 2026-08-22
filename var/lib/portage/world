@@ -56,9 +56,9 @@ dev-vcs/git
 dev-vcs/git-lfs
 dev-vcs/lazygit
 games-misc/cowsay
+gui-apps/awww
 gui-apps/fuzzel
 gui-apps/qt6ct
-gui-apps/swaybg
 gui-apps/waybar
 gui-apps/wl-clipboard
 gui-wm/niri
