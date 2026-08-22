@@ -78,7 +78,6 @@ function zshaddhistory() {
 alias ..='cd ..'
 alias cp='cp -ri'
 alias aa='sudo chattr +a .'
-# alias ra='sudo chattr -a .'
 
 alias au='aunpack'
 
@@ -88,7 +87,6 @@ alias clbf='sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"'
 
 alias em='emerge'
 
-# alias feh='feh -B black -F --start-at'
 alias ffmpeg="ffmpeg -hide_banner"
 alias ffprobe='ffprobe -hide_banner'
 
@@ -146,19 +144,5 @@ function ra() {
 function niristart() {
   dbus-run-session niri --session
 }
-
-# NACOS_AUTH_TOKEN: Nacos 用于生成JWT Token的密钥，使用长度大于32字符的字符串，再经过Base64编码。
-# NACOS_AUTH_TOKEN=${your_nacos_auth_secret_token}
-export your_nacos_auth_secret_token='MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MA=='
-
-# NACOS_AUTH_IDENTITY_KEY: Nacos Server端之间 Inner API的身份标识的Key，必填。
-# NACOS_AUTH_IDENTITY_KEY=${your_nacos_server_identity_key}
-export your_nacos_server_identity_key='nacos_key'
-
-# NACOS_AUTH_IDENTITY_VALUE: Nacos Server端之间 Inner API的身份标识的Value，必填。
-# NACOS_AUTH_IDENTITY_VALUE=${your_nacos_server_identity_value}
-export your_nacos_server_identity_value='nacos_value'
-
-alias pku_env='docker run -it --rm maxxing/compiler-dev bash'
 
 export CMAKE_GENERATOR=Ninja
