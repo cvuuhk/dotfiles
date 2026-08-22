@@ -56,7 +56,12 @@ dev-vcs/git
 dev-vcs/git-lfs
 dev-vcs/lazygit
 games-misc/cowsay
+gui-apps/fuzzel
 gui-apps/qt6ct
+gui-apps/swaybg
+gui-apps/waybar
+gui-apps/wl-clipboard
+gui-wm/niri
 llvm-core/clang
 mail-mta/postfix
 media-fonts/corefonts
@@ -84,9 +89,6 @@ net-analyzer/wireshark
 net-fs/samba
 net-im/telegram-desktop
 net-libs/nodejs
-net-misc/another-redis-desktop-manager-bin
-net-misc/baidunetdisk
-net-misc/bruno-bin
 net-misc/chrony
 net-misc/dhcpcd
 net-misc/telnet-bsd
@@ -113,6 +115,7 @@ sys-kernel/linux-firmware
 sys-process/cronie
 sys-process/htop
 sys-process/lsof
+sys-process/nvtop
 virtual/jdk:21
 www-client/firefox
 x11-apps/xmodmap
