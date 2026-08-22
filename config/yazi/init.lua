@@ -1,3 +1,3 @@
-require("smart-enter"):setup {
+require("my-plugin"):setup {
 	open_multi = true,
 }
