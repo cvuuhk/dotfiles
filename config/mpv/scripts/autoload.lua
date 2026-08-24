@@ -5,6 +5,8 @@
 -- the internal playlist. (It stops if it would add an already existing
 -- playlist entry at the same position - this makes it "stable".)
 -- Add at most 5000 * 2 files when starting a file (before + after).
+-- If the current playlist is not in natural sort order (e.g. a manually
+-- made playlist of files from the same directory), it is reordered.
 
 --[[
 To configure this script use file autoload.conf in directory script-opts (the "script-opts"
@@ -24,7 +26,7 @@ local utils = require 'mp.utils'
 
 o = {
     disabled = false,
-    images = true,
+    images = false,
     videos = true,
     audio = true
 }
@@ -48,7 +50,7 @@ EXTENSIONS_VIDEO = Set {
 }
 
 EXTENSIONS_AUDIO = Set {
-    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus'
+    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus', 'ape'
 }
 
 EXTENSIONS_IMAGES = Set {
@@ -119,7 +121,7 @@ end
 
 local autoloaded = nil
 
-function find_and_add_entries()
+function do_autoload()
     local path = mp.get_property("path", "")
     local dir, filename = utils.split_path(path)
     msg.trace(("dir: %s, filename: %s"):format(dir, filename))
@@ -212,6 +214,88 @@ function find_and_add_entries()
 
     add_files_at(pl_current + 1, append[1])
     add_files_at(pl_current, append[-1])
+end
+
+-- Reorder the playlist into natural sort order. Only playlists whose
+-- entries are all located in the current file's directory are reordered
+-- (mixed-directory or remote playlists are left untouched).
+function reorder_playlist()
+    local pl = mp.get_property_native("playlist", {})
+    local n = #pl
+    if n < 2 then
+        return
+    end
+
+    local cur_dir = utils.split_path(mp.get_property("path", ""))
+    if cur_dir == "." then
+        cur_dir = ""
+    end
+    if #cur_dir == 0 then
+        return
+    end
+
+    local names = {}
+    for i = 1, n do
+        local d, f = utils.split_path(pl[i].filename or "")
+        if d == "." then
+            d = ""
+        end
+        if d ~= cur_dir or #f == 0 then
+            return
+        end
+        names[i] = f
+    end
+
+    -- stable sort: entries with equal natural keys keep their playlist order
+    local order = {}
+    for i = 1, n do
+        order[i] = i
+    end
+    table.sort(order, function (a, b)
+        if alnumcomp(names[a], names[b]) then
+            return true
+        elseif alnumcomp(names[b], names[a]) then
+            return false
+        end
+        return a < b
+    end)
+
+    local sorted = true
+    for i = 1, n do
+        if order[i] ~= i then
+            sorted = false
+            break
+        end
+    end
+    if sorted then
+        return
+    end
+
+    msg.verbose("Reordering playlist by natural sort order")
+    local pos = {}
+    for i = 1, n do
+        pos[i] = i - 1
+    end
+    for i = 1, n do
+        local entry = order[i]
+        local q = i - 1
+        local p = pos[entry]
+        if p ~= q then
+            mp.commandv("playlist-move", p, q)
+            for j = 1, n do
+                local c = pos[j]
+                if c >= q and c < p then
+                    pos[j] = c + 1
+                end
+            end
+            pos[entry] = q
+        end
+    end
+end
+
+function find_and_add_entries()
+    do_autoload()
+    reorder_playlist()
 end
 
 mp.register_event("start-file", find_and_add_entries)
