@@ -1,7 +1,9 @@
 {
   // "height": 21,
+  "position": "bottom",
   "spacing": 10,
   "modules-left": [
+    "niri/window"
   ],
   "modules-center": [
     "niri/workspaces"
@@ -37,5 +39,8 @@
       "active": "",
       "default": ""
     }
+  },
+  "niri/window": {
+    "format": "{title}"
   }
 }

@@ -11,6 +11,16 @@ window#waybar {
     margin-left: 8px;
 }
 
+#window {
+    margin-left: 8px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+    padding: 0;
+    margin-left: 0;
+}
+
 #clock {
     margin-right: 8px;
 }
@@ -23,7 +33,8 @@ window#waybar {
 #wireplumber,
 #clock,
 #tray,
-#workspaces {
+#workspaces,
+#window {
     background-color: rgba(135, 206, 235, 0.4);
     border-radius: 8px;
     padding: 0 8px;

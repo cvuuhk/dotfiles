@@ -110,6 +110,12 @@ output "DP-2" {
     position x=0 y=0
 }
 
+// gestures {
+//   hot-corners {
+//     bottom-left
+//   }
+// }
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Layout
