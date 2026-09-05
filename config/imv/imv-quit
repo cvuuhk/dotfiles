@@ -1,0 +1,19 @@
+#!/bin/sh -efu
+# imv-quit: 由 imv 的 q 键绑定(exec)调用——上报最后查看的图片给父级 yazi, 然后退出。
+# imv 在执行 exec 前会刷新 $imv_current_file / $imv_pid 等环境变量(见 imv(1)),
+# 因此这里拿到的必然是按下 q 瞬间正在显示的图片。
+
+f=${imv_current_file:-}
+if [ -n "$f" ] && [ -n "${YAZI_ID:-}" ]; then
+	# 相对路径时基于 imv 的工作目录补全为绝对路径
+	case $f in
+		/*) ;;
+		*) f="$(pwd)/$f" ;;
+	esac
+
+	ya pub-to "$YAZI_ID" imv-ended --list "$f" >/dev/null 2>&1 || true
+fi
+
+# imv-msg 只写入命令即关闭连接, 不会死锁; 主循环从 system() 返回后处理 quit
+imv-msg "${imv_pid:-0}" quit >/dev/null 2>&1
+exit 0

@@ -15,7 +15,7 @@ scaling_mode = shrink
 
 [binds]
 # Define some key bindings
-q = quit
+q = exec $HOME/.config/imv/imv-quit
 y = exec echo working!
 
 # Image navigation

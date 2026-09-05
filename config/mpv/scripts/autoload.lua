@@ -50,7 +50,7 @@ EXTENSIONS_VIDEO = Set {
 }
 
 EXTENSIONS_AUDIO = Set {
-    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus', 'ape'
+    'mp3', 'wav', 'ogm', 'flac', 'm4a', 'wma', 'ogg', 'opus', 'ape', 'dsf'
 }
 
 EXTENSIONS_IMAGES = Set {
