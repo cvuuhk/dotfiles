@@ -141,7 +141,7 @@ function ra() {
 	rm -f -- "$tmp"
 }
 
-function niristart() {
+function niris() {
   dbus-run-session niri --session
 }
 
