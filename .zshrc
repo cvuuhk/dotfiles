@@ -47,9 +47,9 @@ export EDITOR=nvim
 export MANPAGER='nvim +Man!'
 
 # the detailed meaning of the below three variable can be found in `man zshparam`.
-export HISTFILE=~/.histfile
-export HISTSIZE=3000   # the number of items for the internal history list
-export SAVEHIST=3000   # maximum number of items for the history file
+HISTFILE=~/.histfile
+HISTSIZE=50000   # the number of items for the internal history list
+SAVEHIST=50000   # maximum number of items for the history file
 
 # The meaning of these options can be found in man page of `zshoptions`.
 setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
@@ -68,11 +68,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 WORDCHARS=${WORDCHARS/\/}
 
 function zshaddhistory() {
-  if [[ "$1" =~ "(^ |http|reset|rar|zip)" ]] ; then
-      return 1
-  else
-      return 0
-  fi
+  [[ "$1" =~ '(^|[[:space:]])(http|reset|(un)?rar|(un)?zip)' ]] && return 1
+  return 0
 }
 
 alias ..='cd ..'
@@ -118,12 +115,6 @@ alias vv='nvim -O ~/.config/nvim/lua/plugins/config.lua ~/.config/nvim/lua/confi
 alias vz='nvim ~/.zshrc'
 
 alias ssh="TERM=xterm-256color $(which ssh)"
-
-function ccat {
-    dos2unix $1
-    iconv -f GBK -t UTF8 $1 -o $1
-    cat $1
-}
 
 function tmp {
     prefix=$(date +"%Y%m%d_%H%M%S")
