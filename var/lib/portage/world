@@ -46,7 +46,6 @@ dev-lang/rust
 dev-lang/tcl
 dev-python/pip
 dev-util/bear
-dev-util/intellij-idea
 dev-util/meld
 dev-util/nvidia-cuda-toolkit
 dev-util/opencode-bin
