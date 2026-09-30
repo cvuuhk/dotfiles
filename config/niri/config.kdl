@@ -25,7 +25,7 @@ input {
         }
 
         // Enable numlock on startup, omitting this setting disables it.
-        numlock
+        // numlock
     }
 
     // Next sections include libinput settings.
@@ -386,7 +386,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Super+Return hotkey-overlay-title="terminal" { spawn "kitty"; }
     Super+Space  hotkey-overlay-title="firefox"  { spawn "firefox"; }
-    Super+P      hotkey-overlay-title="fuzzel"   { spawn "fuzzel" "--width=50" "--lines=25" "--font=monospace:size=14"; }
+    Super+P      hotkey-overlay-title="fuzzel"   { spawn "fuzzel" "--width=50" "--lines=25"; }
     Super+B      hotkey-overlay-title="toggle waybar" { spawn-sh "pgrep -x waybar >/dev/null && pkill -USR1 -x waybar || waybar"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -398,8 +398,8 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
     // "-l 1.0" limits the volume to 100%.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
@@ -682,6 +682,7 @@ environment {
 
     GTK_THEME "Arc-Lighter"
     GTK_ICON_THEME "Papirus-Light"
+    TERMINAL "kitty"
 
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
