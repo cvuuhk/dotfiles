@@ -40,7 +40,6 @@ cross-riscv64-gentoo-linux-gnu/linux-headers
 dev-cpp/FTXUI
 dev-db/dbeaver-bin
 dev-debug/gdb
-dev-java/maven-bin
 dev-java/openjdk
 dev-lang/rust
 dev-lang/tcl
