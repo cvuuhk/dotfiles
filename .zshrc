@@ -97,6 +97,7 @@ alias ls='ls --color=tty'
 alias lg='lazygit'
 
 alias mountntfs="mount -t ntfs3 -o rw,uid=$(id -u),gid=$(id -g),umask=0022"
+alias mountusb="mount -o uid=1000,gid=1000,utf8,umask=022"
 
 alias nvcc='/opt/cuda/bin/nvcc'
 
