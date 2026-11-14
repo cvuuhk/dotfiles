@@ -6,6 +6,7 @@ app-arch/atool
 app-arch/unrar
 app-containers/docker
 app-containers/docker-cli
+app-containers/docker-compose
 app-editors/neovim
 app-emulation/qemu
 app-eselect/eselect-repository
@@ -38,7 +39,6 @@ cross-riscv64-gentoo-linux-gnu/glibc
 cross-riscv64-gentoo-linux-gnu/linux-headers
 dev-cpp/FTXUI
 dev-db/dbeaver-bin
-dev-db/postgresql
 dev-debug/gdb
 dev-java/maven-bin
 dev-java/openjdk
@@ -69,7 +69,6 @@ media-fonts/lxgw-wenkai
 media-fonts/noto
 media-fonts/noto-cjk
 media-fonts/noto-emoji
-media-gfx/feh
 media-gfx/flameshot
 media-gfx/gimp
 media-gfx/imv
@@ -79,7 +78,6 @@ media-libs/libv4l
 media-libs/nvidia-vaapi-driver
 media-sound/alsa-utils
 media-sound/qpwgraph
-media-sound/spek
 media-video/ffmpeg
 media-video/ffmpegthumbnailer
 media-video/mpv
@@ -118,21 +116,10 @@ sys-process/lsof
 sys-process/nvtop
 virtual/jdk:21
 www-client/firefox
-x11-apps/xmodmap
-x11-apps/xrandr
-x11-apps/xsetroot
 x11-base/xorg-server
 x11-drivers/nvidia-drivers
-x11-misc/numlockx
-x11-misc/parcellite
 x11-misc/pcmanfm
-x11-misc/picom
-x11-misc/rofi
-x11-misc/screenkey
-x11-misc/unclutter-xfixes
-x11-misc/xsel
 x11-terms/kitty
-x11-terms/terminology
 x11-themes/arc-theme
 x11-themes/breezex-xcursors
 x11-themes/papirus-icon-theme
