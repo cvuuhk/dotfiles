@@ -54,16 +54,25 @@ silnoremap('v', 'L', ":m '<-2<CR>gv=gv")
 silnoremap('i', '<S-CR>', '<Esc>o')
 
 -- lsp
+-- 保存并格式化;没有支持 format 的 client 时静默跳过
+local save_and_format = function ()
+  vim.cmd('write')
+  if #vim.lsp.get_clients({bufnr = 0, method = 'textDocument/formatting'}) > 0 then
+    vim.lsp.buf.format({async = true})
+  end
+end
+
 silnoremap('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
-silnoremap('n', '<F2>', ':lua vim.diagnostic.goto_prev()<CR>')
-silnoremap('n', '<F3>', ':lua vim.diagnostic.goto_next()<CR>')
-silnoremap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>')
-silnoremap('n', '<leader>r', ':lua vim.lsp.buf.rename()<CR>')
+-- nvim 0.11 起 goto_prev/goto_next 已弃用,使用 vim.diagnostic.jump
+silnoremap('n', '<F2>', ':lua vim.diagnostic.jump({count = -1, float = true})<CR>')
+silnoremap('n', '<F3>', ':lua vim.diagnostic.jump({count = 1, float = true})<CR>')
 silnoremap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
 silnoremap('n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>')
-silnoremap('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
-silnoremap('n', '<C-A-l>', ':w<CR>:Format<CR>')
-silnoremap('i', '<C-A-l>', '<Esc>:w<CR>:Format<CR>')
+silnoremap('n', '<C-A-l>', save_and_format)
+silnoremap('i', '<C-A-l>', function ()
+  vim.cmd('stopinsert')
+  save_and_format()
+end)
 
 -- 每次打开使用新的 jumplist
 vim.cmd([[autocmd VimEnter * :clearjumps]])

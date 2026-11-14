@@ -13,7 +13,7 @@ return {
     vim.api.nvim_create_user_command(
       'Config',
       function ()
-        builtin.find_files({cwd = '~/.config/nvim'})
+        builtin.find_files({cwd = vim.fn.stdpath('config')})
       end,
       {}
     )

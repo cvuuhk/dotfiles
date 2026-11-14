@@ -19,5 +19,7 @@ require('lazy').setup({
   spec = {
     { import = 'plugins' },
   },
-  ui = { border = 'rounded' }
+  ui = { border = 'rounded' },
+  -- 当前没有插件依赖 luarocks,关闭可消除 checkhealth 噪音
+  rocks = { enabled = false }
 })

@@ -15,10 +15,7 @@ return {
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
     }
 
-    -- If you are on most recent `nvim-lspconfig`
-    local vue_ls_config = {}
     -- nvim 0.11 or above
-    vim.lsp.config('vue_ls', vue_ls_config)
     vim.lsp.config('ts_ls', ts_ls_config)
 
     vim.lsp.enable({'lua_ls', 'clangd', 'vue_ls', 'ts_ls'})
