@@ -137,4 +137,34 @@ function niris() {
   dbus-run-session niri --session
 }
 
+_fmt_elapsed() {
+  local -F t=$1
+  local formatted total frac
+  printf -v formatted '%.3f' $t
+  total=${formatted%%.*}
+  frac=${formatted#*.}
+
+  if (( total >= 3600 )); then
+    printf '%d 小时 %d 分 %d.%s 秒' \
+      $(( total / 3600 )) $(( (total / 60) % 60 )) $(( total % 60 )) "$frac"
+  elif (( total >= 60 )); then
+    printf '%d 分 %d.%s 秒' $(( total / 60 )) $(( total % 60 )) "$frac"
+  else
+    printf '%d.%s 秒' $total "$frac"
+  fi
+}
+
+stopwatch() {
+  typeset -F SECONDS=0          # 变成浮点并从 0 计时（局部变量）
+  printf '开始时间: %s\n' "$(date '+%Y-%m-%d %H:%M:%S')"
+  {
+    while :; do
+      printf '\r\033[K已用时间: %s' "$(_fmt_elapsed $SECONDS)"
+      sleep 0.05
+    done
+  } always {
+    print                       # Ctrl-C 后换行，留下最终结果
+  }
+}
+
 export CMAKE_GENERATOR=Ninja
